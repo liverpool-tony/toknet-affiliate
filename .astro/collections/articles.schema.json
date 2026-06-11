@@ -1,0 +1,114 @@
+{
+  "$ref": "#/definitions/articles",
+  "definitions": {
+    "articles": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "pubDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "updatedDate": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "price": {
+                "type": "string"
+              },
+              "amazonUrl": {
+                "type": "string"
+              },
+              "rating": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 5
+              }
+            },
+            "required": [
+              "name"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "articleType": {
+          "type": "string",
+          "enum": [
+            "review",
+            "comparison",
+            "ranking",
+            "guide"
+          ],
+          "default": "review"
+        },
+        "aiAssisted": {
+          "type": "boolean",
+          "default": true
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "pubDate",
+        "category"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

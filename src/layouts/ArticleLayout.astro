@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = 'AI共創レビュー研究所', description = 'AIと人間の共創による、透明性の高い商品レビュー・比較サイト。専門家の体験と最新データを掛け合わせた、本当に役立つ情報をお届けします。' } = Astro.props;
+
+// 最新記事を取得
+const allPosts = await import('../content/config').then(m => m.getSortedPosts());
+const latestPosts = allPosts.slice(0, 10);
+---
+
+<BaseLayout title={title} description={description}>
+  <div style="display: grid; grid-template-columns: 1fr 320px; gap: 40px;">
+    
+    <!-- メインカラム -->
+    <div>
+      <slot />
+    </div>
+    
+    <!-- サイドバー -->
+    <aside style="position: sticky; top: 80px; align-self: start;">
+      
+      <!-- サイト紹介 -->
+      <div style="background: var(--color-bg-secondary); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="font-size: 16px; margin-bottom: 12px;">このサイトについて</h3>
+        <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6;">
+          AIと人間の共創による商品レビューサイト。
+          専門家の体験と最新データを掛け合わせ、
+          透明性の高い情報をお届けします。
+        </p>
+        <a href="/about/" style="font-size: 13px; display: inline-block; margin-top: 8px;">
+          詳しく見る →
+        </a>
+      </div>
+      
+      <!-- 最新記事 -->
+      <div style="background: var(--color-bg-secondary); border-radius: 12px; padding: 20px; margin-bottom: 24px;">
+        <h3 style="font-size: 16px; margin-bottom: 12px;">最新記事</h3>
+        <ul style="list-style: none; padding: 0;">
+          {latestPosts.map(post => (
+            <li style="padding: 8px 0; border-bottom: 1px solid var(--color-border);">
+              <a href={`/articles/${post.slug}/`} style="font-size: 13px; color: var(--color-text); display: block; line-height: 1.4;">
+                {post.data.title}
+              </a>
+              <span style="font-size: 11px; color: var(--color-text-secondary);">
+                {new Date(post.data.pubDate).toLocaleDateString('ja-JP')}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- カテゴリ -->
+      <div style="background: var(--color-bg-secondary); border-radius: 12px; padding: 20px;">
+        <h3 style="font-size: 16px; margin-bottom: 12px;">カテゴリ</h3>
+        <ul style="list-style: none; padding: 0;">
+          <li style="padding: 6px 0;"><a href="/category/laptop-pc/" style="font-size: 13px;">ノートPC・PC本体</a></li>
+          <li style="padding: 6px 0;"><a href="/category/camera/" style="font-size: 13px;">カメラ・写真機材</a></li>
+          <li style="padding: 6px 0;"><a href="/category/audio-headphones/" style="font-size: 13px;">オーディオ・ヘッドホン</a></li>
+          <li style="padding: 6px 0;"><a href="/category/smart-home/" style="font-size: 13px;">スマートホーム・IoT</a></li>
+          <li style="padding: 6px 0;"><a href="/category/home-appliances/" style="font-size: 13px;">生活家電</a></li>
+          <li style="padding: 6px 0;"><a href="/category/monitors/" style="font-size: 13px;">モニター</a></li>
+          <li style="padding: 6px 0;"><a href="/category/diy-pc/" style="font-size: 13px;">自作PC・パーツ</a></li>
+        </ul>
+      </div>
+      
+    </aside>
+  </div>
+</BaseLayout>

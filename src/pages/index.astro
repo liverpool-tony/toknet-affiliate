@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSortedPosts } from '../content/utils';
+
+const posts = await getSortedPosts();
+const latestPosts = posts.slice(0, 15);
+---
+
+<BaseLayout title="AI共創レビュー研究所 | 透明性の高い商品レビュー" description="AIと人間の共創による、透明性の高い商品レビュー・比較サイト。専門家の体験と最新データを掛け合わせた、本当に役立つ情報をお届けします。">
+
+  <!-- ヒーローセクション -->
+  <section style="text-align: center; padding: 60px 0 40px;">
+    <h1 style="font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px;">
+      AIと人間の<span style="color: var(--color-primary);">共創</span>による<br>透明性の高いレビュー
+    </h1>
+    <p style="font-size: 18px; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto 32px;">
+      専門家の体験と最新データを掛け合わせ、本当に役立つ情報をお届けします。
+    </p>
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="/category/laptop-pc/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">PC・ノート</a>
+      <a href="/category/camera/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">カメラ</a>
+      <a href="/category/audio-headphones/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">オーディオ</a>
+      <a href="/category/smart-home/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">スマートホーム</a>
+    </div>
+  </section>
+
+  <!-- 最新記事 -->
+  <section style="padding: 40px 0;">
+    <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">最新記事</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;">
+      {latestPosts.map(post => (
+        <article style="border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s;">
+          <a href={`/articles/${post.slug}/`} style="text-decoration: none; color: inherit; display: block;">
+            {post.data.products?.[0]?.image && (
+              <img src={post.data.products[0].image} alt={post.data.title} style="width: 100%; height: 200px; object-fit: cover;" />
+            )}
+            <div style="padding: 20px;">
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <span style="background: var(--color-primary); color: white; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 500;">
+                  {post.data.category}
+                </span>
+                {post.data.aiAssisted && (
+                  <span style="background: var(--color-bg-secondary); color: var(--color-text-secondary); padding: 2px 8px; border-radius: 4px; font-size: 11px;">
+                    AI共創
+                  </span>
+                )}
+              </div>
+              <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.4;">
+                {post.data.title}
+              </h3>
+              <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.5; margin-bottom: 12px;">
+                {post.data.description}
+              </p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 12px; color: var(--color-text-secondary);">
+                  {new Date(post.data.pubDate).toLocaleDateString('ja-JP')}
+                </span>
+                {post.data.products?.[0]?.rating && (
+                  <span style="font-size: 13px; color: var(--color-accent);">
+                    ⭐ {post.data.products[0].rating}/5
+                  </span>
+                )}
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <!-- このサイトについて（概要） -->
+  <section style="padding: 60px 0; background: var(--color-bg-secondary); border-radius: 16px; margin: 40px 0; padding: 40px;">
+    <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">AI共創レビュー研究所とは</h2>
+    <p style="font-size: 15px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 16px;">
+      当サイトは、生成AIと人間の専門家が共創する新しい形の商品レビューサイトです。
+      AIが最新データと分析を担当し、人間の専門家が実際の使用体験と専門的な視点を加えます。
+    </p>
+    <p style="font-size: 15px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 24px;">
+      すべての記事にはAI使用を明記し、透明性を確保しています。
+      アフィリエイト収入によって運営されていますが、商品の評価は公正に行っています。
+    </p>
+    <a href="/about/" style="display: inline-block; background: var(--color-primary); color: white; padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 500; text-decoration: none;">
+      詳しく見る
+    </a>
+  </section>
+
+</BaseLayout>

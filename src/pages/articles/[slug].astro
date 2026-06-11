@@ -1,0 +1,135 @@
+---
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { getSortedPosts } from '../../content/utils';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getSortedPosts();
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// 構造化データ: Review
+const product = post.data.products?.[0];
+const reviewSchema = product ? {
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "name": post.data.title,
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": product.rating || 4,
+    "bestRating": "5"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "AI共創レビュー研究所"
+  },
+  "datePublished": post.data.pubDate.toISOString(),
+  "itemReviewed": {
+    "@type": "Product",
+    "name": product.name,
+  }
+} : null;
+
+// 構造化データ: Article
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "author": {
+    "@type": "Organization",
+    "name": "AI共創レビュー研究所"
+  },
+  "datePublished": post.data.pubDate.toISOString(),
+  ...(post.data.updatedDate && { "dateModified": post.data.updatedDate.toISOString() }),
+};
+---
+
+<ArticleLayout title={`${post.data.title} | AI共創レビュー研究所`} description={post.data.description}>
+
+  <!-- 構造化データ -->
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {reviewSchema && <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />}
+
+  <!-- パンくずリスト -->
+  <nav style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 24px;">
+    <a href="/">ホーム</a> &gt;
+    <a href={`/category/${post.data.category}/`}>{post.data.category}</a> &gt;
+    <span>{post.data.title}</span>
+  </nav>
+
+  <!-- 記事先頭 -->
+  <header style="margin-bottom: 32px;">
+    <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+      <span style="background: var(--color-primary); color: white; padding: 4px 12px; border-radius: 4px; font-size: 12px; font-weight: 500;">
+        {post.data.category}
+      </span>
+      <span style="background: var(--color-bg-secondary); color: var(--color-text-secondary); padding: 4px 12px; border-radius: 4px; font-size: 12px;">
+        {post.data.articleType === 'review' ? 'レビュー' : post.data.articleType === 'comparison' ? '比較' : post.data.articleType === 'ranking' ? 'ランキング' : 'ガイド'}
+      </span>
+    </div>
+    
+    <h1 style="font-size: 28px; font-weight: 700; line-height: 1.4; margin-bottom: 16px;">
+      {post.data.title}
+    </h1>
+    
+    <div style="display: flex; gap: 16px; align-items: center; font-size: 13px; color: var(--color-text-secondary);">
+      <span>📅 {new Date(post.data.pubDate).toLocaleDateString('ja-JP')} 公開</span>
+      {post.data.updatedDate && (
+        <span>🔄 {new Date(post.data.updatedDate).toLocaleDateString('ja-JP')} 更新</span>
+      )}
+    </div>
+
+    <!-- AI表記 -->
+    {post.data.aiAssisted && (
+      <div style="margin-top: 16px; font-size: 13px; color: var(--color-text-secondary); padding: 8px 12px; background: var(--color-bg-secondary); border-radius: 6px; display: inline-block;">
+        🤖 この記事は生成AIを補助的に活用して作成しています。内容は編集部が確認・編集のうえ公開しています。
+      </div>
+    )}
+  </header>
+
+  <!-- 商品情報カード -->
+  {product && (
+    <div style="border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; margin-bottom: 32px; background: var(--color-bg-secondary);">
+      <div style="display: flex; gap: 20px; align-items: flex-start;">
+        <div style="flex: 1;">
+          <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 8px;">{product.name}</h3>
+          {product.rating && (
+            <div style="margin-bottom: 8px;">
+              <span style="color: var(--color-accent); font-size: 18px;">⭐</span>
+              <span style="font-size: 18px; font-weight: 600;">{product.rating}</span>
+              <span style="color: var(--color-text-secondary);"> / 5.0</span>
+            </div>
+          )}
+          {product.price && (
+            <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">
+              参考价格: <strong>{product.price}円</strong>
+            </p>
+          )}
+          {product.amazonUrl && (
+            <a href={product.amazonUrl} target="_blank" rel="noopener noreferrer sponsored" style="display: inline-block; background: #ff9900; color: white; padding: 12px 24px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;">
+              🛒 Amazonで見る
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- 記事本文 -->
+  <article style="max-width: 720px;">
+    <Content />
+  </article>
+
+  <!-- 関連記事 -->
+  <section style="margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--color-border);">
+    <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">関連記事</h3>
+  </section>
+
+</ArticleLayout>

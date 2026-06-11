@@ -1,0 +1,11 @@
+name = "toknet-affiliate"
+compatibility_date = "2026-06-11"
+
+[site]
+bucket = "./dist"
+
+[build]
+command = "npm run build"
+
+[pages_build_output_dir]
+dir = "dist"

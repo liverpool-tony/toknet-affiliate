@@ -1,0 +1,10 @@
+# Build output
+dist/
+.astro/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store

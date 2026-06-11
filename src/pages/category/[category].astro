@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSortedPosts } from '../../content/utils';
+
+export async function getStaticPaths() {
+  const categories = ['laptop-pc', 'camera', 'audio-headphones', 'smart-home', 'home-appliances', 'monitors', 'diy-pc'];
+  const posts = await getSortedPosts();
+  
+  return categories.map(category => ({
+    params: { category },
+    props: { category, posts: posts.filter(p => p.data.category === category) },
+  }));
+}
+
+const { category, posts } = Astro.props;
+
+const categoryNames: Record<string, string> = {
+  'laptop-pc': 'ノートPC・PC本体',
+  'camera': 'カメラ・写真機材',
+  'audio-headphones': 'オーディオ・ヘッドホン',
+  'smart-home': 'スマートホーム・IoT',
+  'home-appliances': '生活家電',
+  'monitors': 'モニター・ディスプレイ',
+  'diy-pc': '自作PC・パーツ',
+};
+
+const categoryName = categoryNames[category] || category;
+---
+
+<BaseLayout title={`${categoryName}のレビュー・比較記事 | AI共創レビュー研究所`} description={`${categoryName}の徹底レビュー・比較記事。AIと人間の共創による透明性の高い情報をお届けします。`}>
+
+  <div style="margin-bottom: 40px;">
+    <h1 style="font-size: 28px; font-weight: 700; margin-bottom: 8px;">{categoryName}</h1>
+    <p style="font-size: 14px; color: var(--color-text-secondary);">{posts.length}件の記事</p>
+  </div>
+
+  <div style="display: grid; gap: 20px;">
+    {posts.map(post => (
+      <article style="border: 1px solid var(--color-border); border-radius: 12px; padding: 20px; display: flex; gap: 16px;">
+        {post.data.products?.[0]?.image && (
+          <img src={post.data.products[0].image} alt={post.data.title} style="width: 100px; height: 100px; object-fit: contain; border-radius: 8px; background: var(--color-bg-secondary);" />
+        )}
+        <div style="flex: 1;">
+          <a href={`/articles/${post.slug}/`} style="text-decoration: none; color: inherit;">
+            <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 8px; line-height: 1.4;">
+              {post.data.title}
+            </h2>
+          </a>
+          <p style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 8px;">
+            {post.data.description}
+          </p>
+          <div style="display: flex; gap: 12px; font-size: 12px; color: var(--color-text-secondary);">
+            <span>{new Date(post.data.pubDate).toLocaleDateString('ja-JP')}</span>
+            {post.data.products?.[0]?.rating && (
+              <span style="color: var(--color-accent);">⭐ {post.data.products[0].rating}/5</span>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  {posts.length === 0 && (
+    <div style="text-align: center; padding: 60px 0; color: var(--color-text-secondary);">
+      <p>このカテゴリの記事はまだありません。</p>
+      <p style="margin-top: 12px; font-size: 14px;">まもなく公開予定です。お待ちください。</p>
+    </div>
+  )}
+
+</BaseLayout>
