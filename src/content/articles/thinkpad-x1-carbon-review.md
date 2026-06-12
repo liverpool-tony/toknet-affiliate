@@ -9,7 +9,7 @@ aiAssisted: true
 products:
   - name: "ThinkPad X1 Carbon Gen 12"
     price: "215,000"
-    amazonUrl: "https://www.amazon.co.jp/dp/B0D1GK4V3R?tag=toknet-22"
+    amazonUrl: "https://www.amazon.co.jp/s?k=ThinkPad+X1+Carbon&tag=toknet-22"
     rating: 4.3
 ---
 

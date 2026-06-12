@@ -9,7 +9,7 @@ aiAssisted: true
 products:
   - name: "AirPods Pro 第3世代"
     price: "36,800"
-    amazonUrl: "https://www.amazon.co.jp/dp/B0D1GK4V3R?tag=toknet-22"
+    amazonUrl: "https://www.amazon.co.jp/s?k=AirPods+Pro&tag=toknet-22"
     rating: 4.4
 ---
 
