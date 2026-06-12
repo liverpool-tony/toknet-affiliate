@@ -130,6 +130,19 @@ const articleSchema = {
   <!-- 関連記事 -->
   <section style="margin-top: 60px; padding-top: 32px; border-top: 1px solid var(--color-border);">
     <h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">関連記事</h3>
+    <div style="display: grid; gap: 16px;">
+      {(await getSortedPosts()).filter(p => p.data.category === post.data.category && p.slug !== post.slug).slice(0, 3).map(related => (
+        <a href={`/articles/${related.slug}/`} style="display: flex; gap: 12px; padding: 16px; border: 1px solid var(--color-border); border-radius: 8px; text-decoration: none; color: inherit; transition: box-shadow 0.2s;">
+          <div style="flex: 1;">
+            <h4 style="font-size: 14px; font-weight: 600; margin-bottom: 4px;">{related.data.title}</h4>
+            <p style="font-size: 12px; color: var(--color-text-secondary);">{related.data.description?.slice(0, 80)}...</p>
+          </div>
+          {related.data.products?.[0]?.rating && (
+            <span style="font-size: 12px; color: var(--color-accent); white-space: nowrap;">⭐ {related.data.products[0].rating}</span>
+          )}
+        </a>
+      ))}
+    </div>
   </section>
 
 </ArticleLayout>
