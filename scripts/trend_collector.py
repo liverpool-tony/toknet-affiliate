@@ -37,6 +37,9 @@ EXCLUDE_PATTERNS = [
     r'^#io写真', r'^#mexrsa', r'^#musiquinta',
     # その他
     r'^#grok$', r'^#deepfakes', r'^#thursday$',
+    # 政治家・ニュース（商品系でないため除外）
+    r'^#macron$', r'^#trump$', r'^#biden$', r'^#putin$',
+    r'^#Président$', r'^#élysée',
 ]
 
 # 商品・サービス関連キーワード
@@ -51,7 +54,7 @@ PRODUCT_KEYWORDS = [
     'Amazon', '楽天', 'ヨドバシ', 'ビックカメラ', '価格比較',
     'レビュー', 'おすすめ', 'ランキング', '比較', '検証',
     # 追加: mstdn.jpでトレンドになりやすい商品キーワード
-    'MacBook', 'Mac', 'iMac', 'MacStudio', 'MacPro',
+    'MacBook', 'iMac', 'MacStudio', 'MacPro',
     'AirPods', 'AppleWatch', 'Watch',
     'Sony', 'Panasonic', 'Sharp', '東芝', 'Hitachi',
     'Canon', 'Nikon', 'Fujifilm', 'Olympus', 'SIGMA', 'TAMRON',
