@@ -1,0 +1,63 @@
+{
+  "sources": {
+    "hatena": 0,
+    "itmedia": 3,
+    "engadget": 0
+  },
+  "all_keywords": {
+    "カメラ": 1,
+    "レビュー": 1,
+    "スマホ": 1,
+    "Switch": 1
+  },
+  "all_items": [
+    {
+      "source": "itmedia",
+      "title": "“最小のインスタントカメラ”はポラロイドの撮影体験をどう変えたか　「Polaroid Go Gen 3」レビュー",
+      "url": "https://www.itmedia.co.jp/news/articles/2606/13/news028.html",
+      "keywords": [
+        "カメラ",
+        "レビュー"
+      ],
+      "score": 20
+    },
+    {
+      "source": "itmedia",
+      "title": "「スマホ買取10％UP」実は終了後も同条件　ゲオストアで景品表示法違反　消費者庁",
+      "url": "https://www.itmedia.co.jp/news/articles/2606/12/news112.html",
+      "keywords": [
+        "スマホ"
+      ],
+      "score": 10
+    },
+    {
+      "source": "itmedia",
+      "title": "任天堂、Switch 2多言語版に“買い占め”確認　「プレイ時間50時間以上」の購入制限復活",
+      "url": "https://www.itmedia.co.jp/news/articles/2606/12/news071.html",
+      "keywords": [
+        "Switch"
+      ],
+      "score": 10
+    }
+  ],
+  "errors": [],
+  "collected_at": "2026-06-14T09:02:26.002356+09:00",
+  "top_keywords": [
+    {
+      "keyword": "カメラ",
+      "count": 1
+    },
+    {
+      "keyword": "レビュー",
+      "count": 1
+    },
+    {
+      "keyword": "スマホ",
+      "count": 1
+    },
+    {
+      "keyword": "Switch",
+      "count": 1
+    }
+  ]
+}

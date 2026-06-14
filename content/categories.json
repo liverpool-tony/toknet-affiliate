@@ -1,0 +1,185 @@
+{
+  "site_name": "AI共創レビュー研究所",
+  "domain": "toknet.info",
+  "site_description": "AIと人間の共創による、透明性の高い商品レビュー・比較サイト。専門家の体験と最新データを掛け合わせた、本当に役立つ情報をお届けします。",
+  "disclaimer": "当サイトはアフィリエイト広告（PR）を含んでいます。Amazonアソシエイトとして適格販売により収入を得ています。一部の記事は生成AIを補助的に活用し、専門家が最終確認・編集しています。",
+  "ai_disclaimer": "この記事は生成AIを補助的に活用して作成しています。内容は編集部が確認・編集のうえ公開しています。",
+  
+  "categories": [
+    {
+      "name": "ノートPC・PC本体",
+      "slug": "laptop-pc",
+      "description": "ノートPC、デスクトップPC、ゲーミングPCの徹底レビュー",
+      "target_products": [
+        "MacBook Air/Pro",
+        "ThinkPad X1 Carbon",
+        "Dell XPS",
+        "ASUS ZenBook",
+        "ゲーミングPC（Alienware, Razer等）"
+      ],
+      "commission_rate": "2-8%",
+      "avg_price": 150000,
+      "priority": "high"
+    },
+    {
+      "name": "カメラ・写真機材",
+      "slug": "camera",
+      "description": "ミラーレス一眼、コンパクトカメラ、レンズ、アクションカメラ",
+      "target_products": [
+        "Sony α7IV",
+        "Canon EOS R6 Mark II",
+        "Fujifilm X-T5",
+        "Nikon Z6III",
+        "GoPro HERO12",
+        "DJI Osmo Action"
+      ],
+      "commission_rate": "2%",
+      "avg_price": 200000,
+      "priority": "high"
+    },
+    {
+      "name": "オオーディオ・ヘッドホン",
+      "slug": "audio-headphones",
+      "description": "ワイヤレスイヤホン、ヘッドホン、スピーカー",
+      "target_products": [
+        "AirPods Pro 2",
+        "Sony WH-1000XM5",
+        "Bose QuietComfort Ultra",
+        "Sennheiser Momentum 4",
+        "JBL Charge 5"
+      ],
+      "commission_rate": "4%",
+      "avg_price": 30000,
+      "priority": "high"
+    },
+    {
+      "name": "スマートホーム・IoT",
+      "slug": "smart-home",
+      "description": "スマートスピーカー、セキュリティカメラ、スマートロック",
+      "target_products": [
+        "Amazon Echo Show",
+        "Google Nest Hub",
+        "Ring セキュリティカメラ",
+        "Philips Hue",
+        "Aqara スマートロック"
+      ],
+      "commission_rate": "4%",
+      "avg_price": 25000,
+      "priority": "medium"
+    },
+    {
+      "name": "生活家電・キッチン",
+      "slug": "home-appliances",
+      "description": "炊飯器、電気ポット、掃除機、空気清浄機",
+      "target_products": [
+        "炊飯器（象印、虎牌）",
+        "電気ポット（TIGER）",
+        "Dyson掃除機",
+        "シャープ空気清浄機"
+      ],
+      "commission_rate": "3-8%",
+      "avg_price": 50000,
+      "priority": "medium"
+    },
+    {
+      "name": "モニター・ディスプレイ",
+      "slug": "monitors",
+      "description": "4Kモニター、ウルトラワイド、ポータブルモニター",
+      "target_products": [
+        "LG UltraFine",
+        "Dell UltraSharp",
+        "Samsung Odyssey",
+        "ASUS ProArt"
+      ],
+      "commission_rate": "2%",
+      "avg_price": 80000,
+      "priority": "medium"
+    },
+    {
+      "name": "自作PC・パーツ",
+      "slug": "diy-pc",
+      "description": "CPU、GPU、マザーボード、メモリ、SSD",
+      "target_products": [
+        "Intel Core i9",
+        "NVIDIA RTX 4090",
+        "Samsung 990 Pro",
+        "Corsair メモリ"
+      ],
+      "commission_rate": "2-4%",
+      "avg_price": 100000,
+      "priority": "medium"
+    }
+  ],
+  
+  "affiliate_programs": {
+    "amazon": {
+      "enabled": true,
+      "tracking_id": "（既存アカウントのトラッキングID）",
+      "commission_cap_removed": true,
+      "note": "上限撤廃済み。高額商品で最大10%。"
+    },
+    "afb": {
+      "enabled": false,
+      "note": "B2C案件のベース収益用。後日登録。"
+    },
+    "townlife": {
+      "enabled": false,
+      "note": "住宅・リフォームの高単価案件。専門性構築後に登録。"
+    }
+  },
+  
+  "content_strategy": {
+    "article_types": [
+      {
+        "type": "single_review",
+        "title_pattern": "{商品名} 徹底レビュー：{protect_point}を徹底検証",
+        "word_count": 5000,
+        "template": "single_review"
+      },
+      {
+        "type": "comparison",
+        "title_pattern": "{商品A} vs {商品B}：{use_case}ならどっち？徹底比較",
+        "word_count": 8000,
+        "template": "comparison"
+      },
+      {
+        "type": "best_of",
+        "title_pattern": "{category} おすすめランキングTOP{number}【2026年最新】",
+        "word_count": 10000,
+        "template": "best_of"
+      },
+      {
+        "type": "buying_guide",
+        "title_pattern": "{category} 選び方完全ガイド：専門家が教える{number}のポイント",
+        "word_count": 6000,
+        "template": "buying_guide"
+      }
+    ],
+    "initial_articles": 30,
+    "publish_schedule": "毎日2本",
+    "ai_usage": "AIが構成・初稿作成。人間が体験談・専門評価・最終確認を追加。"
+  },
+  
+  "seo_strategy": {
+    "focus_keywords": [
+      "レビュー",
+      "比較",
+      "おすすめ",
+      "選び方",
+      "徹底検証"
+    ],
+    "internal_linking": "ピラーページ + クラスターページ構造",
+    "schema_markup": "Review, Product, FAQ, HowTo",
+    "core_web_vitals": "LCP < 2.5s, FID < 100ms, CLS < 0.1"
+  },
+  
+  "legal_compliance": {
+    "stema_regulation": {
+      "pr_display": "ファーストビューに「PR」「広告」表記",
+      "affiliate_disclaimer": "全ページにアフィリエイト収入の明記",
+      "ai_disclaimer": "AI使用記事には冒頭に明記"
+    },
+    "privacy_policy": true,
+    "about_page": true
+  }
+}
