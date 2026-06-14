@@ -429,6 +429,28 @@ def filter_product_keywords(keywords, tag):
     # 助詞・助動詞で始まるフレーズはノイズ
     NOISE_PREFIXES = {'は', 'が', 'を', 'に', 'で', 'と', 'の', 'も', 'や', 'から',
                        'まで', 'より', 'など', 'って', 'という', 'というのは'}
+    # URLパラメータ・HTMLフラグメントなどのノイズ語
+    NOISE_WORDS = {'utm', 'amp', 'ref', 'src', 'cid', 'gclid', 'fbclid', 'mc_cid',
+                   'mc_eid', 'yclid', 'msclkid', 'dclid', 'zanpid', 'igshid',
+                   'feature', 'share', 'via', 'from', 'html', 'http', 'https',
+                   'com', 'org', 'net', 'www', 'co', 'jp', 'io', 'app',
+                   'index', 'page', 'article', 'post', 'story', 'news',
+                   'the', 'and', 'for', 'this', 'that', 'with', 'from', 'have',
+                   'been', 'were', 'are', 'was', 'will', 'would', 'could', 'should',
+                   'not', 'but', 'all', 'can', 'had', 'her', 'his', 'how', 'its',
+                   'may', 'new', 'now', 'old', 'see', 'way', 'who', 'did', 'get',
+                   'let', 'say', 'she', 'too', 'use', 'one', 'our', 'out', 'has',
+                   'each', 'make', 'like', 'long', 'look', 'many', 'some', 'them',
+                   'then', 'than', 'only', 'come', 'over', 'such', 'also', 'back',
+                   'well', 'most', 'into', 'very', 'just', 'more', 'here', 'what',
+                   'when', 'your', 'about', 'which', 'their', 'there', 'these',
+                   'those', 'where', 'while', 'after', 'before', 'under', 'again',
+                   'further', 'once', 'sns', 'twitter', 'instagram', 'facebook',
+                   'youtube', 'tiktok', 'line', 'xcom', 'com', 'de', 'en', 'fr',
+                   'html', 'css', 'jpg', 'png', 'gif', 'pdf', 'zip', 'mp3', 'mp4',
+                   'www', 'http', 'https', 'ftp', 'url', 'uri', 'api', 'sdk',
+                   'gen',  # "Gen" as in "5th Gen" — too generic as product name
+                   }
     filtered = []
     for w in keywords:
         # タグ自体は常に含める
@@ -440,6 +462,9 @@ def filter_product_keywords(keywords, tag):
             continue
         # 助詞で始まるフレーズはノイズ
         if any(w.startswith(p) for p in NOISE_PREFIXES):
+            continue
+        # ノイズワード（URLパラメータ等）は除外
+        if w.lower() in NOISE_WORDS:
             continue
         # 既知の商品キーワードに部分一致するか、短い単語（2-15文字）のみ採用
         w_lower = w.lower()
