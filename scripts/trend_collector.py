@@ -174,7 +174,10 @@ def api_get(path, params=None, retries=3):
 
 
 def is_product_related(tag_name):
-    """タグが商品・サービス関連か判定"""
+    """タグが商品・サービス関連か判定（#あり/なし両対応）"""
+    # # を付けて正規化
+    if not tag_name.startswith('#'):
+        tag_name = '#' + tag_name
     for pattern in EXCLUDE_PATTERNS:
         if re.match(pattern, tag_name, re.IGNORECASE):
             return False
@@ -220,7 +223,10 @@ def get_trending_tags(limit=20):
     # まずキャッシュを試す
     cached_tags, cache_status = load_cache()
     if cached_tags and cache_status.startswith("valid"):
-        print(f"  📦 キャッシュ使用: {cache_status}", file=sys.stderr)
+        # is_product を再計算（EXCLUDE_PATTERNS/PRODUCT_KEYWORDS更新に対応）
+        for t in cached_tags:
+            t['is_product'] = is_product_related('#' + t['name'])
+        print(f"  📦 キャッシュ使用: {cache_status} (is_product再計算済み)", file=sys.stderr)
         return cached_tags
 
     # API取得を試みる

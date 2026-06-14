@@ -170,9 +170,16 @@ def collect_trends(use_realtime=False):
     # --- ソース1: mstdn.jp トレンドタグ ---
     print("  📡 ソース1: mstdn.jp トレンドタグ")
     try:
+        # use_realtime=True ならキャッシュを無視してAPI再取得
+        if use_realtime:
+            from trend_collector import CACHE_FILE
+            import os
+            if CACHE_FILE.exists():
+                os.remove(CACHE_FILE)
+                print("    🗑️ キャッシュクリア（リアルタイム取得）")
         tags = get_trending_tags(limit=30)
         all_tags = tags
-        product_tags = [t for t in tags if is_product_related(t['name'])][:10]
+        product_tags = [t for t in tags if is_product_related('#' + t['name'])][:10]
         print(f"    → 商品系タグ: {len(product_tags)}/{len(tags)}")
 
         for t in product_tags[:5]:
