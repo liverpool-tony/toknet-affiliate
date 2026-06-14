@@ -40,6 +40,16 @@ EXCLUDE_PATTERNS = [
     # 政治家・ニュース（商品系でないため除外）
     r'^#macron$', r'^#trump$', r'^#biden$', r'^#putin$',
     r'^#Président$', r'^#élysée',
+    # 日本語お遊びタグ（毎日変わる一時的なもの）
+    r'^#梅雨だから', r'^#あなたが', r'^#名前に', r'^#今でも怖いもの',
+    r'^#jと打って', r'^#io写真', r'^#mexrsa', r'^#musiquinta',
+    r'^#ミリオン\d', r'^#仮面ライダー',
+    # 外国語イベントタグ
+    r'^#Fensterfreitag', r'^#insektensamstag', r'^#caturday$',
+    r'^#kungfusat', r'^#spillthetea', r'^#KidMadeUpHolidays',
+    r'^#nationalsecurity',
+    # 除外: SNS上の流行語（商品系でないこと）
+    r'^#misskey',
 ]
 
 # 商品・サービス関連キーワード
@@ -64,6 +74,7 @@ PRODUCT_KEYWORDS = [
     'ドローン', 'DJI', 'Oculus', 'MetaQuest',
     '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
     '新作', '発売', '予約', '限定', 'プレオーダー',
+    'Anthropic', 'OpenAI', 'Claude', 'GPT', 'Gemini', 'AI',
     # 英語
     'deal', 'sale', 'discount', 'coupon', 'cheap', 'budget',
     'laptop', 'notebook', 'camera', 'headphone', 'earphone',
@@ -163,9 +174,9 @@ def is_product_related(tag_name):
     for pattern in EXCLUDE_PATTERNS:
         if re.match(pattern, tag_name, re.IGNORECASE):
             return False
-    tag_lower = tag_name.lower()
+    tag_lower = tag_name.lower().lstrip('#')
     for kw in PRODUCT_KEYWORDS:
-        if kw.lower() in tag_lower:
+        if kw.lower() in tag_lower or tag_lower in kw.lower():
             return True
     return False
 

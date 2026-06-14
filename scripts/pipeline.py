@@ -371,11 +371,69 @@ def build_selection_points(keywords, tag):
     return '\n'.join(f'- {p}' for p in points)
 
 
+def filter_product_keywords(keywords, tag):
+    """キーワードリストから商品・製品関連のみをフィルタリング
+
+    ニュースタイトルから抽出された長いフレーズ（10文字以上の日本語や
+    助詞で始まるフレーズ）を除外し、実際の商品名・技術用語のみを残す。
+    """
+    # 既知の商品キーワード（部分一致）
+    PRODUCT_KW_SET = {
+        'ノートPC', 'パソコン', 'PC', 'カメラ', 'レンズ', 'ヘッドホン', 'イヤホン',
+        'スマホ', 'iPhone', 'Android', 'タブレット', 'iPad', 'Apple',
+        'Nintendo', 'Switch', 'PS5', 'PlayStation', 'Xbox', 'ゲーム',
+        '家電', '洗濯機', '冷蔵庫', '掃除機', 'ダイソン', '炊飯器',
+        'モニター', 'ディスプレイ', '4K', 'SSD', 'メモリ', 'グラボ',
+        'レビュー', 'おすすめ', 'ランキング', '比較',
+        'セール', '割引', '安い', '激安', 'お買い得',
+        'MacBook', 'iMac', 'MacStudio', 'MacPro',
+        'AirPods', 'AppleWatch', 'Watch',
+        'Sony', 'Panasonic', 'Sharp', 'Canon', 'Nikon', 'Fujifilm',
+        'Bose', 'Sennheiser', 'AudioTechnica', 'JBL',
+        'Razer', 'Logitech', 'Corsair',
+        'Kindle', 'FireTV', 'Chromecast', 'RaspberryPi',
+        'ドローン', 'DJI', 'Oculus', 'MetaQuest',
+        '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
+        '新作', '発売', '予約', '限定', 'プレオーダー',
+        'laptop', 'notebook', 'camera', 'headphone', 'earphone',
+        'smartphone', 'tablet', 'monitor', 'display', 'gaming',
+        'review', 'best', 'top', 'tech', 'gadget', 'deal', 'sale',
+        'apple', 'samsung', 'sony', 'nintendo', 'playstation',
+        'new', 'release', 'launch', 'unboxing',
+        '任天堂', '東芝', 'Hitachi', 'Olympus', 'SIGMA', 'TAMRON',
+        'SteelSeries', '買取', '買い替え', 'iPhone16', 'Galaxy',
+    }
+    # 助詞・助動詞で始まるフレーズはノイズ
+    NOISE_PREFIXES = {'は', 'が', 'を', 'に', 'で', 'と', 'の', 'も', 'や', 'から',
+                       'まで', 'より', 'など', 'って', 'という', 'というのは'}
+    filtered = []
+    for w in keywords:
+        # タグ自体は常に含める
+        if w == tag:
+            filtered.append(w)
+            continue
+        # 10文字以上の日本語フレーズはニュース文の断片なので除外
+        if re.match(r'^[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+$', w) and len(w) >= 10:
+            continue
+        # 助詞で始まるフレーズはノイズ
+        if any(w.startswith(p) for p in NOISE_PREFIXES):
+            continue
+        # 既知の商品キーワードに部分一致するか、短い単語（2-15文字）のみ採用
+        w_lower = w.lower()
+        is_known = any(kw.lower() in w_lower or w_lower in kw.lower() for kw in PRODUCT_KW_SET)
+        if is_known or (2 <= len(w) <= 15 and not re.match(r'^[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+$', w)):
+            filtered.append(w)
+        elif is_known:
+            filtered.append(w)
+    return filtered if filtered else [tag]
+
+
 def generate_article(trend_data, template_idx=0):
     """トレンドデータからAstro記事を生成"""
     tag = trend_data['tag']
     analysis = trend_data.get('analysis', {})
-    keywords = [w for w, c in analysis.get('top_words', [])[:10]]
+    raw_keywords = [w for w, c in analysis.get('top_words', [])[:10]]
+    keywords = filter_product_keywords(raw_keywords, tag)
     urls = analysis.get('urls', [])
     score = trend_data.get('score', 0)
     uses = trend_data.get('total_uses_7d', 0)
@@ -468,9 +526,17 @@ def generate_article(trend_data, template_idx=0):
         summary=summary,
     )
 
-    # Frontmatter
+    # Frontmatter — tagsとproductsはフィルタリング済みキーワードのみ使用
     now = datetime.now(JST).strftime('%Y-%m-%dT%H:%M:%S+09:00')
-    tags_json = json.dumps([tag] + keywords[:5], ensure_ascii=False)
+    tags_json = json.dumps([tag] + keywords[:3], ensure_ascii=False)
+    # productsもフィルタリング済みキーワードから生成
+    products = []
+    for kw in keywords[:3]:
+        products.append({
+            'name': kw,
+            'amazonUrl': f'https://www.amazon.co.jp/s?k={kw}&tag={AMAZON_TRACKING_ID}',
+            'rating': None,
+        })
     products_json = json.dumps(products, ensure_ascii=False)
 
     frontmatter = f"""---
