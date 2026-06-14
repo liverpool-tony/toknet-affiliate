@@ -1,0 +1,10 @@
+=== 2026-06-14 16:01 JST Pipeline Run ===
+Mode: LIVE
+Tag: #Polaroid (score: 200, source: rss(ITmedia))
+Article: 20260614-ニュース2026年06月14日snsで話題のpolaroid徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS
+Instagram: SUCCESS (media_id: 18089503364373900, permalink: https://www.instagram.com/p/DZjqKWPnPce/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Errors: 1 (Mastodon token missing)
+=== END ===
