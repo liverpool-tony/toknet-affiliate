@@ -116,7 +116,7 @@ def now_jst_short():
 
 
 def get_recently_used_tags(hours=24):
-    """過去hours時間以内に投稿された記事のタグを収集（frontmatterのtagsのみ）"""
+    """過去hours時間以内に投稿された記事のプライマリタグを収集（frontmatterのtagsの最初の1件のみ）"""
     used_tags = set()
     cutoff = datetime.now(JST) - timedelta(hours=hours)
 
@@ -130,15 +130,17 @@ def get_recently_used_tags(hours=24):
         except (ValueError, IndexError):
             continue
 
-        # frontmatterからtagsを抽出
+        # frontmatterからtagsを抽出 — プライマリタグ（最初の1件）のみ使用
+        # 2番目以降のタグはニュースタイトル由来のノイズが多いため重複判定に使わない
         try:
             with open(fpath, encoding='utf-8') as f:
                 content = f.read(2000)
             m = re.search(r'tags:\s*\[([^\]]*)\]', content)
             if m:
                 tags_raw = m.group(1)
-                for tag in re.findall(r'["\']([^"\']+)["\']', tags_raw):
-                    used_tags.add(tag)
+                first_tag = re.search(r'["\']([^"\']+)["\']', tags_raw)
+                if first_tag:
+                    used_tags.add(first_tag.group(1))
         except Exception:
             pass
 
@@ -206,10 +208,13 @@ def collect_trends(use_realtime=False):
             multi = get_multi_trends(use_cache=not use_realtime)
             # 最近使われたタグを除外して選択する（run_pipeline側の重複チェックを補完）
             _exclude = get_recently_used_tags(hours=24) if not use_realtime else set()
-            topic = select_trend_topic(multi, used_cache=True, exclude_tags=_exclude)
 
-            if topic:
-                # マルチソースのキーワードをトレンドタグに変換
+            # 複数のトピックを候補として追加（remaining件分）
+            for _i in range(remaining):
+                topic = select_trend_topic(multi, used_cache=True, exclude_tags=_exclude)
+                if not topic:
+                    break
+
                 tag_name = topic['tag']
                 source_labels = {
                     'hatena': 'はてなブックマーク',
@@ -246,7 +251,10 @@ def collect_trends(use_realtime=False):
                     'source': f"rss({source_str})",
                 })
                 print(f"    ✅ [RSS] #{tag_name} — score:{topic['score']} (sources: {source_str})")
-            else:
+                # 次の選択からこのタグを除外
+                _exclude.add(tag_name)
+
+            if not any(a.get('source', '').startswith('rss') for a in analyzed):
                 errors.append("マルチソース: 商品系トピック0件")
                 print("    ⚠️ マルチソース: 該当トピックなし")
         except Exception as e:
