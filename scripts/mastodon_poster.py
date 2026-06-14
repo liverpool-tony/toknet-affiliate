@@ -57,8 +57,8 @@ def post_status(text, credentials, dry_run=False, language='ja'):
             token = get_access_token(cid, csecret)
     
     if not token and not dry_run:
-        print('ERROR: No access token. Set MSTODON_ACCESS_TOKEN env var.')
-        return False
+        print('ERROR: No access token. Set MSTODON_ACCESS_TOKEN env var.', file=sys.stderr)
+        sys.exit(1)
     
     if dry_run:
         print(f'[DRY RUN] Mastodon投稿:')

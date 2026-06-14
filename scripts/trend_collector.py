@@ -185,6 +185,18 @@ def is_product_related(tag_name):
     for kw in PRODUCT_KEYWORDS:
         if kw.lower() in tag_lower or tag_lower in kw.lower():
             return True
+    # フォールバック: 除外パターンに引っかからず、英数字のタグでPRODUCT_KEYWORDS
+    # にマッチしないものは、商品系の可能性があるとみなす
+    # ただし、日本語タグ（ひらがな・カタカナ・漢字）はお遊びタグが多いため除外
+    if re.match(r'^[a-zA-Z][a-zA-Z0-9_-]{1,30}$', tag_lower):
+        # お遊び英数字タグのブラリスト
+        KNOWN_FUN_TAGS = {
+            'silentsunday', 'sunday', 'caturday', 'stillersonntag', 'sonntag',
+            'friday', 'saturday', 'monday', 'tuesday', 'wednesday', 'thursday',
+            'weekend', 'weekday', 'coffeemorning', 'morning', 'night',
+        }
+        if tag_lower not in KNOWN_FUN_TAGS:
+            return True
     return False
 
 
