@@ -220,8 +220,8 @@ def collect_multi_trends():
 
 
 def select_trend_topic(collected, used_cache=True, exclude_tags=None):
-    """収集結果から記記事化するトピックを選択
-    
+    """収集結果から記事化するトピックを選択
+
     Args:
         collected: マルチソース収集結果
         used_cache: キャッシュ使用フラグ（互換性維持）
@@ -235,12 +235,20 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
     if isinstance(exclude, (list, tuple)):
         exclude = set(exclude)
 
+    # メタタグ（商品名でない汎用ワード）— 記事の品質が大幅に低下するため除外
+    META_TAGS = {
+        'レビュー', 'おすすめ', '比較', 'ランキング', 'review', 'best',
+        'top', 'comparison', 'vs', '選び方', 'ガイド', 'guide', 'howto',
+        'how-to', 'ニュース', 'news', '話題', 'トレンド', 'trend', 'sns',
+        'で話題', '徹底', '徹底レビュー', 'インスタント', 'カメラ',
+    }
+
     # キーワード頻度 + ソース数の多いものを優先
     keyword_scores = {}
     for item in collected['all_items']:
         for kw in item['keywords']:
-            if kw in exclude:
-                continue  # 既に投稿済みタグはスキップ
+            if kw in exclude or kw in META_TAGS:
+                continue  # 既に投稿済みタグまたはメタタグはスキップ
             if kw not in keyword_scores:
                 keyword_scores[kw] = {'score': 0, 'items': [], 'sources': set()}
             keyword_scores[kw]['score'] += item['score']

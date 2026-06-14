@@ -132,18 +132,22 @@ def now_jst_short():
 
 
 def get_recently_used_tags(hours=24):
-    """過去hours時間以内に投稿された記事のプライマリタグを収集（frontmatterのtagsの最初の1件のみ）"""
+    """過去hours時間以内に投稿された記事のプライマリタグを収集（frontmatterのtagsの最初の1件のみ）
+
+    ファイルの更新時刻（mtime）を使用し、ファイル名の日付に依存しない。
+    これにより、同じタグの短時間での重複投稿を正確に防止する。
+    """
     used_tags = set()
     cutoff = datetime.now(JST) - timedelta(hours=hours)
 
     for fpath in glob.glob(str(ARTICLES_DIR / '*.md')):
-        fname = Path(fpath).stem
         try:
-            date_str = fname[:8]
-            file_date = datetime.strptime(date_str, '%Y%m%d').replace(tzinfo=JST)
-            if file_date < cutoff:
+            # ファイルの更新時刻を使用（filenameの日付ではなく）
+            mtime = os.path.getmtime(fpath)
+            file_dt = datetime.fromtimestamp(mtime, tz=JST)
+            if file_dt < cutoff:
                 continue
-        except (ValueError, IndexError):
+        except (OSError, ValueError):
             continue
 
         # frontmatterからtagsを抽出 — プライマリタグ（最初の1件）のみ使用
