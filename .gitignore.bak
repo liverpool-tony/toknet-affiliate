@@ -1,0 +1,11 @@
+astro/
+astro/.git/
+node_modules/
+astro/node_modules/
+astro/dist/
+__pycache__/
+*.pyc
+.env
+astro/.env
+.DS_Store
+scripts/data/*.json

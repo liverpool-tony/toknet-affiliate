@@ -13,7 +13,7 @@ Usage:
     python3 pipeline.py --skip-post    # SNS投稿スキップ
 """
 
-import subprocess, json, re, sys, argparse, os, time, traceback
+import subprocess, json, re, sys, argparse, os, time, traceback, glob
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from collections import Counter
@@ -115,6 +115,36 @@ def now_jst_short():
     return datetime.now(JST).strftime('%Y年%m月%d日')
 
 
+def get_recently_used_tags(hours=24):
+    """過去hours時間以内に投稿された記事のタグを収集（frontmatterのtagsのみ）"""
+    used_tags = set()
+    cutoff = datetime.now(JST) - timedelta(hours=hours)
+
+    for fpath in glob.glob(str(ARTICLES_DIR / '*.md')):
+        fname = Path(fpath).stem
+        try:
+            date_str = fname[:8]
+            file_date = datetime.strptime(date_str, '%Y%m%d').replace(tzinfo=JST)
+            if file_date < cutoff:
+                continue
+        except (ValueError, IndexError):
+            continue
+
+        # frontmatterからtagsを抽出
+        try:
+            with open(fpath, encoding='utf-8') as f:
+                content = f.read(2000)
+            m = re.search(r'tags:\s*\[([^\]]*)\]', content)
+            if m:
+                tags_raw = m.group(1)
+                for tag in re.findall(r'["\']([^"\']+)["\']', tags_raw):
+                    used_tags.add(tag)
+        except Exception:
+            pass
+
+    return used_tags
+
+
 # ===== Step 1: トレンド収集 =====
 
 def collect_trends(use_realtime=False):
@@ -174,8 +204,9 @@ def collect_trends(use_realtime=False):
         try:
             from multi_trend_collector import get_multi_trends, select_trend_topic
             multi = get_multi_trends(use_cache=not use_realtime)
-            # 重複チェックは run_pipeline 側で行うため、ここでは除外しない
-            topic = select_trend_topic(multi, used_cache=True)
+            # 最近使われたタグを除外して選択する（run_pipeline側の重複チェックを補完）
+            _exclude = get_recently_used_tags(hours=24) if not use_realtime else set()
+            topic = select_trend_topic(multi, used_cache=True, exclude_tags=_exclude)
 
             if topic:
                 # マルチソースのキーワードをトレンドタグに変換
@@ -640,37 +671,6 @@ def send_telegram_notification(title, slug, description, products, trend_source,
 
 
 # ===== Main Pipeline =====
-
-def get_recently_used_tags(hours=24):
-    """過去hours時間以内に投稿された記事のタグを収集（frontmatterのtagsのみ）"""
-    import glob
-    used_tags = set()
-    cutoff = datetime.now(JST) - timedelta(hours=hours)
-
-    for fpath in glob.glob(str(ARTICLES_DIR / '*.md')):
-        fname = Path(fpath).stem
-        try:
-            date_str = fname[:8]
-            file_date = datetime.strptime(date_str, '%Y%m%d').replace(tzinfo=JST)
-            if file_date < cutoff:
-                continue
-        except (ValueError, IndexError):
-            continue
-
-        # frontmatterからtagsを抽出
-        try:
-            with open(fpath, encoding='utf-8') as f:
-                content = f.read(2000)
-            import re as _re
-            m = _re.search(r'tags:\s*\[([^\]]*)\]', content)
-            if m:
-                tags_raw = m.group(1)
-                for tag in _re.findall(r'["\']([^"\']+)["\']', tags_raw):
-                    used_tags.add(tag)
-        except Exception:
-            pass
-
-    return used_tags
 
 
 def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):

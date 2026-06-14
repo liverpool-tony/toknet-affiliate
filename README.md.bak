@@ -1,0 +1,39 @@
+# toknet-affiliate
+
+toknet.info を活用した AI共創型アフィリエイトサイト
+
+## コンセプト
+「AI共創レビュー研究所」- 透明性の高い商品レビューサイト
+
+## アーキテクチャ
+- WordPress (Docker → レンタルサーバー)
+- 生成AI コンテンツ + 人間の体験・専門性
+- Amazonアソシエイト（上限撤廃活用）+ 複数ASP
+
+## ディレクトリ構成
+```
+toknet-affiliate/
+├── README.md
+├── docker-compose.yml
+├── scripts/
+│   ├── setup.sh           # 初期構築
+│   ├── content-generator/ # AI記事生成
+│   └── deploy.sh          # デプロイ
+├── content/
+│   ├── categories.json    # カテゴリ定義
+│   ├── templates/         # 記事テンプレート
+│   └── articles/          # 生成記事
+├── config/
+│   ├── wp-config.php
+│   └── nginx.conf
+└── docs/
+    └── strategy.md
+```
+
+## セットアップ
+```bash
+./scripts/setup.sh
+```
+
+## ライセンス
+Private

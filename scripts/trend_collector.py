@@ -50,12 +50,25 @@ PRODUCT_KEYWORDS = [
     'モニター', 'ディスプレイ', '4K', 'SSD', 'メモリ', 'グラボ',
     'Amazon', '楽天', 'ヨドバシ', 'ビックカメラ', '価格比較',
     'レビュー', 'おすすめ', 'ランキング', '比較', '検証',
+    # 追加: mstdn.jpでトレンドになりやすい商品キーワード
+    'MacBook', 'Mac', 'iMac', 'MacStudio', 'MacPro',
+    'AirPods', 'AppleWatch', 'Watch',
+    'Sony', 'Panasonic', 'Sharp', '東芝', 'Hitachi',
+    'Canon', 'Nikon', 'Fujifilm', 'Olympus', 'SIGMA', 'TAMRON',
+    'Bose', 'Sennheiser', 'AudioTechnica', 'JBL',
+    'Razer', 'Logitech', 'Corsair', 'SteelSeries',
+    'Kindle', 'FireTV', 'Chromecast', 'RaspberryPi',
+    'ドローン', 'DJI', 'Oculus', 'MetaQuest',
+    '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
+    '新作', '発売', '予約', '限定', 'プレオーダー',
     # 英語
     'deal', 'sale', 'discount', 'coupon', 'cheap', 'budget',
     'laptop', 'notebook', 'camera', 'headphone', 'earphone',
     'smartphone', 'tablet', 'monitor', 'display', 'gaming',
     'review', 'best', 'top', 'vs', 'comparison',
     'tech', 'gadget', 'device', 'gear',
+    'apple', 'samsung', 'sony', 'nintendo', 'playstation',
+    'new', 'release', 'launch', 'unboxing', 'setup',
 ]
 
 # 日本語ストップワード（簡易的なものに絞る）
