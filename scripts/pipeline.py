@@ -136,7 +136,28 @@ def get_recently_used_tags(hours=24):
 
     ファイルの更新時刻（mtime）を使用し、ファイル名の日付に依存しない。
     これにより、同じタグの短時間での重複投稿を正確に防止する。
+    日本語タグと英語タグの正規化も行う（例: ポラロイド → polaroid）。
     """
+    # 英日対応表: 正規化用
+    _JA_EN_MAP = {
+        'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
+        'インスタント': 'instant', 'フィルムカメラ': 'filmcamera',
+        'ノートパソコン': 'laptop', 'パソコン': 'pc',
+        'スマートフォン': 'smartphone', 'スマホ': 'smartphone',
+        'タブレット': 'tablet', 'ヘッドホン': 'headphone',
+        'イヤホン': 'earphone', 'スピーカー': 'speaker',
+        'モニター': 'monitor', 'ディスプレイ': 'display',
+        'カメラ': 'camera', 'レンズ': 'lens',
+        'ゲーム機': 'gaming', 'ゲーム': 'game',
+        'ドローン': 'drone', '時計': 'watch',
+        'テレビ': 'tv', 'プロジェクター': 'projector',
+    }
+
+    def _normalize_tag(tag):
+        """タグを正規化: 小文字化 + 英日統合"""
+        t = tag.strip().lower()
+        return _JA_EN_MAP.get(t, t)
+
     used_tags = set()
     cutoff = datetime.now(JST) - timedelta(hours=hours)
 
@@ -160,7 +181,8 @@ def get_recently_used_tags(hours=24):
                 tags_raw = m.group(1)
                 first_tag = re.search(r'["\']([^"\']+)["\']', tags_raw)
                 if first_tag:
-                    used_tags.add(first_tag.group(1))
+                    # 正規化して追加（英日統合）
+                    used_tags.add(_normalize_tag(first_tag.group(1)))
         except Exception:
             pass
 
@@ -844,16 +866,35 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     recent_tags = get_recently_used_tags(hours=24)
     print(f"\n🔍 重複チェック: 過去24時間の記事タグ {len(recent_tags)} 件")
 
-    if best['tag'] in recent_tags or best['tag'] in META_TAGS:
+    # タグを正規化して重複チェック（英日統合）
+    def _check_dup(tag):
+        """正規化したタグがrecent_tagsに含まれるか"""
+        t = tag.strip().lower()
+        # JA_EN_MAPはget_recently_used_tags内にあるのでここでも同じ正規化
+        _m = {'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
+              'インスタント': 'instant', 'フィルムカメラ': 'filmcamera',
+              'ノートパソコン': 'laptop', 'パソコン': 'pc',
+              'スマートフォン': 'smartphone', 'スマホ': 'smartphone',
+              'タブレット': 'tablet', 'ヘッドホン': 'headphone',
+              'イヤホン': 'earphone', 'スピーカー': 'speaker',
+              'モニター': 'monitor', 'ディスプレイ': 'display',
+              'カメラ': 'camera', 'レンズ': 'lens',
+              'ゲーム機': 'gaming', 'ゲーム': 'game',
+              'ドローン': 'drone', '時計': 'watch',
+              'テレビ': 'tv', 'プロジェクター': 'projector'}
+        normalized = _m.get(t, t)
+        return normalized in recent_tags or tag in META_TAGS
+
+    if _check_dup(best['tag']):
         # 次のタグを試す
         alt_found = False
         for i, t in enumerate(trend_data['trend_tags'][1:], 2):
-            if t['tag'] not in recent_tags and t['tag'] not in META_TAGS:
+            if not _check_dup(t['tag']):
                 print(f"  ⚠️ #{best['tag']} は24時間以内に投稿済み → #{t['tag']} に変更")
                 best = t
                 alt_found = True
                 break
-            reason = "投稿済み" if t['tag'] in recent_tags else "メタタグ"
+            reason = "投稿済み" if _check_dup(t['tag']) else "メタタグ"
             print(f"  ⚠️ #{t['tag']} も24時間以内に{reason}")
         
         if not alt_found:
@@ -861,7 +902,12 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
             print("  ℹ️ 24h全重複 → 6hウィンドウで再チェック...")
             recent_tags_6h = get_recently_used_tags(hours=6)
             for t in trend_data['trend_tags']:
-                if t['tag'] not in recent_tags_6h and t['tag'] not in META_TAGS:
+                t_norm = t['tag'].strip().lower()
+                _m2 = {'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
+                       'インスタント': 'instant', 'スマホ': 'smartphone',
+                       'パソコン': 'pc', 'カメラ': 'camera', 'ゲーム': 'game'}
+                t_norm = _m2.get(t_norm, t_norm)
+                if t_norm not in recent_tags_6h and t['tag'] not in META_TAGS:
                     print(f"  ✅ 6hウィンドウで #{t['tag']} を選択")
                     best = t
                     alt_found = True
@@ -884,7 +930,7 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         print(f"\n❌ 最終タグ #{best['tag']} がメタタグです。パイプライン終了。")
         print("   → 低品質記事の生成を防止しました。")
         return False
-    # 最終タグがメタタグでないか再確認
+    # 最終タグがメタタグでないか再確認（2度目）
     if best['tag'] in META_TAGS:
         print(f"\n❌ 最終タグ #{best['tag']} がメタタグです。パイプライン終了。")
         print("   → 低品質記事の生成を防止しました。")

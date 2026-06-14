@@ -82,6 +82,15 @@ PRODUCT_KEYWORDS = [
     '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
     '新作', '発売', '予約', '限定', 'プレオーダー',
     'Claude', 'GPT', 'Gemini',
+    # 追加: mstdn.jpでトレンドになりやすい日本語商品タグ
+    'アイフォン', 'アイパッド', 'アイウォッチ', 'エアポッド',
+    'ガラケー', 'フィーチャーフォン',
+    'ワイヤレスイヤホン', '完全ワイヤレス', 'TWS',
+    'ゲーミングチェア', 'ゲーミングキーボード', 'ゲーミングマウス',
+    '外付けSSD', '外付けHDD', 'NAS',
+    'ルーター', 'メッシュWiFi', 'WiFi6',
+    '電子書籍', '電子書籍リーダー',
+    '補聴器', '骨伝導',
     # 英語
     'deal', 'sale', 'discount', 'coupon', 'cheap', 'budget',
     'laptop', 'notebook', 'camera', 'headphone', 'earphone',
@@ -176,6 +185,29 @@ def api_get(path, params=None, retries=3):
     raise RuntimeError("Unreachable: api_get loop ended without return/raise")
 
 
+def _normalize_ja_tag(tag_lower):
+    """日本語タグを正規化: 英日対応表で同一概念を統合"""
+    # 英日対応表: 同じ概念のタグを正規形に変換
+    JA_EN_MAP = {
+        'ポラロイド': 'polaroid',
+        'インスタントカメラ': 'instantcamera',
+        'インスタント': 'instant',
+        'フィルムカメラ': 'filmcamera',
+        'ノートパソコン': 'laptop', 'ノートpc': 'laptop',
+        'パソコン': 'pc', 'スマートフォン': 'smartphone',
+        'タブレット': 'tablet',
+        'ヘッドホン': 'headphone', 'イヤホン': 'earphone',
+        'スピーカー': 'speaker', 'モニター': 'monitor',
+        'ディスプレイ': 'display',
+        'カメラ': 'camera', 'レンズ': 'lens',
+        'ゲーム機': 'gaming', 'ゲーム': 'game',
+        'ドローン': 'drone',
+        '時計': 'watch', '腕時計': 'watch',
+        'テレビ': 'tv', 'プロジェクター': 'projector',
+    }
+    return JA_EN_MAP.get(tag_lower, tag_lower)
+
+
 def is_product_related(tag_name):
     """タグが商品・サービス関連か判定（#あり/なし両対応）"""
     # # を付けて正規化
@@ -185,11 +217,13 @@ def is_product_related(tag_name):
         if re.match(pattern, tag_name, re.IGNORECASE):
             return False
     tag_lower = tag_name.lower().lstrip('#')
+    # 日本語タグを正規化した判定用文字列
+    tag_normalized = _normalize_ja_tag(tag_lower)
     for kw in PRODUCT_KEYWORDS:
         kw_lower = kw.lower()
         # 完全一致、またはタグの先頭/末尾にキーワードが単語境界で一致
         # （部分一致による誤検知を防ぐ: e.g. "top" in "stopゼロプラン" → False）
-        if kw_lower == tag_lower:
+        if kw_lower == tag_lower or kw_lower == tag_normalized:
             return True
         # タグがキーワードで始まる/終わる（例: "nikon" in "nikonz3" → True）
         if tag_lower.startswith(kw_lower + '-') or tag_lower.startswith(kw_lower + '_'):
@@ -202,6 +236,12 @@ def is_product_related(tag_name):
         # タグ全体がキーワードの一部（例: "polaroid" が "polaroidnow" のPRODUCT_KEYWORDに含まれる）
         if len(tag_lower) >= 3 and tag_lower in kw_lower:
             return True
+    # 日本語タグで正規化後に再度PRODUCT_KEYWORDSと比較
+    if tag_normalized != tag_lower:
+        for kw in PRODUCT_KEYWORDS:
+            kw_lower = kw.lower()
+            if kw_lower in tag_normalized or tag_normalized in kw_lower:
+                return True
     # フォールバック: 英数字タグの場合、KNOWN_FUN_TAGSを除外し、
     # PRODUCT_KEYWORDSにマッチする場合のみ商品系とみなす
     # （過去の過剰な商品タグ誤判定を防ぐため、デフォルトはFalse）
