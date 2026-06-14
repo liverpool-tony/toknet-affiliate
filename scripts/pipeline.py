@@ -200,8 +200,8 @@ def collect_trends(use_realtime=False):
         print(f"    ⚠️ mstdn.jp失敗: {e}")
 
     # --- ソース2: マルチソースRSS（はてな・ITmedia・Engadget） ---
-    if len(analyzed) < 3:
-        remaining = 3 - len(analyzed)
+    if len(analyzed) < 5:
+        remaining = 5 - len(analyzed)
         print(f"  📡 ソース2: マルチソースRSS（あと{remaining}件）")
         try:
             from multi_trend_collector import get_multi_trends, select_trend_topic
@@ -527,8 +527,13 @@ def generate_article(trend_data, template_idx=0):
     )
 
     # Frontmatter — tagsとproductsはフィルタリング済みキーワードのみ使用
+    # 重複排除: tagとkeywords[:3]の重複を除去し、先頭にタグを配置
     now = datetime.now(JST).strftime('%Y-%m-%dT%H:%M:%S+09:00')
-    tags_json = json.dumps([tag] + keywords[:3], ensure_ascii=False)
+    unique_tags = [tag]
+    for kw in keywords[:3]:
+        if kw not in unique_tags:
+            unique_tags.append(kw)
+    tags_json = json.dumps(unique_tags, ensure_ascii=False)
     # productsもフィルタリング済みキーワードから生成
     products = []
     for kw in keywords[:3]:
@@ -787,9 +792,19 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
             print(f"  ⚠️ #{t['tag']} も24時間以内に投稿済み")
         
         if not alt_found:
-            print("\n❌ 全ての候補タグが24時間以内に投稿済みです。パイプライン終了。")
-            print("   → 重複防止のため、同じタグの連続投稿はスキップされます。")
-            return False
+            # 全候補が24時間以内の場合、6時間に緩めて再試行
+            print("  ℹ️ 24h全重複 → 6hウィンドウで再チェック...")
+            recent_tags_6h = get_recently_used_tags(hours=6)
+            for t in trend_data['trend_tags']:
+                if t['tag'] not in recent_tags_6h:
+                    print(f"  ✅ 6hウィンドウで #{t['tag']} を選択")
+                    best = t
+                    alt_found = True
+                    break
+            if not alt_found:
+                print("\n❌ 6時間以内に全候補投稿済みです。パイプライン終了。")
+                print("   → 重複防止のため、同じタグの連続投稿はスキップされます。")
+                return False
 
     print(f"\n🎯 最終タグ: #{best['tag']} (score: {best['score']})")
 
