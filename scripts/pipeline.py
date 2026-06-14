@@ -447,15 +447,19 @@ def filter_product_keywords(keywords, tag):
                    'those', 'where', 'while', 'after', 'before', 'under', 'again',
                    'further', 'once', 'sns', 'twitter', 'instagram', 'facebook',
                    'youtube', 'tiktok', 'line', 'xcom', 'com', 'de', 'en', 'fr',
+                   'review', 'レビュー',  # メタ語（商品名でない）
                    'html', 'css', 'jpg', 'png', 'gif', 'pdf', 'zip', 'mp3', 'mp4',
                    'www', 'http', 'https', 'ftp', 'url', 'uri', 'api', 'sdk',
                    'gen',  # "Gen" as in "5th Gen" — too generic as product name
                    }
     filtered = []
+    tag_added = False
     for w in keywords:
-        # タグ自体は常に含める
+        # タグ自体は常に含め、先頭に配置
         if w == tag:
-            filtered.append(w)
+            if not tag_added:
+                filtered.insert(0, w)
+                tag_added = True
             continue
         # 10文字以上の日本語フレーズはニュース文の断片なので除外
         if re.match(r'^[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+$', w) and len(w) >= 10:
@@ -466,13 +470,14 @@ def filter_product_keywords(keywords, tag):
         # ノイズワード（URLパラメータ等）は除外
         if w.lower() in NOISE_WORDS:
             continue
-        # 既知の商品キーワードに部分一致するか、短い単語（2-15文字）のみ採用
+        # 既知の商品キーワードに部分一致するもののみ採用
         w_lower = w.lower()
         is_known = any(kw.lower() in w_lower or w_lower in kw.lower() for kw in PRODUCT_KW_SET)
-        if is_known or (2 <= len(w) <= 15 and not re.match(r'^[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+$', w)):
+        if is_known:
             filtered.append(w)
-        elif is_known:
-            filtered.append(w)
+    # タグがraw_keywordsに含まれていない場合でも先頭に追加
+    if not tag_added:
+        filtered.insert(0, tag)
     return filtered if filtered else [tag]
 
 

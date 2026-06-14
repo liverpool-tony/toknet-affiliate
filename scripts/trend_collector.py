@@ -52,8 +52,10 @@ EXCLUDE_PATTERNS = [
     r'^#Fensterfreitag', r'^#insektensamstag', r'^#caturday$',
     r'^#kungfusat', r'^#spillthetea', r'^#KidMadeUpHolidays',
     r'^#nationalsecurity',
-    # 除外: SNS上の流行語（商品系でないこと）
+    # 除外: SNS上の流行語・音楽トラッキング系（商品系でない）
     r'^#misskey',
+    r'^#listeningclub', r'^#gercuw', r'^#myweekcounted',
+    r'^#lastfm', r'^#scrobbles', r'^#spotify',
 ]
 
 # 商品・サービス関連キーワード
@@ -73,6 +75,7 @@ PRODUCT_KEYWORDS = [
     'Sony', 'Panasonic', 'Sharp', '東芝', 'Hitachi',
     'Canon', 'Nikon', 'Fujifilm', 'Olympus', 'SIGMA', 'TAMRON',
     'Bose', 'Sennheiser', 'AudioTechnica', 'JBL',
+    'Polaroid', 'ポラロイド', 'インスタントカメラ', 'インスタント', 'フィルムカメラ',
     'Razer', 'Logitech', 'Corsair', 'SteelSeries',
     'Kindle', 'FireTV', 'Chromecast', 'RaspberryPi',
     'ドローン', 'DJI', 'Oculus', 'MetaQuest',
@@ -183,23 +186,40 @@ def is_product_related(tag_name):
             return False
     tag_lower = tag_name.lower().lstrip('#')
     for kw in PRODUCT_KEYWORDS:
-        if kw.lower() in tag_lower or tag_lower in kw.lower():
+        kw_lower = kw.lower()
+        # 完全一致、またはタグの先頭/末尾にキーワードが単語境界で一致
+        # （部分一致による誤検知を防ぐ: e.g. "top" in "stopゼロプラン" → False）
+        if kw_lower == tag_lower:
             return True
-    # フォールバック: 除外パターンに引っかからず、英数字のタグでPRODUCT_KEYWORDS
-    # にマッチしないものは、商品系の可能性があるとみなす
-    # ただし、日本語タグ（ひらがな・カタカナ・漢字）はお遊びタグが多いため除外
+        # タグがキーワードで始まる/終わる（例: "nikon" in "nikonz3" → True）
+        if tag_lower.startswith(kw_lower + '-') or tag_lower.startswith(kw_lower + '_'):
+            return True
+        if tag_lower.endswith('-' + kw_lower) or tag_lower.endswith('_' + kw_lower):
+            return True
+        # キーワードがタグに含まれるが、英数字境界でのみ（部分文字列は除外）
+        if re.search(r'(?<![a-z])' + re.escape(kw_lower) + r'(?![a-z])', tag_lower):
+            return True
+        # タグ全体がキーワードの一部（例: "polaroid" が "polaroidnow" のPRODUCT_KEYWORDに含まれる）
+        if len(tag_lower) >= 3 and tag_lower in kw_lower:
+            return True
+    # フォールバック: 英数字タグの場合、KNOWN_FUN_TAGSを除外し、
+    # PRODUCT_KEYWORDSにマッチする場合のみ商品系とみなす
+    # （過去の過剰な商品タグ誤判定を防ぐため、デフォルトはFalse）
+    KNOWN_FUN_TAGS = {
+        'silentsunday', 'sunday', 'caturday', 'stillersonntag', 'sonntag',
+        'friday', 'saturday', 'monday', 'tuesday', 'wednesday', 'thursday',
+        'weekend', 'weekday', 'coffeemorning', 'morning', 'night',
+        'phantastikprompts', 'midjourney', 'stablediffusion', 'dalle',
+        'prompt', 'prompts', 'chatgpt', 'claude',
+        'listeningclub', 'gercuw', 'myweekcounted',  # 音楽・SNSトラッキング系
+    }
     if re.match(r'^[a-zA-Z][a-zA-Z0-9_-]{1,30}$', tag_lower):
-        # お遊び英数字タグのブラリスト
-        KNOWN_FUN_TAGS = {
-            'silentsunday', 'sunday', 'caturday', 'stillersonntag', 'sonntag',
-            'friday', 'saturday', 'monday', 'tuesday', 'wednesday', 'thursday',
-            'weekend', 'weekday', 'coffeemorning', 'morning', 'night',
-            # AIプロンプト関連（商品ではない）
-            'phantastikprompts', 'midjourney', 'stablediffusion', 'dalle',
-            'prompt', 'prompts', 'chatgpt', 'claude',
-        }
         if tag_lower not in KNOWN_FUN_TAGS:
-            return True
+            # PRODUCT_KEYWORDS いずれかと部分一致する場合のみ商品系とみなす
+            for kw in PRODUCT_KEYWORDS:
+                if kw.lower() in tag_lower or tag_lower in kw.lower():
+                    return True
+            return False
     return False
 
 
