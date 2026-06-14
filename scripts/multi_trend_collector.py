@@ -39,6 +39,7 @@ PRODUCT_KEYWORDS = [
     'MacBook', 'iMac', 'MacStudio', 'MacPro', 'AirPods', 'AppleWatch', 'Watch',
     'Sony', 'Panasonic', 'Sharp', '東芝', 'Hitachi', 'Canon', 'Nikon', 'Fujifilm',
     'Olympus', 'SIGMA', 'TAMRON', 'Bose', 'Sennheiser', 'AudioTechnica', 'JBL',
+    'Polaroid', 'ポラロイド', 'インスタントカメラ', 'インスタント', 'フィルムカメラ',
     'Razer', 'Logitech', 'Corsair', 'SteelSeries',
     'Kindle', 'FireTV', 'Chromecast', 'RaspberryPi',
     'ドローン', 'DJI', 'Oculus', 'MetaQuest',

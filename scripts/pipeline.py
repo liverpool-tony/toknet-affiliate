@@ -29,7 +29,7 @@ AMAZON_TRACKING_ID = 'toknet-22'
 # カテゴリマッピング
 CATEGORY_MAP = {
     'laptop-pc': {'name': 'PC・ノート', 'keywords': ['ノートPC', 'ラップトップ', 'MacBook', 'ThinkPad', 'Surface', 'Chromebook', 'ゲーミングPC']},
-    'camera': {'name': 'カメラ', 'keywords': ['カメラ', 'デジカメ', 'ミラーレス', '一眼レフ', 'GoPro', 'インカメ', 'レンズ']},
+    'camera': {'name': 'カメラ', 'keywords': ['カメラ', 'デジカメ', 'ミラーレス', '一眼レフ', 'GoPro', 'インカメ', 'レンズ', 'Polaroid', 'ポラロイド', 'インスタント', 'フィルム']},
     'audio-headphones': {'name': 'オーディオ', 'keywords': ['ヘッドホン', 'イヤホン', 'スピーカー', 'DAC', 'アンプ', 'ワイヤレス', 'ノイズキャンセリング']},
     'smart-home': {'name': 'スマートホーム', 'keywords': ['スマートホーム', 'IoT', 'スマートスピーカー', 'Alexa', 'Google Home', 'HomePod', 'センサー']},
     'appliance': {'name': '家電', 'keywords': ['家電', '洗濯機', '冷蔵庫', '掃除機', 'ルンバ', 'ダイソン', '炊飯器', '電子レンジ']},
