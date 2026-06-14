@@ -18,6 +18,22 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from collections import Counter
 
+# .env 読み込み（~/.hermes/.env から環境変数をロード）
+def _load_env():
+    env_path = Path.home() / '.hermes' / '.env'
+    if env_path.exists():
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, _, val = line.partition('=')
+                    key = key.strip()
+                    val = val.strip().strip('"').strip("'")
+                    if key and key not in os.environ:
+                        os.environ[key] = val
+
+_load_env()
+
 JST = timezone(timedelta(hours=9))
 PROJECT_DIR = Path(__file__).parent.parent
 SCRIPTS_DIR = Path(__file__).parent

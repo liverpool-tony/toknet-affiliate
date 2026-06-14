@@ -194,6 +194,9 @@ def is_product_related(tag_name):
             'silentsunday', 'sunday', 'caturday', 'stillersonntag', 'sonntag',
             'friday', 'saturday', 'monday', 'tuesday', 'wednesday', 'thursday',
             'weekend', 'weekday', 'coffeemorning', 'morning', 'night',
+            # AIプロンプト関連（商品ではない）
+            'phantastikprompts', 'midjourney', 'stablediffusion', 'dalle',
+            'prompt', 'prompts', 'chatgpt', 'claude',
         }
         if tag_lower not in KNOWN_FUN_TAGS:
             return True
