@@ -37,6 +37,9 @@ EXCLUDE_PATTERNS = [
     r'^#io写真', r'^#mexrsa', r'^#musiquinta',
     # その他
     r'^#grok$', r'^#deepfakes', r'^#thursday$',
+    # AI企業名（商品タグとして不適切）
+    r'^#Anthropic$', r'^#OpenAI$', r'^#Google$', r'^#Microsoft$', r'^#Meta$',
+    r'^#Amazon$', r'^#Tesla$',
     # 政治家・ニュース（商品系でないため除外）
     r'^#macron$', r'^#trump$', r'^#biden$', r'^#putin$',
     r'^#Président$', r'^#élysée',
@@ -74,7 +77,7 @@ PRODUCT_KEYWORDS = [
     'ドローン', 'DJI', 'Oculus', 'MetaQuest',
     '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
     '新作', '発売', '予約', '限定', 'プレオーダー',
-    'Anthropic', 'OpenAI', 'Claude', 'GPT', 'Gemini', 'AI',
+    'Claude', 'GPT', 'Gemini',
     # 英語
     'deal', 'sale', 'discount', 'coupon', 'cheap', 'budget',
     'laptop', 'notebook', 'camera', 'headphone', 'earphone',
