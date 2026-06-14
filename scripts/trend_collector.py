@@ -35,6 +35,7 @@ EXCLUDE_PATTERNS = [
     r'^#thursdayfivelist', r'^#thursdayfive', r'^#blowinginthewind',
     r'^#doorsday', r'^#jと打って', r'^#今でも怖いもの',
     r'^#io写真', r'^#mexrsa', r'^#musiquinta',
+    r'^#iliketowatch$', r'^#iliketo',
     # その他
     r'^#grok$', r'^#deepfakes', r'^#thursday$',
     # AI企業名（商品タグとして不適切）
