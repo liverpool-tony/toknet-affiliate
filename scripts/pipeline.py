@@ -825,6 +825,13 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         print("\n⚠️ 商品系トレンドタグが見つかりませんでした。パイプライン終了。")
         return False
 
+    # メタタグ（商品名でない汎用ワード）— フォールバック先として不適切
+    # これらが選ばれた場合、記事の品質が大幅に低下するためスキップする
+    META_TAGS = {'レビュー', 'おすすめ', '比較', 'ランキング', 'review', 'best',
+                 'top', 'comparison', 'vs', 'ランキング', '選び方', 'ガイド',
+                 'guide', 'howto', 'how-to', 'ニュース', 'news', '話題', 'トレンド',
+                 'trend', 'sns', 'で話題', '徹底', '徹底レビュー'}
+
     # 最良のタグを選択（スコア最高）
     best = trend_data['trend_tags'][0]
     print(f"\n🎯 選択タグ: #{best['tag']} (score: {best['score']})")
@@ -832,32 +839,52 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     # Step 1.5: 重複チェック — 選択されたタグが最近投稿済みか確認
     recent_tags = get_recently_used_tags(hours=24)
     print(f"\n🔍 重複チェック: 過去24時間の記事タグ {len(recent_tags)} 件")
-    
-    if best['tag'] in recent_tags:
+
+    if best['tag'] in recent_tags or best['tag'] in META_TAGS:
         # 次のタグを試す
         alt_found = False
         for i, t in enumerate(trend_data['trend_tags'][1:], 2):
-            if t['tag'] not in recent_tags:
+            if t['tag'] not in recent_tags and t['tag'] not in META_TAGS:
                 print(f"  ⚠️ #{best['tag']} は24時間以内に投稿済み → #{t['tag']} に変更")
                 best = t
                 alt_found = True
                 break
-            print(f"  ⚠️ #{t['tag']} も24時間以内に投稿済み")
+            reason = "投稿済み" if t['tag'] in recent_tags else "メタタグ"
+            print(f"  ⚠️ #{t['tag']} も24時間以内に{reason}")
         
         if not alt_found:
             # 全候補が24時間以内の場合、6時間に緩めて再試行
             print("  ℹ️ 24h全重複 → 6hウィンドウで再チェック...")
             recent_tags_6h = get_recently_used_tags(hours=6)
             for t in trend_data['trend_tags']:
-                if t['tag'] not in recent_tags_6h:
+                if t['tag'] not in recent_tags_6h and t['tag'] not in META_TAGS:
                     print(f"  ✅ 6hウィンドウで #{t['tag']} を選択")
                     best = t
                     alt_found = True
                     break
             if not alt_found:
-                print("\n❌ 6時間以内に全候補投稿済みです。パイプライン終了。")
-                print("   → 重複防止のため、同じタグの連続投稿はスキップされます。")
-                return False
+                # 6hにも重複 → メタタグでないものなら許容
+                for t in trend_data['trend_tags']:
+                    if t['tag'] not in META_TAGS:
+                        print(f"  ⚠️ 6h重複ですがメタタグでない #{t['tag']} を選択")
+                        best = t
+                        alt_found = True
+                        break
+                if not alt_found:
+                    print("\n❌ 全候補がメタタグまたは重複です。パイプライン終了。")
+                    print("   → 低品質記事の生成を防止しました。")
+                    return False
+
+    # 最終タグがメタタグでないか再確認
+    if best['tag'] in META_TAGS:
+        print(f"\n❌ 最終タグ #{best['tag']} がメタタグです。パイプライン終了。")
+        print("   → 低品質記事の生成を防止しました。")
+        return False
+    # 最終タグがメタタグでないか再確認
+    if best['tag'] in META_TAGS:
+        print(f"\n❌ 最終タグ #{best['tag']} がメタタグです。パイプライン終了。")
+        print("   → 低品質記事の生成を防止しました。")
+        return False
 
     print(f"\n🎯 最終タグ: #{best['tag']} (score: {best['score']})")
 
@@ -879,6 +906,11 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         pipeline_errors.append("デプロイ失敗")
 
     # Step 4: SNS投稿
+    # Mastodonトークン未設定の場合はスキップ（警告のみ）
+    mastodon_token = os.environ.get('MSTODON_ACCESS_TOKEN', '')
+    if not mastodon_token:
+        print("\n⚠️ MSTODON_ACCESS_TOKEN 未設定 → Mastodon投稿をスキップします")
+        print("   → 設定方法: ~/.hermes/.env に MSTODON_ACCESS_TOKEN=... を追加")
     if not skip_post and deployed:
         # Instagram投稿
         try:
@@ -890,13 +922,16 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
             pipeline_errors.append(f"Instagram投稿例外: {e}")
 
         # Mastodon投稿
-        try:
-            mast_ok = post_to_mastodon(title, slug, description, dry_run=dry_run)
-            if not mast_ok:
-                pipeline_errors.append("Mastodon投稿失敗")
-        except Exception as e:
-            print(f"  ❌ Mastodon投稿例外: {e}")
-            pipeline_errors.append(f"Mastodon投稿例外: {e}")
+        if mastodon_token:
+            try:
+                mast_ok = post_to_mastodon(title, slug, description, dry_run=dry_run)
+                if not mast_ok:
+                    pipeline_errors.append("Mastodon投稿失敗")
+            except Exception as e:
+                print(f"  ❌ Mastodon投稿例外: {e}")
+                pipeline_errors.append(f"Mastodon投稿例外: {e}")
+        else:
+            print("  ℹ️ Mastodon投稿スキップ（トークン未設定）")
 
         # X用テンプレート通知
         try:

@@ -213,6 +213,35 @@ def is_product_related(tag_name):
         'prompt', 'prompts', 'chatgpt', 'claude',
         'listeningclub', 'gercuw', 'myweekcounted',  # 音楽・SNSトラッキング系
     }
+    # 短すぎる英字タグ（1-3文字）は一般的すぎて商品タグとして不適切
+    # 例: "top", "stop", "new", "best", "vs", "pro", "max", "air"
+    if re.match(r'^[a-zA-Z]{1,3}$', tag_lower):
+        return False
+    # 既知の汎用英単語タグ（商品系でない）
+    KNOWN_GENERIC_TAGS = {
+        'top', 'stop', 'new', 'best', 'vs', 'pro', 'max', 'air', 'mini',
+        'plus', 'lite', 'neo', 'one', 'go', 'now', 'here', 'there',
+        'this', 'that', 'what', 'how', 'why', 'when', 'where', 'who',
+        'good', 'nice', 'cool', 'great', 'awesome', 'amazing', 'wow',
+        'love', 'like', 'want', 'need', 'get', 'got', 'buy', 'sell',
+        'hot', 'big', 'old', 'bad', 'low', 'high', 'fast', 'slow',
+        'day', 'week', 'year', 'time', 'work', 'home', 'life', 'world',
+        'news', 'info', 'help', 'tips', 'idea', 'plan', 'free', 'easy',
+        'hard', 'real', 'true', 'sure', 'okay', 'yes', 'not', 'but',
+        'and', 'for', 'the', 'you', 'all', 'can', 'had', 'her', 'was',
+        'our', 'out', 'has', 'his', 'its', 'may', 'see', 'way', 'did',
+        'let', 'say', 'she', 'too', 'use', 'come', 'over', 'such',
+        'also', 'back', 'well', 'most', 'into', 'very', 'just', 'more',
+        'about', 'could', 'would', 'should', 'their', 'there', 'these',
+        'those', 'where', 'while', 'after', 'before', 'under', 'again',
+        'last', 'next', 'only', 'some', 'them', 'then', 'than', 'each',
+        'make', 'like', 'long', 'look', 'many', 'much', 'ever', 'even',
+        'still', 'already', 'really', 'always', 'never', 'often',
+        'quite', 'rather', 'enough', 'almost', 'maybe', 'perhaps',
+        'today', 'yesterday', 'tomorrow', 'tonight', 'forever',
+    }
+    if tag_lower in KNOWN_GENERIC_TAGS:
+        return False
     if re.match(r'^[a-zA-Z][a-zA-Z0-9_-]{1,30}$', tag_lower):
         if tag_lower not in KNOWN_FUN_TAGS:
             # PRODUCT_KEYWORDS いずれかと部分一致する場合のみ商品系とみなす
