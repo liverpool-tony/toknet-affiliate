@@ -14,7 +14,7 @@ const articleCollection = defineCollection({
       name: z.string(),
       price: z.string().optional(),
       amazonUrl: z.string().optional(),
-      rating: z.number().min(0).max(5).optional(),
+      rating: z.number().min(0).max(5).optional().nullable(),
     })).default([]),
     articleType: z.enum(['review', 'comparison', 'ranking', 'guide']).default('review'),
     aiAssisted: z.boolean().default(true),

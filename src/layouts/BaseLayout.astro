@@ -28,8 +28,17 @@ const year = new Date().getFullYear();
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />
 
+  <!-- Google Analytics 4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZGT1S0ZHPR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ZGT1S0ZHPR');
+  </script>
+
   <!-- Cloudflare Web Analytics（Cloudflare Pagesデプロイ時にDashboardで有効化） -->
-  
+
   <!-- 構造化データ: Organization -->
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
