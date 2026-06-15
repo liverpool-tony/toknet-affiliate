@@ -173,9 +173,12 @@ def get_recently_used_tags(hours=24):
 
         # frontmatterからtagsを抽出 — プライマリタグ（最初の1件）のみ使用
         # 2番目以降のタグはニュースタイトル由来のノイズが多いため重複判定に使わない
+        # draft: true の記事は公開されていないので重複チェックに含めない
         try:
             with open(fpath, encoding='utf-8') as f:
                 content = f.read(2000)
+            if re.search(r'^draft:\s*true', content, re.MULTILINE):
+                continue
             m = re.search(r'tags:\s*\[([^\]]*)\]', content)
             if m:
                 tags_raw = m.group(1)
