@@ -514,8 +514,11 @@ def filter_product_keywords(keywords, tag):
     return filtered if filtered else [tag]
 
 
-def generate_article(trend_data, template_idx=0):
-    """トレンドデータからAstro記事を生成"""
+def generate_article(trend_data, template_idx=0, dry_run=False):
+    """トレンドデータからAstro記事を生成
+
+    dry_run=True の場合、ファイル書き込みを行わない（重複チェック回避）。
+    """
     tag = trend_data['tag']
     analysis = trend_data.get('analysis', {})
     raw_keywords = [w for w, c in analysis.get('top_words', [])[:10]]
@@ -646,7 +649,11 @@ products: {products_json}
 
     content = frontmatter + body
     article_path = ARTICLES_DIR / f'{slug}.md'
-    article_path.write_text(content, encoding='utf-8')
+
+    if dry_run:
+        print(f"  [DRY RUN] 記事ファイル書き込みスキップ: {article_path.name}")
+    else:
+        article_path.write_text(content, encoding='utf-8')
 
     print(f"  📝 記事生成: {article_path.name} (source: {source})")
     return slug, title, description, category, products
@@ -921,20 +928,47 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
                     alt_found = True
                     break
             if not alt_found:
-                # 6hにも全重複 → 重複記事の生成を防止
-                # 既存変更をデプロイするため、記事生成をスキップして続行
-                print("\n⚠️ 全候補が6時間以内に重複です。記事生成をスキップします。")
-                print("   → 重複記事の生成を防止しました。")
-                # 記事なしでデプロイのみ続行
-                deployed = deploy_to_cloudflare(dry_run=dry_run or skip_deploy)
-                if not deployed and not (dry_run or skip_deploy):
-                    pipeline_errors.append("デプロイ失敗")
-                    return False
-                print("\n" + "=" * 50)
-                print("📊 パイプライン完了（記事生成スキップ・デプロイのみ）")
-                print("=" * 50)
-                print("  ℹ️ 新しいトレンドタグはすべて重複のため、記事は生成されませんでした。")
-                return True
+                # 6hにも全重複 → 12hウィンドウで再試行
+                print("  ℹ️ 6h全重複 → 12hウィンドウで再チェック...")
+                recent_tags_12h = get_recently_used_tags(hours=12)
+                for t in trend_data['trend_tags']:
+                    t_norm = t['tag'].strip().lower()
+                    _m3 = {'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
+                           'インスタント': 'instant', 'スマホ': 'smartphone',
+                           'パソコン': 'pc', 'カメラ': 'camera', 'ゲーム': 'game'}
+                    t_norm = _m3.get(t_norm, t_norm)
+                    if t_norm not in recent_tags_12h and t['tag'] not in META_TAGS:
+                        print(f"  ✅ 12hウィンドウで #{t['tag']} を選択")
+                        best = t
+                        alt_found = True
+                        break
+            if not alt_found:
+                # 12hにも全重複 → 最もスコアの高い候補を選択（重複許可モード）
+                # 同じタグでも12h以内の重複は許容する（新鮮なトレンドは再掲載価値あり）
+                best_candidate = None
+                best_score = -1
+                for t in trend_data['trend_tags']:
+                    if t['tag'] not in META_TAGS and t['score'] > best_score:
+                        best_score = t['score']
+                        best_candidate = t
+                if best_candidate:
+                    print(f"\n⚠️ 全候補が12時間以内に重複ですが、最高スコアの #{best_candidate['tag']} を選択します（score:{best_candidate['score']}）")
+                    print("   → 同一タグの再掲載（12h以内重複許可）")
+                    best = best_candidate
+                    alt_found = True
+                else:
+                    # すべての候補がメタタグのみ → スキップ
+                    print("\n⚠️ 全候補が重複またはメタタグのみです。記事生成をスキップします。")
+                    print("   → 低品質記事の生成を防止しました。")
+                    deployed = deploy_to_cloudflare(dry_run=dry_run or skip_deploy)
+                    if not deployed and not (dry_run or skip_deploy):
+                        pipeline_errors.append("デプロイ失敗")
+                        return False
+                    print("\n" + "=" * 50)
+                    print("📊 パイプライン完了（記事生成スキップ・デプロイのみ）")
+                    print("=" * 50)
+                    print("  ℹ️ 新しいトレンドタグはすべて重複/メタタグのため、記事は生成されませんでした。")
+                    return True
 
     # 最終タグがメタタグでないか再確認
     if best['tag'] in META_TAGS:
@@ -955,7 +989,7 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     print("=" * 50)
 
     try:
-        slug, title, description, category, products = generate_article(best)
+        slug, title, description, category, products = generate_article(best, dry_run=dry_run)
     except Exception as e:
         print(f"\n❌ Step 2 致命的エラー: {e}")
         traceback.print_exc()
