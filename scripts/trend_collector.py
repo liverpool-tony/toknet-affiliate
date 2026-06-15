@@ -99,6 +99,9 @@ PRODUCT_KEYWORDS = [
     'tech', 'gadget', 'device', 'gear',
     'apple', 'samsung', 'sony', 'nintendo', 'playstation',
     'new', 'release', 'launch', 'unboxing', 'setup',
+    'roku', 'firetv', 'chromecast', 'appletv',
+    'spotify', 'youtube', 'netflix', 'disneyplus',
+    'nintendo', 'steam', 'steamdeck',
 ]
 
 # 日本語ストップワード（簡易的なものに絞る）
