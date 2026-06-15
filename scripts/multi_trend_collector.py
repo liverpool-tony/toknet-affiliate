@@ -240,7 +240,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'レビュー', 'おすすめ', '比較', 'ランキング', 'review', 'best',
         'top', 'comparison', 'vs', '選び方', 'ガイド', 'guide', 'howto',
         'how-to', 'ニュース', 'news', '話題', 'トレンド', 'trend', 'sns',
-        'で話題', '徹底', '徹底レビュー',
+        'で話題', '徹底', '徹底レビュー', 'インスタント',
     }
 
     # キーワード頻度 + ソース数の多いものを優先

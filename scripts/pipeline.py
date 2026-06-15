@@ -426,8 +426,9 @@ def build_selection_points(keywords, tag):
 def filter_product_keywords(keywords, tag):
     """キーワードリストから商品・製品関連のみをフィルタリング
 
-    ニュースタイトルから抽出された長いフレーズ（10文字以上の日本語や
+    ニュースタイトルから抽出された長いフレーズ（6文字以上の日本語や
     助詞で始まるフレーズ）を除外し、実際の商品名・技術用語のみを残す。
+    純日本語フレーズはPRODUCT_KW_SETに含まれる場合のみ採用する。
     """
     # 既知の商品キーワード（部分一致）
     PRODUCT_KW_SET = {
@@ -447,6 +448,7 @@ def filter_product_keywords(keywords, tag):
         'ドローン', 'DJI', 'Oculus', 'MetaQuest',
         '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
         '新作', '発売', '予約', '限定', 'プレオーダー',
+        'インスタントカメラ', 'ポラロイド',
         'laptop', 'notebook', 'camera', 'headphone', 'earphone',
         'smartphone', 'tablet', 'monitor', 'display', 'gaming',
         'review', 'best', 'top', 'tech', 'gadget', 'deal', 'sale',
@@ -490,9 +492,11 @@ def filter_product_keywords(keywords, tag):
                 filtered.insert(0, w)
                 tag_added = True
             continue
-        # 10文字以上の日本語フレーズはニュース文の断片なので除外
-        if re.match(r'^[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+$', w) and len(w) >= 10:
-            continue
+        # 6文字以上の日本語フレーズはニュース文の断片なので除外
+        # （PRODUCT_KW_SETに明示的に含まれる場合のみ例外）
+        if re.match(r'^[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+$', w) and len(w) >= 6:
+            if w not in PRODUCT_KW_SET:
+                continue
         # 助詞で始まるフレーズはノイズ
         if any(w.startswith(p) for p in NOISE_PREFIXES):
             continue
