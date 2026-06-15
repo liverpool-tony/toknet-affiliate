@@ -856,7 +856,8 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     META_TAGS = {'レビュー', 'おすすめ', '比較', 'ランキング', 'review', 'best',
                  'top', 'comparison', 'vs', 'ランキング', '選び方', 'ガイド',
                  'guide', 'howto', 'how-to', 'ニュース', 'news', '話題', 'トレンド',
-                 'trend', 'sns', 'で話題', '徹底', '徹底レビュー', 'インスタント'}
+                 'trend', 'sns', 'で話題', '徹底', '徹底レビュー', 'インスタント',
+                 'AI', 'ai', 'テック', 'tech', 'デジタル', 'digital', 'ガジェット', 'gadget'}
 
     # 最良のタグを選択（スコア最高）
     best = trend_data['trend_tags'][0]
@@ -913,10 +914,20 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
                     alt_found = True
                     break
             if not alt_found:
-                # 6hにも全重複 → 重複記事の生成を防止するため終了
-                print("\n❌ 全候補が6時間以内に重複です。パイプライン終了。")
+                # 6hにも全重複 → 重複記事の生成を防止
+                # 既存変更をデプロイするため、記事生成をスキップして続行
+                print("\n⚠️ 全候補が6時間以内に重複です。記事生成をスキップします。")
                 print("   → 重複記事の生成を防止しました。")
-                return False
+                # 記事なしでデプロイのみ続行
+                deployed = deploy_to_cloudflare(dry_run=dry_run or skip_deploy)
+                if not deployed and not (dry_run or skip_deploy):
+                    pipeline_errors.append("デプロイ失敗")
+                    return False
+                print("\n" + "=" * 50)
+                print("📊 パイプライン完了（記事生成スキップ・デプロイのみ）")
+                print("=" * 50)
+                print("  ℹ️ 新しいトレンドタグはすべて重複のため、記事は生成されませんでした。")
+                return True
 
     # 最終タグがメタタグでないか再確認
     if best['tag'] in META_TAGS:
