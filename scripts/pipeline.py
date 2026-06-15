@@ -856,7 +856,7 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     META_TAGS = {'レビュー', 'おすすめ', '比較', 'ランキング', 'review', 'best',
                  'top', 'comparison', 'vs', 'ランキング', '選び方', 'ガイド',
                  'guide', 'howto', 'how-to', 'ニュース', 'news', '話題', 'トレンド',
-                 'trend', 'sns', 'で話題', '徹底', '徹底レビュー'}
+                 'trend', 'sns', 'で話題', '徹底', '徹底レビュー', 'インスタント'}
 
     # 最良のタグを選択（スコア最高）
     best = trend_data['trend_tags'][0]
@@ -913,17 +913,10 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
                     alt_found = True
                     break
             if not alt_found:
-                # 6hにも重複 → メタタグでないものなら許容
-                for t in trend_data['trend_tags']:
-                    if t['tag'] not in META_TAGS:
-                        print(f"  ⚠️ 6h重複ですがメタタグでない #{t['tag']} を選択")
-                        best = t
-                        alt_found = True
-                        break
-                if not alt_found:
-                    print("\n❌ 全候補がメタタグまたは重複です。パイプライン終了。")
-                    print("   → 低品質記事の生成を防止しました。")
-                    return False
+                # 6hにも全重複 → 重複記事の生成を防止するため終了
+                print("\n❌ 全候補が6時間以内に重複です。パイプライン終了。")
+                print("   → 重複記事の生成を防止しました。")
+                return False
 
     # 最終タグがメタタグでないか再確認
     if best['tag'] in META_TAGS:
