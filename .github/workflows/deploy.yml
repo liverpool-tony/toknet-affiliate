@@ -1,4 +1,4 @@
-name: Deploy to Cloudflare Pages & Post to X
+name: Deploy to Cloudflare Pages
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,27 +40,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy dist --project-name=toknet-affiliate
-
-  post-to-x:
-    needs: deploy
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Post new articles to X
-        env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_SECRET: ${{ secrets.X_API_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-        run: python3 scripts/post_tweet.py "🚀 AI共創レビュー研究所に新しい記事を追加しました！ techblog toknet.info"
