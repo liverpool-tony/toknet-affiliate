@@ -1,16 +1,16 @@
-=== 2026-06-15 07:00 JST Pipeline Run ===
+=== 2026-06-16 04:00 JST Pipeline Run ===
 Mode: DRY RUN → FULL RUN
-Tag: #Polaroid → #AI (dedup: #Polaroid already posted within 24h)
-Article: 20260615-ニュース2026年06月15日snsで話題のai徹底レビューai共創レビュー研究所.md
-Deploy: SUCCESS
-Instagram: SUCCESS (media_id: 18083881919326084, permalink: https://www.instagram.com/p/DZlR-LJmHYg/)
+Tag: #roku (mstdn.jp trend, score:63.9)
+Article: 20260616-snsトレンド2026年06月16日snsで話題のroku徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 18119270311769008, permalink: https://www.instagram.com/p/DZnhWtYGMDX/)
 Mastodon: SKIPPED (No access token)
 Telegram: SUCCESS
-Fixes applied:
-  - get_recently_used_tags(): mtime-based dedup (was filename-date-based)
-  - select_trend_topic(): META_TAGS filter added to multi_trend_collector.py
+Fixes applied: None (clean run)
 Commits:
-  - 31307bf (main) fix: mtime-based dedup + META_TAGS filter
-  - 8405999 (astro) chore: add 2026-06-15 articles
-Errors: 1 (mstdn.jp product tags: 0/20 — no product tags in today's trends)
+  - 553553b (astro) chore: add 2026-06-16 articles
+  - 5f2c8d6 (main) chore: pipeline snapshot 20260616_0401
+Warnings:
+  - mstdn.jp product tags: 1/20 (low but non-zero, no action needed)
+  - Article tags include "deal" (noise tag from trend text — minor, non-critical)
 === END ===
