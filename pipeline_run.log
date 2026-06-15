@@ -1,16 +1,16 @@
-=== 2026-06-16 04:00 JST Pipeline Run ===
+=== 2026-06-16 06:00 JST Pipeline Run ===
 Mode: DRY RUN → FULL RUN
-Tag: #roku (mstdn.jp trend, score:63.9)
-Article: 20260616-snsトレンド2026年06月16日snsで話題のroku徹底レビューai共創レビュー研究所.md
+Tag: #インスタントカメラ (rss(ITmedia), score:110)
+Article: 20260616-ニュース2026年06月16日snsで話題のインスタントカメラ徹底レビューai共創レビュー研究所.md
 Deploy: SUCCESS (Cloudflare Pages)
-Instagram: SUCCESS (media_id: 18119270311769008, permalink: https://www.instagram.com/p/DZnhWtYGMDX/)
+Instagram: SUCCESS (media_id: 18082600838546139, permalink: https://www.instagram.com/p/DZnvEDjmNcX/)
 Mastodon: SKIPPED (No access token)
 Telegram: SUCCESS
 Fixes applied: None (clean run)
 Commits:
-  - 553553b (astro) chore: add 2026-06-16 articles
-  - 5f2c8d6 (main) chore: pipeline snapshot 20260616_0401
+  - f170b26 (astro) chore: add 2026-06-16 instant camera article
+  - be50152 (main) chore: pipeline snapshot 20260616_0605
 Warnings:
   - mstdn.jp product tags: 1/20 (low but non-zero, no action needed)
-  - Article tags include "deal" (noise tag from trend text — minor, non-critical)
+  - Mastodon token not set (known issue)
 === END ===
