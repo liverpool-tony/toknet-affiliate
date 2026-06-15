@@ -231,9 +231,33 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         return None
 
     exclude = exclude_tags or set()
-    # exclude をセットに統一
+    # exclude をセットに統一し、小文字化して正規化
     if isinstance(exclude, (list, tuple)):
         exclude = set(exclude)
+    # 小文字化して正規化（大文字小文字の不一致による除外漏れを防ぐ）
+    exclude = {t.strip().lower() for t in exclude}
+
+    # 英日対応表: 正規化用（excludeに日本語タグが含まれる場合の照合用）
+    _JA_EN_MAP = {
+        'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
+        'インスタント': 'instant', 'フィルムカメラ': 'filmcamera',
+        'ノートパソコン': 'laptop', 'パソコン': 'pc',
+        'スマートフォン': 'smartphone', 'スマホ': 'smartphone',
+        'タブレット': 'tablet', 'ヘッドホン': 'headphone',
+        'イヤホン': 'earphone', 'スピーカー': 'speaker',
+        'モニター': 'monitor', 'ディスプレイ': 'display',
+        'カメラ': 'camera', 'レンズ': 'lens',
+        'ゲーム機': 'gaming', 'ゲーム': 'game',
+        'ドローン': 'drone', '時計': 'watch',
+        'テレビ': 'tv', 'プロジェクター': 'projector',
+    }
+    # excludeを拡張: 英日対応の逆マッピングも追加
+    exclude_expanded = set(exclude)
+    for ja, en in _JA_EN_MAP.items():
+        if en in exclude:
+            exclude_expanded.add(ja)
+        if ja in exclude:
+            exclude_expanded.add(en)
 
     # メタタグ（商品名でない汎用ワード）— 記事の品質が大幅に低下するため除外
     META_TAGS = {
@@ -247,7 +271,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
     keyword_scores = {}
     for item in collected['all_items']:
         for kw in item['keywords']:
-            if kw in exclude or kw in META_TAGS:
+            if kw.lower() in exclude_expanded or kw in META_TAGS:
                 continue  # 既に投稿済みタグまたはメタタグはスキップ
             if kw not in keyword_scores:
                 keyword_scores[kw] = {'score': 0, 'items': [], 'sources': set()}
@@ -269,7 +293,50 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         })
 
     ranked.sort(key=lambda x: x['score'], reverse=True)
-    return ranked[0] if ranked else None
+
+    if ranked:
+        return ranked[0]
+
+    # フォールバック: 全キーワードが除外された場合、ニュースタイトルから
+    # 固有名詞（大文字始まりの英単語やカタカナ語）を抽出して新トピックを探す
+    import re
+    fallback_candidates = {}
+    for item in collected['all_items']:
+        title = item.get('title', '')
+        # カタカナ語（3文字以上）を抽出
+        for word in re.findall(r'[\u30a0-\u30ff]{3,}', title):
+            if word not in exclude_expanded and word not in META_TAGS:
+                if word not in fallback_candidates:
+                    fallback_candidates[word] = {'score': 0, 'items': [], 'sources': set()}
+                fallback_candidates[word]['score'] += item['score']
+                fallback_candidates[word]['items'].append(item)
+                fallback_candidates[word]['sources'].add(item['source'])
+        # 大文字始まりの英単語（2文字以上）を抽出
+        for word in re.findall(r'[A-Z][a-zA-Z]{1,}', title):
+            wl = word.lower()
+            if wl not in exclude_expanded and word not in META_TAGS:
+                if word not in fallback_candidates:
+                    fallback_candidates[word] = {'score': 0, 'items': [], 'sources': set()}
+                fallback_candidates[word]['score'] += item['score']
+                fallback_candidates[word]['items'].append(item)
+                fallback_candidates[word]['sources'].add(item['source'])
+
+    if fallback_candidates:
+        ranked2 = []
+        for kw, data in fallback_candidates.items():
+            multi_source_bonus = len(data['sources']) * 20
+            total = data['score'] + multi_source_bonus
+            ranked2.append({
+                'tag': kw,
+                'score': total,
+                'source_count': len(data['sources']),
+                'items': data['items'][:3],
+                'sources': list(data['sources']),
+            })
+        ranked2.sort(key=lambda x: x['score'], reverse=True)
+        return ranked2[0] if ranked2 else None
+
+    return None
 
 
 def get_multi_trends(use_cache=True):
