@@ -18,3 +18,18 @@ Warnings:
   - #roku categorized as laptop-pc (should be smart-home/streaming)
   - RSS keeps picking up same Polaroid Go Gen 3 article daily
 === END ===
+
+=== 2026-06-16 11:01 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #家電 (fallback from #roku, already posted today)
+Article: 20260616-ニュース2026年06月16日snsで話題の家電徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 18087001583379809, permalink: https://www.instagram.com/p/DZoRd7NmlAo/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied: None (no issues detected)
+Warnings:
+  - mstdn.jp product tags: 1/20 (expected, most trending tags are non-product)
+  - Mastodon token not set (known issue)
+  - #roku was already posted today at 09:00 JST, fell back to #家電
+=== END ===
