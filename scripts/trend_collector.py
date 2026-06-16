@@ -64,6 +64,8 @@ EXCLUDE_PATTERNS = [
     r'^#hulu$', r'^#twitch$', r'^#tiktok$',
     # 除外: AIサービス名（商品でない）
     r'^#chatgpt$', r'^#claude$', r'^#gemini$', r'^#gpt$',
+    # 除外: ブラウザ（商品レビューでない）
+    r'^#chrome$', r'^#firefox$', r'^#safari$', r'^#edge$',
 ]
 
 # 商品・サービス関連キーワード
@@ -77,6 +79,8 @@ PRODUCT_KEYWORDS = [
     'モニター', 'ディスプレイ', '4K', 'SSD', 'メモリ', 'グラボ',
     'Amazon', '楽天', 'ヨドバシ', 'ビックカメラ', '価格比較',
     'レビュー', 'おすすめ', 'ランキング', '比較', '検証',
+    # AI関連（AIガジェット・AI製品レビュー）
+    'AI',
     # 追加: mstdn.jpでトレンドになりやすい商品キーワード
     'MacBook', 'iMac', 'MacStudio', 'MacPro',
     'AirPods', 'AppleWatch', 'Watch',
