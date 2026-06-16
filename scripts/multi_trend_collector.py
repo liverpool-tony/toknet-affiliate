@@ -268,6 +268,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'top', 'comparison', 'vs', '選び方', 'ガイド', 'guide', 'howto',
         'how-to', 'ニュース', 'news', '話題', 'トレンド', 'trend', 'sns',
         'で話題', '徹底', '徹底レビュー', 'インスタント',
+        '価格', '最安値', '価格比較', 'クチコミ',
     }
 
     # キーワード頻度 + ソース数の多いものを優先

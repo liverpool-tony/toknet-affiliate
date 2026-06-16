@@ -871,7 +871,8 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
                  'top', 'comparison', 'vs', 'ランキング', '選び方', 'ガイド',
                  'guide', 'howto', 'how-to', 'ニュース', 'news', '話題', 'トレンド',
                  'trend', 'sns', 'で話題', '徹底', '徹底レビュー', 'インスタント',
-                 'AI', 'ai', 'テック', 'tech', 'デジタル', 'digital', 'ガジェット', 'gadget'}
+                 'AI', 'ai', 'テック', 'tech', 'デジタル', 'digital', 'ガジェット', 'gadget',
+                 '価格', '最安値', '価格比較', 'クチコミ', 'price', 'cheap'}
 
     # 最良のタグを選択（スコア最高）
     best = trend_data['trend_tags'][0]
