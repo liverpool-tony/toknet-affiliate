@@ -52,10 +52,18 @@ EXCLUDE_PATTERNS = [
     r'^#Fensterfreitag', r'^#insektensamstag', r'^#caturday$',
     r'^#kungfusat', r'^#spillthetea', r'^#KidMadeUpHolidays',
     r'^#nationalsecurity',
+    # 除外: 商品レビューとして不適切なトピック
+    r'^#スポーツ$', r'^#子ども$', r'^#キッズ$', r'^#価格$',
+    r'^#政治$', r'^#社会$', r'^#天気$', r'^#災害$',
     # 除外: SNS上の流行語・音楽トラッキング系（商品系でない）
     r'^#misskey',
     r'^#listeningclub', r'^#gercuw', r'^#myweekcounted',
     r'^#lastfm', r'^#scrobbles', r'^#spotify',
+    # 除外: ストリーミングサービス（商品レビューでない）
+    r'^#youtube$', r'^#netflix$', r'^#spotify$', r'^#disneyplus$',
+    r'^#hulu$', r'^#twitch$', r'^#tiktok$',
+    # 除外: AIサービス名（商品でない）
+    r'^#chatgpt$', r'^#claude$', r'^#gemini$', r'^#gpt$',
 ]
 
 # 商品・サービス関連キーワード
@@ -81,7 +89,6 @@ PRODUCT_KEYWORDS = [
     'ドローン', 'DJI', 'Oculus', 'MetaQuest',
     '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
     '新作', '発売', '予約', '限定', 'プレオーダー',
-    'Claude', 'GPT', 'Gemini',
     # 追加: mstdn.jpでトレンドになりやすい日本語商品タグ
     'アイフォン', 'アイパッド', 'アイウォッチ', 'エアポッド',
     'ガラケー', 'フィーチャーフォン',
@@ -100,7 +107,6 @@ PRODUCT_KEYWORDS = [
     'apple', 'samsung', 'sony', 'nintendo', 'playstation',
     'new', 'release', 'launch', 'unboxing', 'setup',
     'roku', 'firetv', 'chromecast', 'appletv',
-    'spotify', 'youtube', 'netflix', 'disneyplus',
     'nintendo', 'steam', 'steamdeck',
 ]
 
