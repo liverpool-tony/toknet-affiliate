@@ -75,3 +75,25 @@ Warnings:
   - #cursor categorized as laptop-pc (known issue: should be software/AI)
   - DUPLICATE POST: #cursor was posted twice today (02:01 and 06:02 JST) — dedup fix applied
 === END ===
+=== 2026-06-17 07:01 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #stopkillinggames (mstdn.jp, score:46.0)
+Article: 20260617-snsトレンド2026年06月17日snsで話題のstopkillinggames徹底レビューai共.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 18091831394369496, permalink: https://www.instagram.com/p/DZqaypJGANt/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied:
+  - #stopkillinggames was incorrectly classified as product-related (matched 'game' in PRODUCT_KEYWORDS)
+  - Added social movement/campaign hashtag patterns to EXCLUDE_PATTERNS
+  - Improved detect_category() fallback: streaming→smart-home, software→laptop-pc, campaigns→gaming
+  - Added Roku/FireTV/Chromecast/AppleTV to smart-home CATEGORY_MAP keywords
+  - #roku now correctly maps to smart-home (was laptop-pc)
+Commits:
+  - f6f0cd7 (main) fix: exclude campaign hashtags from product detection, improve category mapping
+Warnings:
+  - mstdn.jp product tags: 3/20 (normal)
+  - Mastodon token not set (known issue)
+  - #stopkillinggames article was already generated/posted before fix applied (social movement topic, not ideal for product review)
+  - #cursor was already posted today at 02:01 and 06:01 JST (dedup correctly skipped it this time)
+=== END ===
