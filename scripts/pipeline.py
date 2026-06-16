@@ -862,7 +862,7 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
 
     pipeline_errors = []
 
-    # Step 1: トレンド収集（リアルタイム取得、キャッシュ不使用）
+    # Step 1: トレンド収集（リアルタイム取得）
     try:
         trend_data = collect_trends(use_realtime=True)
     except Exception as e:
@@ -874,143 +874,9 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         print("\n⚠️ 商品系トレンドタグが見つかりませんでした。パイプライン終了。")
         return False
 
-    # メタタグ（商品名でない汎用ワード）— フォールバック先として不適切
-    # これらが選ばれた場合、記事の品質が大幅に低下するためスキップする
-    META_TAGS = {'レビュー', 'おすすめ', '比較', 'ランキング', 'review', 'best',
-                 'top', 'comparison', 'vs', 'ランキング', '選び方', 'ガイド',
-                 'guide', 'howto', 'how-to', 'ニュース', 'news', '話題', 'トレンド',
-                 'trend', 'sns', 'で話題', '徹底', '徹底レビュー', 'インスタント',
-                 'AI', 'ai', 'テック', 'tech', 'デジタル', 'digital', 'ガジェット', 'gadget',
-                 '価格', '最安値', '価格比較', 'クチコミ', 'price', 'cheap',
-                 # 商品レビューとして不適切なタグ
-                 'スポーツ', '子ども', 'キッズ', '政治', '社会',
-                 'YouTube', 'youtube', 'Twitter', 'X', 'Instagram', 'Facebook', 'TikTok',
-                 'Netflix', 'Spotify', 'DisneyPlus', 'Hulu',
-                 'Gemini', 'Claude', 'ChatGPT', 'GPT', 'LLM',
-                 '天気', '災害', '地震', '台風', '気象',
-                 '結婚', '出産', '育児', '介護', '葬式',
-                 '宗教', '哲学', '心理', '自己啓発', 'スピリチュアル',
-                 '法律', '税金', '保険', '年金', '住宅',
-                 '就職', '転職', '副業', '起業', 'フリーランス',
-                 '投資', '株', '暗号資産', 'NFT', '仮想通貨',
-                 '教育', '勉強', '資格', '語学', 'プログラミング',
-                 '健康', '医療', '旅行', '観光', 'ホテル', '航空', '鉄道',
-                 '料理', 'レシピ', '食品', '飲料', '酒', 'カフェ',
-                 'ダイエット', '筋トレ', 'ヨガ', 'ランニング',
-                 'エンタメ', '芸能', '音楽', '映画', 'アニメ', '漫画',
-                 'ペット', '犬', '猫',
-                 '車', '自動車', 'バイク',
-                 }
-
     # 最良のタグを選択（スコア最高）
     best = trend_data['trend_tags'][0]
-    print(f"\n🎯 選択タグ: #{best['tag']} (score: {best['score']})")
-
-    # Step 1.5: 重複チェック — 選択されたタグが最近投稿済みか確認
-    recent_tags = get_recently_used_tags(hours=24)
-    print(f"\n🔍 重複チェック: 過去24時間の記事タグ {len(recent_tags)} 件")
-
-    # タグを正規化して重複チェック（英日統合）
-    def _check_dup(tag):
-        """正規化したタグがrecent_tagsに含まれるか"""
-        t = tag.strip().lower()
-        # JA_EN_MAPはget_recently_used_tags内にあるのでここでも同じ正規化
-        _m = {'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
-              'インスタント': 'instant', 'フィルムカメラ': 'filmcamera',
-              'ノートパソコン': 'laptop', 'パソコン': 'pc',
-              'スマートフォン': 'smartphone', 'スマホ': 'smartphone',
-              'タブレット': 'tablet', 'ヘッドホン': 'headphone',
-              'イヤホン': 'earphone', 'スピーカー': 'speaker',
-              'モニター': 'monitor', 'ディスプレイ': 'display',
-              'カメラ': 'camera', 'レンズ': 'lens',
-              'ゲーム機': 'gaming', 'ゲーム': 'game',
-              'ドローン': 'drone', '時計': 'watch',
-              'テレビ': 'tv', 'プロジェクター': 'projector'}
-        normalized = _m.get(t, t)
-        return normalized in recent_tags or tag in META_TAGS
-
-    if _check_dup(best['tag']):
-        # 次のタグを試す
-        alt_found = False
-        for i, t in enumerate(trend_data['trend_tags'][1:], 2):
-            if not _check_dup(t['tag']):
-                print(f"  ⚠️ #{best['tag']} は24時間以内に投稿済み → #{t['tag']} に変更")
-                best = t
-                alt_found = True
-                break
-            reason = "投稿済み" if _check_dup(t['tag']) else "メタタグ"
-            print(f"  ⚠️ #{t['tag']} も24時間以内に{reason}")
-        
-        if not alt_found:
-            # 全候補が24時間以内の場合、6時間に緩めて再試行
-            print("  ℹ️ 24h全重複 → 6hウィンドウで再チェック...")
-            recent_tags_6h = get_recently_used_tags(hours=6)
-            for t in trend_data['trend_tags']:
-                t_norm = t['tag'].strip().lower()
-                _m2 = {'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
-                       'インスタント': 'instant', 'スマホ': 'smartphone',
-                       'パソコン': 'pc', 'カメラ': 'camera', 'ゲーム': 'game'}
-                t_norm = _m2.get(t_norm, t_norm)
-                if t_norm not in recent_tags_6h and t['tag'] not in META_TAGS:
-                    print(f"  ✅ 6hウィンドウで #{t['tag']} を選択")
-                    best = t
-                    alt_found = True
-                    break
-            if not alt_found:
-                # 6hにも全重複 → 12hウィンドウで再試行
-                print("  ℹ️ 6h全重複 → 12hウィンドウで再チェック...")
-                recent_tags_12h = get_recently_used_tags(hours=12)
-                for t in trend_data['trend_tags']:
-                    t_norm = t['tag'].strip().lower()
-                    _m3 = {'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
-                           'インスタント': 'instant', 'スマホ': 'smartphone',
-                           'パソコン': 'pc', 'カメラ': 'camera', 'ゲーム': 'game'}
-                    t_norm = _m3.get(t_norm, t_norm)
-                    if t_norm not in recent_tags_12h and t['tag'] not in META_TAGS:
-                        print(f"  ✅ 12hウィンドウで #{t['tag']} を選択")
-                        best = t
-                        alt_found = True
-                        break
-            if not alt_found:
-                # 12hにも全重複 → 最もスコアの高い候補を選択（重複許可モード）
-                # 同じタグでも12h以内の重複は許容する（新鮮なトレンドは再掲載価値あり）
-                best_candidate = None
-                best_score = -1
-                for t in trend_data['trend_tags']:
-                    if t['tag'] not in META_TAGS and t['score'] > best_score:
-                        best_score = t['score']
-                        best_candidate = t
-                if best_candidate:
-                    print(f"\n⚠️ 全候補が12時間以内に重複ですが、最高スコアの #{best_candidate['tag']} を選択します（score:{best_candidate['score']}）")
-                    print("   → 同一タグの再掲載（12h以内重複許可）")
-                    best = best_candidate
-                    alt_found = True
-                else:
-                    # すべての候補がメタタグのみ → スキップ
-                    print("\n⚠️ 全候補が重複またはメタタグのみです。記事生成をスキップします。")
-                    print("   → 低品質記事の生成を防止しました。")
-                    deployed = deploy_to_cloudflare(dry_run=dry_run or skip_deploy)
-                    if not deployed and not (dry_run or skip_deploy):
-                        pipeline_errors.append("デプロイ失敗")
-                        return False
-                    print("\n" + "=" * 50)
-                    print("📊 パイプライン完了（記事生成スキップ・デプロイのみ）")
-                    print("=" * 50)
-                    print("  ℹ️ 新しいトレンドタグはすべて重複/メタタグのため、記事は生成されませんでした。")
-                    return True
-
-    # 最終タグがメタタグでないか再確認
-    if best['tag'] in META_TAGS:
-        print(f"\n❌ 最終タグ #{best['tag']} がメタタグです。パイプライン終了。")
-        print("   → 低品質記事の生成を防止しました。")
-        return False
-    # 最終タグがメタタグでないか再確認（2度目）
-    if best['tag'] in META_TAGS:
-        print(f"\n❌ 最終タグ #{best['tag']} がメタタグです。パイプライン終了。")
-        print("   → 低品質記事の生成を防止しました。")
-        return False
-
-    print(f"\n🎯 最終タグ: #{best['tag']} (score: {best['score']})")
+    print(f"\n🎯 選択タグ: #{best['tag']} (score: {best['score']}, source: {best.get('source', 'unknown')})")
 
     # Step 2: 記事生成
     print("\n" + "=" * 50)
@@ -1030,11 +896,11 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         pipeline_errors.append("デプロイ失敗")
 
     # Step 4: SNS投稿
-    # Mastodonトークン未設定の場合はスキップ（警告のみ）
     mastodon_token = os.environ.get('MSTODON_ACCESS_TOKEN', '')
     if not mastodon_token:
         print("\n⚠️ MSTODON_ACCESS_TOKEN 未設定 → Mastodon投稿をスキップします")
         print("   → 設定方法: ~/.hermes/.env に MSTODON_ACCESS_TOKEN=... を追加")
+
     if not skip_post and deployed:
         # Instagram投稿
         try:
@@ -1080,7 +946,6 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     else:
         print(f"\n  ✅ 全ステップ正常完了")
 
-    # トレンド収集時の警告を表示
     for err in trend_data.get('errors', []):
         print(f"  ⚠️ {err}")
 

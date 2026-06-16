@@ -59,6 +59,23 @@ PRODUCT_KEYWORDS = [
     'コスメ', '美容',
     '時計', 'メガネ',
     'dyson', 'bose', 'sony', 'canon', 'nikon',
+    # 追加: mstdn.jpでトレンドになりやすいソフトウェア・サービス名
+    'cursor', 'starbucks', 'deltachat', 'signal', 'telegram',
+    'notion', 'slack', 'discord', 'github', 'gitlab',
+    'vscode', 'vim', 'neovim', 'emacs',
+    'docker', 'kubernetes', 'terraform',
+    'vercel', 'netlify', 'railway',
+    'openai', 'anthropic', 'mistral',
+    'spotify', 'applemusic', 'youtube', 'netflix',
+    'tesla', 'rivian',
+    'ikea', 'muji', 'uniqlo',
+    'hp', 'dell', 'lenovo', 'asus',
+    'samsung', 'lg', 'xiaomi',
+    'intel', 'amd', 'nvidia',
+    'gopro', 'insta360', 'dji',
+    'kindle', 'kobo',
+    'anker', 'belkin', 'ugreen',
+    'logitech', 'razer', 'corsair',
 ]
 
 
