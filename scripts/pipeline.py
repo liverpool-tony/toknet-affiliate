@@ -261,7 +261,8 @@ def collect_trends(use_realtime=False):
             from multi_trend_collector import get_multi_trends, select_trend_topic
             multi = get_multi_trends(use_cache=not use_realtime)
             # 最近使われたタグを除外して選択する（run_pipeline側の重複チェックを補完）
-            _exclude = get_recently_used_tags(hours=24) if not use_realtime else set()
+            # use_realtime時も除外する（RSSソースが重複記事を生成するバグの修正）
+            _exclude = get_recently_used_tags(hours=24)
 
             # 複数のトピックを候補として追加（remaining件分）
             for _i in range(remaining):
@@ -508,6 +509,7 @@ def filter_product_keywords(keywords, tag):
                    'html', 'css', 'jpg', 'png', 'gif', 'pdf', 'zip', 'mp3', 'mp4',
                    'www', 'http', 'https', 'ftp', 'url', 'uri', 'api', 'sdk',
                    'gen',  # "Gen" as in "5th Gen" — too generic as product name
+                   'est',  # URL fragment noise (e.g. "deltachat-est" from chatmail.at URLs)
                    }
     filtered = []
     tag_added = False
@@ -531,7 +533,18 @@ def filter_product_keywords(keywords, tag):
             continue
         # 既知の商品キーワードに部分一致するもののみ採用
         w_lower = w.lower()
-        is_known = any(kw.lower() in w_lower or w_lower in kw.lower() for kw in PRODUCT_KW_SET)
+        is_known = False
+        for kw in PRODUCT_KW_SET:
+            kw_lower = kw.lower()
+            if kw_lower == w_lower:
+                is_known = True
+                break
+            # 短い語（3文字以下）は部分一致を許可しない（"est"が"MetaQuest"にマッチする等の誤検知防止）
+            if len(w_lower) <= 3:
+                continue
+            if kw_lower in w_lower or w_lower in kw_lower:
+                is_known = True
+                break
         if is_known:
             filtered.append(w)
     # タグがraw_keywordsに含まれていない場合でも先頭に追加
