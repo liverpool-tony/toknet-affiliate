@@ -458,7 +458,7 @@ def filter_product_keywords(keywords, tag):
         'インスタントカメラ', 'ポラロイド',
         'laptop', 'notebook', 'camera', 'headphone', 'earphone',
         'smartphone', 'tablet', 'monitor', 'display', 'gaming',
-        'review', 'best', 'top', 'tech', 'gadget', 'deal', 'sale',
+        'review', 'best', 'top', 'tech', 'gadget',  # 'deal','sale' removed: meta-words not product names
         'apple', 'samsung', 'sony', 'nintendo', 'playstation',
         'new', 'release', 'launch', 'unboxing',
         '任天堂', '東芝', 'Hitachi', 'Olympus', 'SIGMA', 'TAMRON',
@@ -743,19 +743,21 @@ def post_to_instagram(title, slug, description, products, dry_run=False):
             print(f"  ❌ 投稿失敗: {result.stderr[:200]}")
             return False
 
-        # Extract permalink from output
+        # Extract permalink from output — check permalink first, media_id as fallback
         ig_url = None
+        mid = None
         for line in result.stdout.split('\n'):
             if 'Permalink:' in line:
                 ig_url = line.split('Permalink:')[1].strip()
                 break
-            elif 'media_id:' in line:
-                # fallback: try to construct URL (may not work)
+            elif 'media_id:' in line and not mid:
                 mid = line.split('media_id:')[1].strip()
-                print(f"  ℹ️ media_id={mid} (permalink not available)")
         
         if ig_url:
             print(f"  ✅ Instagram投稿成功: {ig_url}")
+        elif mid:
+            print(f"  ℹ️ media_id={mid} (permalink not available)")
+            print("  ✅ Instagram投稿成功 (permalink未取得)")
         else:
             print("  ✅ Instagram投稿成功 (permalink未取得)")
         return True

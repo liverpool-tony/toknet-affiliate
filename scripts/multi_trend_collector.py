@@ -34,7 +34,7 @@ PRODUCT_KEYWORDS = [
     'セール', '割引', '安い', '激安', 'お買い得',
     'laptop', 'notebook', 'camera', 'headphone', 'earphone',
     'smartphone', 'tablet', 'monitor', 'display', 'gaming',
-    'review', 'best', 'top', 'tech', 'gadget', 'deal', 'sale',
+    # 'deal', 'sale' removed — meta-words, not product names
     # 追加: 多様な商品キーワード
     'MacBook', 'iMac', 'MacStudio', 'MacPro', 'AirPods', 'AppleWatch', 'Watch',
     'Sony', 'Panasonic', 'Sharp', '東芝', 'Hitachi', 'Canon', 'Nikon', 'Fujifilm',

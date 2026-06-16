@@ -92,7 +92,7 @@ PRODUCT_KEYWORDS = [
     '電子書籍', '電子書籍リーダー',
     '補聴器', '骨伝導',
     # 英語
-    'deal', 'sale', 'discount', 'coupon', 'cheap', 'budget',
+    # 'deal', 'sale', 'removed — meta-words, not product names',
     'laptop', 'notebook', 'camera', 'headphone', 'earphone',
     'smartphone', 'tablet', 'monitor', 'display', 'gaming',
     'review', 'best', 'top', 'vs', 'comparison',
