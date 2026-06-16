@@ -52,3 +52,26 @@ Commits:
   - 979f7f6 (main) chore: update astro submodule to 7bf8002
   - 495aae0 (main) chore: pipeline snapshot 20260617_0212
 === END ===
+
+=== 2026-06-17 06:02 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #cursor (mstdn.jp, score:69.4)
+Article: 20260617-snsトレンド2026年06月17日snsで話題のcursor徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 17927496408124132, permalink: https://www.instagram.com/p/DZqUDO8GAkh/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied:
+  - Duplicate #cursor post detected: already posted at 02:01 JST today
+  - Added dedup check in run_pipeline() using get_recently_used_tags(hours=24)
+  - Extracted _normalize_tag() to module level for reuse
+  - Removed duplicate _JA_EN_MAP from get_recently_used_tags()
+  - DRY RUN after fix: correctly skipped #cursor, selected #stopkillinggames
+Commits:
+  - (pending) fix: add dedup check in run_pipeline for mastodon tags
+Warnings:
+  - mstdn.jp product tags: 2/20 (normal)
+  - Mastodon token not set (known issue)
+  - #cursor categorized as laptop-pc (known issue: should be software/AI)
+  - DUPLICATE POST: #cursor was posted twice today (02:01 and 06:02 JST) — dedup fix applied
+=== END ===

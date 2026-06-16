@@ -131,6 +131,27 @@ def now_jst_short():
     return datetime.now(JST).strftime('%Y年%m月%d日')
 
 
+_JA_EN_MAP = {
+    'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
+    'インスタント': 'instant', 'フィルムカメラ': 'filmcamera',
+    'ノートパソコン': 'laptop', 'パソコン': 'pc',
+    'スマートフォン': 'smartphone', 'スマホ': 'smartphone',
+    'タブレット': 'tablet', 'ヘッドホン': 'headphone',
+    'イヤホン': 'earphone', 'スピーカー': 'speaker',
+    'モニター': 'monitor', 'ディスプレイ': 'display',
+    'カメラ': 'camera', 'レンズ': 'lens',
+    'ゲーム機': 'gaming', 'ゲーム': 'game',
+    'ドローン': 'drone', '時計': 'watch',
+    'テレビ': 'tv', 'プロジェクター': 'projector',
+}
+
+
+def _normalize_tag(tag):
+    """タグを正規化: 小文字化 + 英日統合"""
+    t = tag.strip().lower()
+    return _JA_EN_MAP.get(t, t)
+
+
 def get_recently_used_tags(hours=24):
     """過去hours時間以内に投稿された記事のプライマリタグを収集（frontmatterのtagsの最初の1件のみ）
 
@@ -138,26 +159,7 @@ def get_recently_used_tags(hours=24):
     これにより、同じタグの短時間での重複投稿を正確に防止する。
     日本語タグと英語タグの正規化も行う（例: ポラロイド → polaroid）。
     """
-    # 英日対応表: 正規化用
-    _JA_EN_MAP = {
-        'ポラロイド': 'polaroid', 'インスタントカメラ': 'instantcamera',
-        'インスタント': 'instant', 'フィルムカメラ': 'filmcamera',
-        'ノートパソコン': 'laptop', 'パソコン': 'pc',
-        'スマートフォン': 'smartphone', 'スマホ': 'smartphone',
-        'タブレット': 'tablet', 'ヘッドホン': 'headphone',
-        'イヤホン': 'earphone', 'スピーカー': 'speaker',
-        'モニター': 'monitor', 'ディスプレイ': 'display',
-        'カメラ': 'camera', 'レンズ': 'lens',
-        'ゲーム機': 'gaming', 'ゲーム': 'game',
-        'ドローン': 'drone', '時計': 'watch',
-        'テレビ': 'tv', 'プロジェクター': 'projector',
-    }
-
-    def _normalize_tag(tag):
-        """タグを正規化: 小文字化 + 英日統合"""
-        t = tag.strip().lower()
-        return _JA_EN_MAP.get(t, t)
-
+    # 正規化はモジュールレベルの _normalize_tag() を使用
     used_tags = set()
     cutoff = datetime.now(JST) - timedelta(hours=hours)
 
@@ -874,8 +876,18 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         print("\n⚠️ 商品系トレンドタグが見つかりませんでした。パイプライン終了。")
         return False
 
-    # 最良のタグを選択（スコア最高）
-    best = trend_data['trend_tags'][0]
+    # 重複チェック: 過去24時間のタグを除外
+    used_tags = get_recently_used_tags(hours=24)
+    candidates = [t for t in trend_data['trend_tags']
+                  if _normalize_tag(t['tag']) not in used_tags]
+
+    if not candidates:
+        print(f"\n⚠️ 全候補タグが24時間以内に使用済みです。パイプライン終了。")
+        print(f"   使用済みタグ: {used_tags}")
+        return False
+
+    # 最良のタグを選択（スコア最高、重複除外済み）
+    best = candidates[0]
     print(f"\n🎯 選択タグ: #{best['tag']} (score: {best['score']}, source: {best.get('source', 'unknown')})")
 
     # Step 2: 記事生成
