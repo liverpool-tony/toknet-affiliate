@@ -33,3 +33,22 @@ Warnings:
   - Mastodon token not set (known issue)
   - #roku was already posted today at 09:00 JST, fell back to #家電
 === END ===
+
+=== 2026-06-17 02:01 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #cursor (mstdn.jp, score:54.2)
+Article: 20260617-snsトレンド2026年06月17日snsで話題のcursor徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 17981825621851557, permalink: https://www.instagram.com/p/DZp4frLGpOv/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied: None (no issues detected)
+Warnings:
+  - mstdn.jp product tags: 3/20 (normal)
+  - Mastodon token not set (known issue)
+  - #cursor categorized as laptop-pc (known issue: should be software/AI)
+Commits:
+  - 7bf8002 (astro) feat: add 20260617 cursor trend article and 家電 fallback article
+  - 979f7f6 (main) chore: update astro submodule to 7bf8002
+  - 495aae0 (main) chore: pipeline snapshot 20260617_0212
+=== END ===
