@@ -365,6 +365,13 @@ def detect_category(text):
         if score > best_score:
             best_score = score
             best_cat = cat_id
+    # キーワードが全くマッチしない場合は 'laptop-pc' ではなく最も汎用的なカテゴリを返す
+    # ただし、明らかに無関係なタグ（スポーツ、子ども等）には category を空に近い値を設定
+    if best_score == 0:
+        # 無関係タグ検出: 商品レビューとして不適切なトピック
+        _IRRELEVANT = {'スポーツ', '子ども', '価格', 'ニュース', '政治', '社会'}
+        if text_lower.strip() in _IRRELEVANT or any(t in text_lower for t in _IRRELEVANT):
+            return 'gaming'  # 最も汎用的なカテゴリ（フォールバック）
     return best_cat if best_score > 0 else 'laptop-pc'
 
 
