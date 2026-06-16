@@ -55,6 +55,9 @@ EXCLUDE_PATTERNS = [
     # 除外: 商品レビューとして不適切なトピック
     r'^#スポーツ$', r'^#子ども$', r'^#キッズ$', r'^#価格$',
     r'^#政治$', r'^#社会$', r'^#天気$', r'^#災害$',
+    # 除外: 社会運動・キャンペーンハッシュタグ（商品系でない）
+    r'^#stopkillinggames$', r'^#gamergate$', r'^#metoo$', r'^#blacklivesmatter$',
+    r'^#save\w+$', r'^#stop\w+$', r'^#end\w+$', r'^#ban\w+$',
     # 除外: SNS上の流行語・音楽トラッキング系（商品系でない）
     r'^#misskey',
     r'^#listeningclub', r'^#gercuw', r'^#myweekcounted',

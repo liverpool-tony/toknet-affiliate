@@ -47,7 +47,7 @@ CATEGORY_MAP = {
     'laptop-pc': {'name': 'PC・ノート', 'keywords': ['ノートPC', 'ラップトップ', 'MacBook', 'ThinkPad', 'Surface', 'Chromebook', 'ゲーミングPC']},
     'camera': {'name': 'カメラ', 'keywords': ['カメラ', 'デジカメ', 'ミラーレス', '一眼レフ', 'GoPro', 'インカメ', 'レンズ', 'Polaroid', 'ポラロイド', 'インスタント', 'フィルム']},
     'audio-headphones': {'name': 'オーディオ', 'keywords': ['ヘッドホン', 'イヤホン', 'スピーカー', 'DAC', 'アンプ', 'ワイヤレス', 'ノイズキャンセリング']},
-    'smart-home': {'name': 'スマートホーム', 'keywords': ['スマートホーム', 'IoT', 'スマートスピーカー', 'Alexa', 'Google Home', 'HomePod', 'センサー']},
+    'smart-home': {'name': 'スマートホーム', 'keywords': ['スマートホーム', 'IoT', 'スマートスピーカー', 'Alexa', 'Google Home', 'HomePod', 'センサー', 'Roku', 'roku', 'FireTV', 'firetv', 'Chromecast', 'chromecast', 'AppleTV', 'appletv', 'ストリーミング']},
     'appliance': {'name': '家電', 'keywords': ['家電', '洗濯機', '冷蔵庫', '掃除機', 'ルンバ', 'ダイソン', '炊飯器', '電子レンジ']},
     'monitor': {'name': 'モニター', 'keywords': ['モニター', 'ディスプレイ', '4K', 'ゲーミングモニター', 'ウルトラワイド', '曲面']},
     'diy-pc': {'name': '自作PC', 'keywords': ['自作PC', 'グラボ', 'GPU', 'CPU', 'マザーボード', 'メモリ', 'SSD', '電源']},
@@ -367,13 +367,30 @@ def detect_category(text):
         if score > best_score:
             best_score = score
             best_cat = cat_id
-    # キーワードが全くマッチしない場合は 'laptop-pc' ではなく最も汎用的なカテゴリを返す
-    # ただし、明らかに無関係なタグ（スポーツ、子ども等）には category を空に近い値を設定
+    # キーワードが全くマッチしない場合のフォールバック改善
     if best_score == 0:
         # 無関係タグ検出: 商品レビューとして不適切なトピック
         _IRRELEVANT = {'スポーツ', '子ども', '価格', 'ニュース', '政治', '社会'}
         if text_lower.strip() in _IRRELEVANT or any(t in text_lower for t in _IRRELEVANT):
             return 'gaming'  # 最も汎用的なカテゴリ（フォールバック）
+        # ソフトウェア・AI系タグのフォールバック
+        _SOFTWARE_AI = {'cursor', 'vscode', 'vim', 'neovim', 'emacs', 'docker',
+                        'kubernetes', 'terraform', 'notion', 'slack', 'discord',
+                        'github', 'gitlab', 'vercel', 'netlify', 'railway',
+                        'openai', 'anthropic', 'mistral', 'cohere', 'claude',
+                        'chatgpt', 'gemini', 'copilot', 'figma', 'linear',
+                        'deltachat', 'signal', 'telegram', 'spotify', 'netflix'}
+        if text_lower.strip() in _SOFTWARE_AI:
+            return 'laptop-pc'  # ソフトウェアはPCカテゴリに統合
+        # ストリーミング・サービス系
+        _STREAMING = {'roku', 'firetv', 'chromecast', 'appletv', 'youtube',
+                      'netflix', 'hulu', 'disneyplus', 'twitch', 'tiktok'}
+        if text_lower.strip() in _STREAMING:
+            return 'smart-home'  # ストリーミングデバイスはスマートホームに統合
+        # 社会運動・キャンペーン系（商品レビューでない）
+        _CAMPAIGN = {'stopkillinggames', 'gamergate', 'metoo', 'blacklivesmatter'}
+        if text_lower.strip() in _CAMPAIGN or any(text_lower.startswith(p) for p in ['stop', 'save', 'end', 'ban', 'fight']):
+            return 'gaming'  # キャンペーン系は汎用カテゴリ
     return best_cat if best_score > 0 else 'laptop-pc'
 
 
