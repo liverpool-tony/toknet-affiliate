@@ -1,16 +1,20 @@
-=== 2026-06-16 06:00 JST Pipeline Run ===
+=== 2026-06-16 09:00 JST Pipeline Run ===
 Mode: DRY RUN → FULL RUN
-Tag: #インスタントカメラ (rss(ITmedia), score:110)
-Article: 20260616-ニュース2026年06月16日snsで話題のインスタントカメラ徹底レビューai共創レビュー研究所.md
+Tag: #roku (mstdn.jp, score:84.7)
+Article: 20260616-snsトレンド2026年06月16日snsで話題のroku徹底レビューai共創レビュー研究所.md
 Deploy: SUCCESS (Cloudflare Pages)
-Instagram: SUCCESS (media_id: 18082600838546139, permalink: https://www.instagram.com/p/DZnvEDjmNcX/)
+Instagram: SUCCESS (media_id: 18107384074784426, permalink: https://www.instagram.com/p/DZoDwCwoNuq/)
 Mastodon: SKIPPED (No access token)
 Telegram: SUCCESS
-Fixes applied: None (clean run)
+Fixes applied:
+  - Duplicate Polaroid tag fix: changed 20260615 article primary tag from "Polaroid" to "ポラロイド"
 Commits:
-  - f170b26 (astro) chore: add 2026-06-16 instant camera article
-  - be50152 (main) chore: pipeline snapshot 20260616_0605
+  - 5246489 (main) fix: remove duplicate Polaroid tag, update astro submodule
+  - 88230b2 (astro) fix: remove duplicate Polaroid tag from 20260615 article, add 20260616 roku article
+  - f3e3a0a (main) chore: cleanup temp script
 Warnings:
-  - mstdn.jp product tags: 1/20 (low but non-zero, no action needed)
+  - mstdn.jp product tags: 1/20 (low but non-zero)
   - Mastodon token not set (known issue)
+  - #roku categorized as laptop-pc (should be smart-home/streaming)
+  - RSS keeps picking up same Polaroid Go Gen 3 article daily
 === END ===
