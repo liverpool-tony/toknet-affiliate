@@ -6,7 +6,7 @@ category: "laptop-pc"
 tags: ["stopkillinggames", "StopKillingGames", "Stop"]
 articleType: "review"
 aiAssisted: true
-draft: false
+draft: true
 products: [{"name": "stopkillinggames", "amazonUrl": "https://www.amazon.co.jp/s?k=stopkillinggames&tag=toknet-22", "rating": null}, {"name": "StopKillingGames", "amazonUrl": "https://www.amazon.co.jp/s?k=StopKillingGames&tag=toknet-22", "rating": null}, {"name": "Stop", "amazonUrl": "https://www.amazon.co.jp/s?k=Stop&tag=toknet-22", "rating": null}]
 ---
 
