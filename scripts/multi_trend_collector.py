@@ -288,22 +288,23 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 範囲が広すぎて商品レビューにならないタグ
         'スポーツ', '子ども', 'キッズ', 'ニュース', '政治', '社会',
         'ライフスタイル', '生活', '仕事', 'ビジネス',
-        # 企業名タグ（商品レビューとして不適切 — 特定企業の名前だけでは商品が特定できない）
-        'Google', 'OpenAI', 'Anthropic', 'Microsoft', 'Meta', 'Amazon',
-        'Tesla', 'Apple', 'Samsung', 'Sony', 'Nintendo', 'Intel', 'AMD', 'NVIDIA',
-        'google', 'openai', 'anthropic', 'microsoft', 'meta', 'amazon',
-        'tesla', 'apple', 'samsung', 'sony', 'nintendo', 'intel', 'amd', 'nvidia',
-        # メタ的な日本語タグ（商品名でない）
-        'AI', 'コーディング', '発売',
-        '広めたいsteamゲーム9選', '広めたいsteamゲーム',
+        # 企業名・サービス名（商品レビューにならない）
+        'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
+        'Microsoft', 'Tesla', 'Toyota',
+        # 抽象的なカテゴリ名
+        'インフラ', 'Home', 'IoT', 'クラウド', 'ブロックチェーン',
+        'スタートアップ', '投資', 'IPO', '決算', '業績',
+        # その他
+        'イベント', 'セミナー', 'カンファレンス', '展示会',
+        '求人', '採用', '人事', '組織',
         # 外国地名・政治タグ
-        'algeria', 'Algeria', 'poland', 'Poland', 'gaza', 'Gaza',
-        'france', 'France', 'germany', 'Germany', 'brazil', 'Brazil',
-        'india', 'India', 'china', 'China', 'korea', 'Korea',
-        'russia', 'Russia', 'mexico', 'Mexico',
+        'Algeria', 'Poland', 'Gaza', 'France', 'Germany', 'Brazil',
+        'India', 'China', 'Korea', 'Russia', 'Mexico',
         # SNSプラットフォーム名
         'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
-        'twitter', 'instagram', 'facebook', 'youtube', 'tiktok',
+        'Netflix', 'Spotify', 'DisneyPlus', 'Hulu',
+        # AI/テック企業（商品名として使われる場合は除外しない）
+        # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
     }
 
     # キーワード頻度 + ソース数の多いものを優先
@@ -331,7 +332,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
             'sources': list(data['sources']),
         })
 
-    ranked.sort(key=lambda x: x['score'], reverse=True)
+    ranked.sort(key=lambda x: (x['score'], x['source_count'], len(x['tag'])), reverse=True)
 
     if ranked:
         return ranked[0]
