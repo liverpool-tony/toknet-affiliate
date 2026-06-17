@@ -286,6 +286,18 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 範囲が広すぎて商品レビューにならないタグ
         'スポーツ', '子ども', 'キッズ', 'ニュース', '政治', '社会',
         'ライフスタイル', '生活', '仕事', 'ビジネス',
+        # 企業名タグ（商品レビューとして不適切 — 特定企業の名前だけでは商品が特定できない）
+        'Google', 'OpenAI', 'Anthropic', 'Microsoft', 'Meta', 'Amazon',
+        'Tesla', 'Apple', 'Samsung', 'Sony', 'Nintendo', 'Intel', 'AMD', 'NVIDIA',
+        'google', 'openai', 'anthropic', 'microsoft', 'meta', 'amazon',
+        'tesla', 'apple', 'samsung', 'sony', 'nintendo', 'intel', 'amd', 'nvidia',
+        # メタ的な日本語タグ（商品名でない）
+        'AI', 'コーディング', '発売', '広めたいsteamゲーム9選',
+        # 外国地名・政治タグ
+        'algeria', 'Algeria', 'poland', 'Poland', 'gaza', 'Gaza',
+        # SNSプラットフォーム名
+        'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
+        'twitter', 'instagram', 'facebook', 'youtube', 'tiktok',
     }
 
     # キーワード頻度 + ソース数の多いものを優先
