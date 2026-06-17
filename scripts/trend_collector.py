@@ -328,7 +328,13 @@ def is_product_related(tag_name):
         if tag_lower not in KNOWN_FUN_TAGS:
             # PRODUCT_KEYWORDS いずれかと部分一致する場合のみ商品系とみなす
             for kw in PRODUCT_KEYWORDS:
-                if kw.lower() in tag_lower or tag_lower in kw.lower():
+                kw_lower = kw.lower()
+                # キーワードが3文字未満の場合、単語境界でのみ一致（部分文字列は除外）
+                # 例: "ai" in "algeria" → False, "ai" in "aiガジェット" → True
+                if len(kw_lower) < 3:
+                    if re.search(r'(?<![a-z])' + re.escape(kw_lower) + r'(?![a-z])', tag_lower):
+                        return True
+                elif kw_lower in tag_lower or tag_lower in kw_lower:
                     return True
             return False
     return False
