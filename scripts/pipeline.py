@@ -153,7 +153,7 @@ def _normalize_tag(tag):
 
 
 def get_recently_used_tags(hours=24):
-    """過去hours時間以内に投稿された記事のプライマリタグを収集（frontmatterのtagsの最初の1件のみ）
+    """過去hours時間以内に投稿された記事の全タグを収集（frontmatterのtagsすべて）
 
     ファイルの更新時刻（mtime）を使用し、ファイル名の日付に依存しない。
     これにより、同じタグの短時間での重複投稿を正確に防止する。
@@ -173,8 +173,8 @@ def get_recently_used_tags(hours=24):
         except (OSError, ValueError):
             continue
 
-        # frontmatterからtagsを抽出 — プライマリタグ（最初の1件）のみ使用
-        # 2番目以降のタグはニュースタイトル由来のノイズが多いため重複判定に使わない
+        # frontmatterからtagsを抽出 — 全タグを使用（プライマリ以外も重複判定に含める）
+        # これにより、セカンダリタグ（例: Android）の重複も防止する
         # draft: true の記事は公開されていないので重複チェックに含めない
         try:
             with open(fpath, encoding='utf-8') as f:
@@ -184,10 +184,11 @@ def get_recently_used_tags(hours=24):
             m = re.search(r'tags:\s*\[([^\]]*)\]', content)
             if m:
                 tags_raw = m.group(1)
-                first_tag = re.search(r'["\']([^"\']+)["\']', tags_raw)
-                if first_tag:
+                # 全タグを抽出（プライマリ + セカンダリ）
+                all_tags = re.findall(r'["\']([^"\']+)["\']', tags_raw)
+                for t in all_tags:
                     # 正規化して追加（英日統合）
-                    used_tags.add(_normalize_tag(first_tag.group(1)))
+                    used_tags.add(_normalize_tag(t))
         except Exception:
             pass
 
@@ -562,6 +563,9 @@ def generate_article(trend_data, template_idx=0, dry_run=False):
     analysis = trend_data.get('analysis', {})
     raw_keywords = [w for w, c in analysis.get('top_words', [])[:10]]
     keywords = filter_product_keywords(raw_keywords, tag)
+    # セカンダリキーワードからも最近使われたタグを除外（重複防止）
+    _used = get_recently_used_tags(hours=24)
+    keywords = [k for k in keywords if _normalize_tag(k) not in _used]
     urls = analysis.get('urls', [])
     score = trend_data.get('score', 0)
     uses = trend_data.get('total_uses_7d', 0)

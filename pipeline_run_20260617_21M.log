@@ -1,0 +1,99 @@
+=== 2026-06-16 09:00 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #roku (mstdn.jp, score:84.7)
+Article: 20260616-snsトレンド2026年06月16日snsで話題のroku徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 18107384074784426, permalink: https://www.instagram.com/p/DZoDwCwoNuq/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied:
+  - Duplicate Polaroid tag fix: changed 20260615 article primary tag from "Polaroid" to "ポラロイド"
+Commits:
+  - 5246489 (main) fix: remove duplicate Polaroid tag, update astro submodule
+  - 88230b2 (astro) fix: remove duplicate Polaroid tag from 20260615 article, add 20260616 roku article
+  - f3e3a0a (main) chore: cleanup temp script
+Warnings:
+  - mstdn.jp product tags: 1/20 (low but non-zero)
+  - Mastodon token not set (known issue)
+  - #roku categorized as laptop-pc (should be smart-home/streaming)
+  - RSS keeps picking up same Polaroid Go Gen 3 article daily
+=== END ===
+
+=== 2026-06-16 11:01 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #家電 (fallback from #roku, already posted today)
+Article: 20260616-ニュース2026年06月16日snsで話題の家電徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 18087001583379809, permalink: https://www.instagram.com/p/DZoRd7NmlAo/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied: None (no issues detected)
+Warnings:
+  - mstdn.jp product tags: 1/20 (expected, most trending tags are non-product)
+  - Mastodon token not set (known issue)
+  - #roku was already posted today at 09:00 JST, fell back to #家電
+=== END ===
+
+=== 2026-06-17 02:01 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #cursor (mstdn.jp, score:54.2)
+Article: 20260617-snsトレンド2026年06月17日snsで話題のcursor徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 17981825621851557, permalink: https://www.instagram.com/p/DZp4frLGpOv/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied: None (no issues detected)
+Warnings:
+  - mstdn.jp product tags: 3/20 (normal)
+  - Mastodon token not set (known issue)
+  - #cursor categorized as laptop-pc (known issue: should be software/AI)
+Commits:
+  - 7bf8002 (astro) feat: add 20260617 cursor trend article and 家電 fallback article
+  - 979f7f6 (main) chore: update astro submodule to 7bf8002
+  - 495aae0 (main) chore: pipeline snapshot 20260617_0212
+=== END ===
+
+=== 2026-06-17 06:02 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #cursor (mstdn.jp, score:69.4)
+Article: 20260617-snsトレンド2026年06月17日snsで話題のcursor徹底レビューai共創レビュー研究所.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 17927496408124132, permalink: https://www.instagram.com/p/DZqUDO8GAkh/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied:
+  - Duplicate #cursor post detected: already posted at 02:01 JST today
+  - Added dedup check in run_pipeline() using get_recently_used_tags(hours=24)
+  - Extracted _normalize_tag() to module level for reuse
+  - Removed duplicate _JA_EN_MAP from get_recently_used_tags()
+  - DRY RUN after fix: correctly skipped #cursor, selected #stopkillinggames
+Commits:
+  - (pending) fix: add dedup check in run_pipeline for mastodon tags
+Warnings:
+  - mstdn.jp product tags: 2/20 (normal)
+  - Mastodon token not set (known issue)
+  - #cursor categorized as laptop-pc (known issue: should be software/AI)
+  - DUPLICATE POST: #cursor was posted twice today (02:01 and 06:02 JST) — dedup fix applied
+=== END ===
+=== 2026-06-17 07:01 JST Pipeline Run ===
+Mode: DRY RUN → FULL RUN
+Tag: #stopkillinggames (mstdn.jp, score:46.0)
+Article: 20260617-snsトレンド2026年06月17日snsで話題のstopkillinggames徹底レビューai共.md
+Deploy: SUCCESS (Cloudflare Pages)
+Instagram: SUCCESS (media_id: 18091831394369496, permalink: https://www.instagram.com/p/DZqaypJGANt/)
+Mastodon: SKIPPED (No access token)
+Telegram: SUCCESS
+Fixes applied:
+  - #stopkillinggames was incorrectly classified as product-related (matched 'game' in PRODUCT_KEYWORDS)
+  - Added social movement/campaign hashtag patterns to EXCLUDE_PATTERNS
+  - Improved detect_category() fallback: streaming→smart-home, software→laptop-pc, campaigns→gaming
+  - Added Roku/FireTV/Chromecast/AppleTV to smart-home CATEGORY_MAP keywords
+  - #roku now correctly maps to smart-home (was laptop-pc)
+Commits:
+  - f6f0cd7 (main) fix: exclude campaign hashtags from product detection, improve category mapping
+Warnings:
+  - mstdn.jp product tags: 3/20 (normal)
+  - Mastodon token not set (known issue)
+  - #stopkillinggames article was already generated/posted before fix applied (social movement topic, not ideal for product review)
+  - #cursor was already posted today at 02:01 and 06:01 JST (dedup correctly skipped it this time)
+=== END ===
