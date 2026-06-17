@@ -36,6 +36,12 @@ EXCLUDE_PATTERNS = [
     r'^#doorsday', r'^#jと打って', r'^#今でも怖いもの',
     r'^#io写真', r'^#mexrsa', r'^#musiquinta',
     r'^#iliketowatch$', r'^#iliketo',
+    # 除外: お遊びタグ（商品系でない）
+    r'^#広めたいsteamゲーム',
+    # 除外: 外国地名・国名タグ（商品系でない）
+    r'^#algeria', r'^#france', r'^#germany', r'^#brazil',
+    r'^#india', r'^#china', r'^#korea', r'^#russia', r'^#mexico',
+    # 除外: 長い日本語お遊びタグ
     # その他
     r'^#grok$', r'^#deepfakes', r'^#thursday$',
     # AI企業名（商品タグとして不適切）
@@ -96,6 +102,8 @@ PRODUCT_KEYWORDS = [
     'ドローン', 'DJI', 'Oculus', 'MetaQuest',
     '電動', '充電', 'バッテリー', 'ワイヤレス', 'Bluetooth',
     '新作', '発売', '予約', '限定', 'プレオーダー',
+    # XR / スマートグラス
+    'XR', 'XREAL', 'AURA', 'スマートグラス',
     # 追加: mstdn.jpでトレンドになりやすい日本語商品タグ
     'アイフォン', 'アイパッド', 'アイウォッチ', 'エアポッド',
     'ガラケー', 'フィーチャーフォン',

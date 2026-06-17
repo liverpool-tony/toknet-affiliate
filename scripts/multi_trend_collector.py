@@ -76,6 +76,8 @@ PRODUCT_KEYWORDS = [
     'kindle', 'kobo',
     'anker', 'belkin', 'ugreen',
     'logitech', 'razer', 'corsair',
+    # XR / スマートグラス
+    'XR', 'XREAL', 'AURA', 'スマートグラス',
 ]
 
 
@@ -292,9 +294,13 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'google', 'openai', 'anthropic', 'microsoft', 'meta', 'amazon',
         'tesla', 'apple', 'samsung', 'sony', 'nintendo', 'intel', 'amd', 'nvidia',
         # メタ的な日本語タグ（商品名でない）
-        'AI', 'コーディング', '発売', '広めたいsteamゲーム9選',
+        'AI', 'コーディング', '発売',
+        '広めたいsteamゲーム9選', '広めたいsteamゲーム',
         # 外国地名・政治タグ
         'algeria', 'Algeria', 'poland', 'Poland', 'gaza', 'Gaza',
+        'france', 'France', 'germany', 'Germany', 'brazil', 'Brazil',
+        'india', 'India', 'china', 'China', 'korea', 'Korea',
+        'russia', 'Russia', 'mexico', 'Mexico',
         # SNSプラットフォーム名
         'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
         'twitter', 'instagram', 'facebook', 'youtube', 'tiktok',
