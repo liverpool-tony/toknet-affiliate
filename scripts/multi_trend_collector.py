@@ -303,8 +303,16 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # SNSプラットフォーム名
         'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
         'Netflix', 'Spotify', 'DisneyPlus', 'Hulu',
-        # AI/テック企業（商品名として使われる場合は除外しない）
+        # AI/テック企業・サービス名（商品レビューにならない）
         # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
+        # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
+        'Google', 'Gemini', 'openai', 'OpenAI', 'Anthropic', 'Claude',
+        # 抽象的なIT用語（商品レビューにならない）
+        'Patching', 'Service', 'Coding', 'コーディング', 'プログラミング',
+        'セキュリティ', '脆弱性', 'アップデート', 'Update',
+        # その他メタワード
+        'AURA', 'gentechnik', 'Gentechnik',
+        '発売', '予約', '新作',
     }
 
     # キーワード頻度 + ソース数の多いものを優先
