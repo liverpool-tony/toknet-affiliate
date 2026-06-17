@@ -159,7 +159,7 @@ def create_article(trend_data, dry_run=False):
         title=title,
         description=description,
         category=category,
-        tags=[tag] + keywords[:5],
+        tags=[tag] + [k for k in keywords[:5] if k.lower() != tag.lower()],
         products=products,
     )
     
