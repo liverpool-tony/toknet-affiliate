@@ -290,7 +290,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'ライフスタイル', '生活', '仕事', 'ビジネス',
         # 企業名・サービス名（商品レビューにならない）
         'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
-        'Microsoft', 'Tesla', 'Toyota',
+        'Microsoft', 'Tesla', 'Toyota', 'NTT',
         # 抽象的なカテゴリ名
         'インフラ', 'Home', 'IoT', 'クラウド', 'ブロックチェーン',
         'スタートアップ', '投資', 'IPO', '決算', '業績',
@@ -313,6 +313,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # その他メタワード
         'AURA', 'gentechnik', 'Gentechnik',
         '発売', '予約', '新作',
+        'エッセイ',
     }
 
     # キーワード頻度 + ソース数の多いものを優先
