@@ -910,15 +910,24 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
         print("\n⚠️ 商品系トレンドタグが見つかりませんでした。パイプライン終了。")
         return False
 
-    # 重複チェック: 過去24時間のタグを除外
-    used_tags = get_recently_used_tags(hours=24)
-    candidates = [t for t in trend_data['trend_tags']
-                  if _normalize_tag(t['tag']) not in used_tags]
+    # 重複チェック: 過去24時間のタグを除外（window relaxation: 24h → 12h → 6h → allow best）
+    candidates = None
+    for window_h in [24, 12, 6]:
+        used_tags = get_recently_used_tags(hours=window_h)
+        candidates = [t for t in trend_data['trend_tags']
+                      if _normalize_tag(t['tag']) not in used_tags]
+        if candidates:
+            if window_h < 24:
+                print(f"\n⚠️ 全候補タグが24h以内に使用済み → {window_h}h window に緩和して継続")
+            break
+        print(f"\n⚠️ 全候補タグが{window_h}時間以内に使用済み → window緩和を試行")
 
     if not candidates:
-        print(f"\n⚠️ 全候補タグが24時間以内に使用済みです。パイプライン終了。")
+        # 全windowで重複 → 最高スコアのタグを許容する
+        used_tags = get_recently_used_tags(hours=6)
+        candidates = [t for t in trend_data['trend_tags']]
+        print(f"\n⚠️ 全windowで重複 → 全候補の中から最高スコアタグを選択")
         print(f"   使用済みタグ: {used_tags}")
-        return False
 
     # 最良のタグを選択（スコア最高、重複除外済み）
     best = candidates[0]
