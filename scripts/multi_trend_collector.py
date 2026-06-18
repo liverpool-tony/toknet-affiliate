@@ -307,6 +307,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
         # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
         'Google', 'Gemini', 'openai', 'OpenAI', 'Anthropic', 'Claude', 'AI',
+        'GPT', 'ChatGPT', 'Scheduled', 'タスク',
         # 抽象的なIT用語（商品レビューにならない）
         'Patching', 'Service', 'Coding', 'コーディング', 'プログラミング',
         'セキュリティ', '脆弱性', 'アップデート', 'Update',
@@ -314,6 +315,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'AURA', 'gentechnik', 'Gentechnik',
         '発売', '予約', '新作',
         'エッセイ',
+        'デスク', 'ベッド',
         # 抽象的な機能・アプリカテゴリ（商品レビューにならない）
         'マルチタスク', 'アプリ', 'ゲーミングモード',
         # その他の抽象タグ
