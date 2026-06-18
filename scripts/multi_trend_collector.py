@@ -314,6 +314,8 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'AURA', 'gentechnik', 'Gentechnik',
         '発売', '予約', '新作',
         'エッセイ',
+        # 抽象的な機能・アプリカテゴリ（商品レビューにならない）
+        'マルチタスク', 'アプリ', 'ゲーミングモード',
     }
 
     # キーワード頻度 + ソース数の多いものを優先
