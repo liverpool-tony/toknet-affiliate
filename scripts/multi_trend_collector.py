@@ -293,7 +293,9 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'Microsoft', 'Tesla', 'Toyota', 'NTT',
         # 抽象的なカテゴリ名
         'インフラ', 'Home', 'IoT', 'クラウド', 'ブロックチェーン',
-        'スタートアップ', '投資', 'IPO', '決算', '業績',
+        'スタートアップ', '投資', 'IPO', '決算', '業績', 'オープンソース',
+        # ソフトウェア/サービス名（商品レビューにならない）
+        'Premiere', 'DaVinci', 'Codex', 'ソフト', 'Record', 'Replay', 'ハーバード',
         # その他
         'イベント', 'セミナー', 'カンファレンス', '展示会',
         '求人', '採用', '人事', '組織',
@@ -302,7 +304,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'India', 'China', 'Korea', 'Russia', 'Mexico',
         # SNSプラットフォーム名
         'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
-        'Netflix', 'Spotify', 'DisneyPlus', 'Hulu',
+        'Netflix', 'Spotify', 'DisneyPlus', 'Hulu', 'SNS',
         # AI/テック企業・サービス名（商品レビューにならない）
         # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
         # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
