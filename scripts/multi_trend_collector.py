@@ -202,6 +202,19 @@ def scrape_engadget_jp():
     return results
 
 
+def _load_x_search_trends():
+    """X Search トレンドをキャッシュから読み込み"""
+    x_cache = DATA_DIR / 'x_search_trends.json'
+    if x_cache.exists():
+        try:
+            with open(x_cache) as f:
+                data = json.load(f)
+            return data.get('items', [])
+        except (json.JSONDecodeError, KeyError):
+            pass
+    return []
+
+
 def collect_multi_trends():
     """複数のソースからトレンドを収集"""
     collected = {
@@ -212,10 +225,14 @@ def collect_multi_trends():
         'collected_at': datetime.now(JST).isoformat(),
     }
 
+    # X Search トレンドをキャッシュから読み込み
+    x_search_items = _load_x_search_trends()
+
     sources = [
         ('hatena', scrape_hatena_tech),
         ('itmedia', scrape_itmedia_news),
         ('engadget', scrape_engadget_jp),
+        ('x_search', lambda: x_search_items),
     ]
 
     for name, fetcher in sources:

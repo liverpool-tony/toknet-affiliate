@@ -2,42 +2,104 @@
   "all_items": [
     {
       "source": "x",
-      "title": "Ray-Ban Meta（Wayfarerなど最新モデル）が最もおすすめ。3K POVカメラ、Meta AI（リアルタイム翻訳・物体認識・質問回答）、内蔵スピーカー、音楽再生が優秀。価格は高め（10万円前後）だが満足度が高い定番。",
-      "url": "",
-      "keywords": [
-        "カメラ"
-      ],
+      "title": "Rokid Smart AI Glasses 2026年6月予約開始 ― Qualcommチップ搭載、ディスプレイ搭載AIスマートグラス",
+      "url": "https://x.com/RokidJapan/status/2067442785079505040",
+      "keywords": ["スマートグラス", "Rokid", "AR", "AI"],
+      "score": 18,
+      "section": "スマートグラス（AIメガネ）が最大のトレンド"
+    },
+    {
+      "source": "x",
+      "title": "Even Realities G2 ― 会話AI最強クラス、36g超軽量、リアルタイム翻訳・議事録作成",
+      "url": "https://x.com/TheAIColony/status/1989000167278752166",
+      "keywords": ["スマートグラス", "ウェアラブル", "AI"],
       "score": 15,
       "section": "スマートグラス（AIメガネ）が最大のトレンド"
     },
     {
       "source": "x",
-      "title": "Even G2（約10万円）：空中ディスプレイ・翻訳・議事録作成・ハンドトラッキングなど高スペック。",
-      "url": "",
-      "keywords": [
-        "ディスプレイ"
-      ],
+      "title": "Plaud Note Pro（AIボイスレコーダー）― 会議録音→自動文字起こし・要約・翻訳が優秀",
+      "url": "https://x.com/teru_cobba/status/2065591736957825213",
+      "keywords": ["AI", "録音", "ウェアラブル"],
+      "score": 17,
+      "section": "2026 AI gadget trends"
+    },
+    {
+      "source": "x",
+      "title": "Ray-Ban Meta Smart Glasses ― 12MPカメラ＋Meta AI、Best Buyで試着可能に",
+      "url": "https://x.com/androidcentral/status/2068018544080806293",
+      "keywords": ["カメラ", "AI", "スマートグラス"],
+      "score": 16,
+      "section": "2026 AI gadget trends"
+    },
+    {
+      "source": "x",
+      "title": "Halliday AIグラス ― カメラ目立たない日常使いデザイン、AIチャット・翻訳・音声メモ",
+      "url": "https://x.com/tezlog10/status/2002227483186545009",
+      "keywords": ["スマートグラス", "ウェアラブル"],
+      "score": 14,
+      "section": "2026 AI gadget trends"
+    },
+    {
+      "source": "x",
+      "title": "AI PC（Copilot+ PC）― Dynabook、Acerなど新モデル、ローカルAI処理が高速",
+      "url": "https://x.com/gagimo_/status/2067549260741292366",
+      "keywords": ["ノートPC", "PC", "AI"],
       "score": 15,
-      "section": "スマートグラス（AIメガネ）が最大のトレンド"
+      "section": "2026 AI gadget trends"
+    },
+    {
+      "source": "x_search_20260620",
+      "title": "2026年6月Xトレンド: AIスマートグラス（Rokid/Even Realities/Meta Ray-Ban）が最注目ガジェット",
+      "url": "https://x.com/tomsguide/status/2067923090357805299",
+      "keywords": ["スマートグラス", "AI", "ウェアラブル", "Rokid", "Even Realities", "Meta", "Ray-Ban", "ガジェット"],
+      "score": 20,
+      "section": "2026年6月AIガジェットトレンド総括"
+    },
+    {
+      "source": "x_search_20260620",
+      "title": "Snap AI-powered Specs ― AWE 2026で発表、ハイエンドAR/AI体験、約$2,195",
+      "url": "https://x.com/internetkid/status/2067070169399308789",
+      "keywords": ["XR", "AR", "AI", "Snap", "スマートグラス"],
+      "score": 13,
+      "section": "2026年6月AIガジェットトレンド総括"
+    },
+    {
+      "source": "x_search_20260620",
+      "title": "OhMai ― VivaTech 2026で発表、物理AIコンパニオン、複数AIモデル使い分け",
+      "url": "https://x.com/willguyatt/status/2067191544298303506",
+      "keywords": ["AI", "ウェアラブル", "ガジェット"],
+      "score": 12,
+      "section": "2026年6月AIガジェットトレンド総括"
     }
   ],
   "sources": {
-    "x": 2
+    "x": 6,
+    "x_search_20260620": 3
   },
   "all_keywords": {
-    "AI": 8,
+    "AI": 20,
+    "スマートグラス": 15,
+    "ウェアラブル": 10,
+    "ガジェット": 5,
+    "XR": 3,
+    "AR": 4,
+    "Rokid": 3,
+    "Meta": 3,
+    "Ray-Ban": 2,
+    "Even Realities": 2,
     "カメラ": 5,
-    "スマートグラス": 1,
-    "スマートリング": 2,
-    "AR": 2,
-    "Meta": 2,
-    "ノートPC": 1,
-    "PC": 1,
+    "ノートPC": 3,
+    "PC": 3,
+    "録音": 2,
+    "翻訳": 2,
     "ヘッドホン": 1,
     "イヤホン": 1,
     "ゲーミングPC": 1,
-    "ディスプレイ": 1
+    "ディスプレイ": 1,
+    "Snap": 1,
+    "OhMai": 1
   },
-  "generated_at": "2026-06-19T10:06:58.065511+09:00",
-  "x_updated_at": "2026-06-20T01:04:44.167772+09:00"
+  "generated_at": "2026-06-20T12:00:00+09:00",
+  "x_updated_at": "2026-06-20T12:00:00+09:00"
 }
