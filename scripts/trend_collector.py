@@ -302,6 +302,7 @@ def is_product_related(tag_name):
         'phantastikprompts', 'midjourney', 'stablediffusion', 'dalle',
         'prompt', 'prompts', 'chatgpt', 'claude',
         'listeningclub', 'gercuw', 'myweekcounted',  # 音楽・SNSトラッキング系
+        'lastfourwatched', 'makecraigstopicsmusicky',  # ハッシュゲームタグ
     }
     # 短すぎる英字タグ（1-3文字）は一般的すぎて商品タグとして不適切
     # 例: "top", "stop", "new", "best", "vs", "pro", "max", "air"
