@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.toknet.info/sitemap-index.xml
+Sitemap: https://toknet.info/sitemap-index.xml
