@@ -342,7 +342,7 @@ def run_all_tests(base_url):
 
 def main():
     parser = argparse.ArgumentParser(description="UAT Test Suite")
-    parser.add_argument('--url', default='https://www.toknet.info', help='Base URL')
+    parser.add_argument('--url', default='https://toknet.info', help='Base URL')
     parser.add_argument('--json', action='store_true', help='JSON output')
     args = parser.parse_args()
     

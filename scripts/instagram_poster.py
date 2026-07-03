@@ -440,7 +440,7 @@ def main():
     
     if args.image_path and not args.image_url:
         print(f"⚠️ ローカル画像はアップロードが必要です: {args.image_path}")
-        print(f"   toknet.infoの画像URLを推奨: https://www.toknet.info/og-default.png")
+        print(f"   toknet.infoの画像URLを推奨: https://toknet.info/og-default.png")
         print(f"   または --image-url で公開URLを指定")
         return
     

@@ -744,7 +744,7 @@ def post_to_instagram(title, slug, description, products, dry_run=False):
     print("📸 Step 4a: Instagram投稿")
     print("=" * 50)
 
-    url = f"https://www.toknet.info/articles/{slug}/"
+    url = f"https://toknet.info/articles/{slug}/"
     amazon_url = products[0]['amazonUrl'] if products else None
 
     sys.path.insert(0, str(SCRIPTS_DIR))
@@ -762,7 +762,7 @@ def post_to_instagram(title, slug, description, products, dry_run=False):
         print(f"  キャプション: {caption[:100]}...")
         return True
 
-    image_url = "https://www.toknet.info/og-default.png"
+    image_url = "https://toknet.info/og-default.png"
 
     try:
         result = subprocess.run(
@@ -811,7 +811,7 @@ def post_to_mastodon(title, slug, description, dry_run=False):
     print("🐘 Step 4b: Mastodon投稿")
     print("=" * 50)
 
-    url = f"https://www.toknet.info/articles/{slug}/"
+    url = f"https://toknet.info/articles/{slug}/"
 
     sys.path.insert(0, str(SCRIPTS_DIR))
     from mastodon_poster import format_article_post
@@ -856,7 +856,7 @@ def send_telegram_notification(title, slug, description, products, trend_source,
     print("📱 Step 4c: X用テンプレート → Telegram通知")
     print("=" * 50)
 
-    url = f"https://www.toknet.info/articles/{slug}/"
+    url = f"https://toknet.info/articles/{slug}/"
     amazon_url = products[0]['amazonUrl'] if products else None
 
     lines = []
@@ -990,7 +990,7 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     print("📊 パイプライン完了")
     print("=" * 50)
     print(f"  タイトル: {title}")
-    print(f"  URL: https://www.toknet.info/articles/{slug}/")
+    print(f"  URL: https://toknet.info/articles/{slug}/")
     print(f"  カテゴリ: {category}")
     print(f"  トレンド根拠: #{best['tag']} (score: {best['score']}, source: {best.get('source', 'unknown')})")
 
