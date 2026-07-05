@@ -269,9 +269,86 @@ def get_media_permalink(media_id, ig_user_id=None):
     return permalink
 
 
+def _normalize_article_url(url):
+    """照合用: 末尾スラッシュを除き小文字化"""
+    if not url:
+        return ''
+    return url.strip().rstrip('/').lower()
+
+
+def _parse_ig_timestamp(ts):
+    if not ts:
+        return None
+    try:
+        # Graph API: 2026-07-05T11:33:00+0000
+        if re.match(r'.*\+\d{4}$', ts):
+            ts = ts[:-5] + ts[-5:-2] + ':' + ts[-2:]
+        return datetime.fromisoformat(ts.replace('Z', '+00:00'))
+    except (ValueError, TypeError):
+        return None
+
+
+def fetch_recent_media(ig_user_id=None, limit=8):
+    """直近のメディア一覧（caption / permalink / timestamp）"""
+    creds = load_credentials()
+    ig_user_id = ig_user_id or creds.get('ig_user_id')
+    if not ig_user_id:
+        return []
+    url = f"{GRAPH_BASE}/{ig_user_id}/media"
+    result = api_get(url, {
+        'fields': 'id,caption,permalink,timestamp',
+        'limit': str(limit),
+    })
+    if 'error' in result:
+        print(f"   ⚠️ 直近メディア取得失敗: {result.get('error')}")
+        return []
+    return result.get('data', [])
+
+
+def find_matching_recent_post(article_url, ig_user_id=None, within_minutes=60):
+    """
+    media_publish がエラーでも実際に投稿されている場合の照合。
+    キャプションに記事URLが含まれる直近メディアを探す。
+    """
+    needle = _normalize_article_url(article_url)
+    if not needle:
+        return None
+    ig_user_id = ig_user_id or load_credentials().get('ig_user_id')
+    now = datetime.now(timezone.utc)
+    for item in fetch_recent_media(ig_user_id, limit=10):
+        cap = (item.get('caption') or '').lower()
+        cap_norm = cap.replace(' ', '')
+        if needle not in cap and needle not in cap_norm:
+            if needle + '/' not in cap:
+                continue
+        ts = _parse_ig_timestamp(item.get('timestamp'))
+        if ts and within_minutes:
+            age_min = (now - ts).total_seconds() / 60
+            if age_min > within_minutes:
+                continue
+        permalink = item.get('permalink')
+        if permalink:
+            return permalink
+    return None
+
+
+def reconcile_publish_failure(article_url, ig_user_id=None, within_minutes=60):
+    """publish API 失敗後にアカウント上の最新投稿を確認"""
+    print("  ℹ️ publish API失敗 — 直近メディアを照合します...")
+    permalink = find_matching_recent_post(
+        article_url, ig_user_id=ig_user_id, within_minutes=within_minutes,
+    )
+    if permalink:
+        print(f"✅ 投稿成功（API失敗後の照合）!")
+        print(f"   Permalink: {permalink}")
+        return permalink
+    print("  ❌ 照合でも一致する投稿が見つかりませんでした")
+    return None
+
+
 # ===== High-level posting =====
 
-def post_image(image_url, caption, ig_user_id=None):
+def post_image(image_url, caption, ig_user_id=None, verify_article_url=None):
     """画像を1枚投稿（3ステップフロー）"""
     creds = load_credentials()
     if not ig_user_id:
@@ -293,6 +370,12 @@ def post_image(image_url, caption, ig_user_id=None):
     # Step 3
     media_id = publish_container(container_id, ig_user_id)
     if media_id is None:
+        if verify_article_url:
+            reconciled = reconcile_publish_failure(
+                verify_article_url, ig_user_id=ig_user_id,
+            )
+            if reconciled:
+                return reconciled
         return False
     
     # Step 4: Get correct permalink
@@ -475,7 +558,10 @@ def main():
         sys.exit(1)
     
     if args.image_url:
-        success = post_image(args.image_url, caption, ig_user_id=ig_id)
+        verify_url = args.url or None
+        success = post_image(
+            args.image_url, caption, ig_user_id=ig_id, verify_article_url=verify_url,
+        )
     else:
         # テキストのみは投稿できず、画像が必須
         print("ERROR: Instagram投稿には画像が必須です。--image-url で画像URLを指定してください")
