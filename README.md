@@ -31,3 +31,7 @@ astro/
 
 ## ライセンス
 Private
+
+## Claude Code（リファクタ参画）
+
+作業ディレクトリ `~/Projects/toknet-affiliate` で `claude` を起動。手順は [docs/CLAUDE_CODE_INIT.md](docs/CLAUDE_CODE_INIT.md)。

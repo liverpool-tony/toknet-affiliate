@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Bash(python3 *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(git *)",
+      "Bash(cd *)",
+      "Bash(ls *)",
+      "Bash(curl *)",
+      "Bash(rg *)",
+      "Bash(grep *)",
+      "Bash(wc *)",
+      "Bash(test *)",
+      "Bash(mkdir *)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(rm *)"
+    ],
+    "deny": [
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Read(~/.hermes/.env)",
+      "Bash(rm -rf *)",
+      "Bash(*CLOUDFLARE_API_TOKEN*)",
+      "Bash(*INSTAGRAM_ACCESS_TOKEN*)",
+      "Bash(*MSTODON_ACCESS_TOKEN*)"
+    ]
+  }
+}
