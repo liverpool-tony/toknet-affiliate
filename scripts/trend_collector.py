@@ -267,6 +267,9 @@ def is_product_related(tag_name):
         if re.match(pattern, tag_name, re.IGNORECASE):
             return False
     tag_lower = tag_name.lower().lstrip('#')
+    # 短い英字タグは PRODUCT_KEYWORDS 部分一致（例: top in desktop）より先に除外
+    if re.match(r'^[a-zA-Z]{1,3}$', tag_lower):
+        return False
     # 日本語タグを正規化した判定用文字列
     tag_normalized = _normalize_ja_tag(tag_lower)
     for kw in PRODUCT_KEYWORDS:
