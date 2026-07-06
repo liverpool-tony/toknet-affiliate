@@ -282,7 +282,8 @@ def collect_trends(use_realtime=False):
                 source_labels = {
                     'hatena': 'はてなブックマーク',
                     'itmedia': 'ITmedia',
-                    'engadget': 'Engadget',
+                    'gizmodo': 'ギズモード・ジャパン',
+                    'pcwatch': 'PC Watch',
                 }
                 source_str = '/'.join(source_labels.get(s, s) for s in topic.get('sources', []))
                 news_items = topic.get('items', [])

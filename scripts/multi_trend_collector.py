@@ -82,21 +82,29 @@ PRODUCT_KEYWORDS = [
 
 
 def fetch_url(url, timeout=15):
-    """curl経由でURLを取得"""
+    """curl経由でURLを取得（失敗理由を stderr に出す）"""
     try:
         result = subprocess.run(
-            ['curl', '-sk', '--connect-timeout', '10', '-m', str(timeout), url],
+            ['curl', '-skL', '--connect-timeout', '10', '-m', str(timeout), url],
             capture_output=True, text=True, timeout=timeout + 5
         )
         if result.returncode == 0 and result.stdout.strip():
             return result.stdout
+        print(f"  ⚠️ fetch失敗 {url[:70]} (curl exit={result.returncode}, {len(result.stdout)}B)", file=sys.stderr)
         return None
-    except (subprocess.TimeoutExpired, Exception):
+    except subprocess.TimeoutExpired:
+        print(f"  ⚠️ fetchタイムアウト {url[:70]}", file=sys.stderr)
+        return None
+    except Exception as e:
+        print(f"  ⚠️ fetch例外 {url[:70]}: {e}", file=sys.stderr)
         return None
 
 
 def fetch_rss(url):
-    """RSS/Atomフィードを取得してエントリーリストを返す"""
+    """RSS/Atom/RDF(RSS1.0)フィードを取得してエントリーリストを返す
+
+    0 件の理由（接続不能・パース失敗・形式不明）を stderr に出す。
+    """
     content = fetch_url(url, timeout=15)
     if not content:
         return []
@@ -104,7 +112,8 @@ def fetch_rss(url):
     entries = []
     try:
         root = ET.fromstring(content)
-    except ET.ParseError:
+    except ET.ParseError as e:
+        print(f"  ⚠️ RSSパース失敗 {url[:70]}: {e}", file=sys.stderr)
         return []
 
     # RSS 2.0
@@ -114,6 +123,16 @@ def fetch_rss(url):
         desc = item.findtext('description', '')
         if title:
             entries.append({'title': title.strip(), 'link': link.strip(), 'description': desc.strip() if desc else ''})
+
+    # RSS 1.0 / RDF（Impress Watch 系）: item がデフォルト名前空間付き
+    if not entries:
+        ns10 = {'rss': 'http://purl.org/rss/1.0/'}
+        for item in root.findall('.//rss:item', ns10):
+            title = item.findtext('rss:title', '', ns10)
+            link = item.findtext('rss:link', '', ns10)
+            desc = item.findtext('rss:description', '', ns10)
+            if title:
+                entries.append({'title': title.strip(), 'link': link.strip(), 'description': desc.strip() if desc else ''})
 
     # Atom
     if not entries:
@@ -126,6 +145,8 @@ def fetch_rss(url):
             if title:
                 entries.append({'title': title.strip(), 'link': link.strip(), 'description': summary.strip() if summary else ''})
 
+    if not entries:
+        print(f"  ⚠️ RSSエントリ0件（未知の形式?） {url[:70]} root=<{root.tag}>", file=sys.stderr)
     return entries
 
 
@@ -181,9 +202,9 @@ def scrape_itmedia_news():
     return results
 
 
-def scrape_engadget_jp():
-    """Engadget 日本版 RSS"""
-    entries = fetch_rss('https://japanese.engadget.com/rss.xml')
+def scrape_gizmodo_jp():
+    """ギズモード・ジャパン RSS（Engadget 日本版の閉鎖に伴う代替）"""
+    entries = fetch_rss('https://www.gizmodo.jp/feed/index.xml')
     if not entries:
         return []
 
@@ -193,7 +214,28 @@ def scrape_engadget_jp():
         keywords = extract_keywords(title)
         if keywords:
             results.append({
-                'source': 'engadget',
+                'source': 'gizmodo',
+                'title': title,
+                'url': entry.get('link', ''),
+                'keywords': keywords,
+                'score': len(keywords) * 10,
+            })
+    return results
+
+
+def scrape_pc_watch():
+    """Impress PC Watch RSS（RSS 1.0/RDF。商品・ハードウェア系ニュース）"""
+    entries = fetch_rss('https://pc.watch.impress.co.jp/data/rss/1.0/pcw/feed.rdf')
+    if not entries:
+        return []
+
+    results = []
+    for entry in entries[:20]:
+        title = entry['title']
+        keywords = extract_keywords(title)
+        if keywords:
+            results.append({
+                'source': 'pcwatch',
                 'title': title,
                 'url': entry.get('link', ''),
                 'keywords': keywords,
@@ -231,7 +273,8 @@ def collect_multi_trends():
     sources = [
         ('hatena', scrape_hatena_tech),
         ('itmedia', scrape_itmedia_news),
-        ('engadget', scrape_engadget_jp),
+        ('gizmodo', scrape_gizmodo_jp),
+        ('pcwatch', scrape_pc_watch),
         ('x_search', lambda: x_search_items),
     ]
 
