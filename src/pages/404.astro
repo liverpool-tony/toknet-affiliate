@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getRecentPosts } from '../content/utils';
+
+const recentPosts = await getRecentPosts(5);
+---
+
+<BaseLayout title="ページが見つかりません (404) | AI共創レビュー研究所" description="お探しのページは見つかりませんでした。">
+  <div style="text-align: center; padding: 60px 0;">
+    <p style="font-size: 64px; font-weight: 700; color: var(--color-primary); margin-bottom: 8px;">404</p>
+    <h1 style="font-size: 24px; font-weight: 700; margin-bottom: 12px;">ページが見つかりません</h1>
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 32px;">
+      お探しのページは移動または削除された可能性があります。
+    </p>
+    <a href="/" style="display: inline-block; background: var(--color-primary); color: white; padding: 12px 32px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none;">
+      ホームに戻る
+    </a>
+  </div>
+
+  <section style="max-width: 720px; margin: 0 auto; padding-top: 32px; border-top: 1px solid var(--color-border);">
+    <h2 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">最新記事</h2>
+    <ul style="list-style: none; padding: 0;">
+      {recentPosts.map(post => (
+        <li style="padding: 10px 0; border-bottom: 1px solid var(--color-border);">
+          <a href={`/articles/${post.slug}/`} style="font-size: 14px;">{post.data.title}</a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
