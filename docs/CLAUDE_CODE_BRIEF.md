@@ -13,7 +13,7 @@
 |------|------|
 | サイト | https://toknet.info（canonical apex） |
 | コンセプト | AI×人間の透明な商品レビュー（体験・選び方・比較）。旧「価格比較」モデルは避ける |
-| スタック | Astro 5（`astro/`）、Python `scripts/`、Cloudflare Pages、GA4 `G-GKJN4ZB5SV` |
+| スタック | Astro 5（`astro/`）、Python `scripts/`、Cloudflare Pages、GA4 `G-ZGT1S0ZHPR`（2026-06-14 変更。旧 ID G-GKJN4ZB5SV は無効） |
 | Amazon | トラッキング ID `toknet-22`、登録ドメイン `www.toknet.info` |
 | リポジトリ | `liverpool-tony/toknet-affiliate`、`astro/` は submodule |
 
