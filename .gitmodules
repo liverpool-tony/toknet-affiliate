@@ -1,0 +1,4 @@
+[submodule "astro"]
+	path = astro
+	url = https://github.com/liverpool-tony/toknet-affiliate.git
+	branch = main
