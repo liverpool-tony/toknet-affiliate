@@ -450,7 +450,7 @@ def build_selection_points(keywords, tag):
     elif any(kw in tag for kw in ['ヘッドホン', 'イヤホン']):
         points = [
             "有線/ワイヤレス/ANCの必要性を整理する",
-            "実際のイ装着心地をレビューで確認する",
+            "実際の装着心地をレビューで確認する",
             "Amazonのセール時期を狙うとお得",
         ]
     else:

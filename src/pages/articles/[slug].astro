@@ -15,14 +15,16 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 // 構造化データ: Review
+// rating が実データとして無い記事では Review スキーマ自体を出さない
+// （既定値でレビュー評価を出力するとガイドライン違反リスクがあるため）
 const product = post.data.products?.[0];
-const reviewSchema = product ? {
+const reviewSchema = product && typeof product.rating === 'number' ? {
   "@context": "https://schema.org",
   "@type": "Review",
   "name": post.data.title,
   "reviewRating": {
     "@type": "Rating",
-    "ratingValue": product.rating || 4,
+    "ratingValue": product.rating,
     "bestRating": "5"
   },
   "author": {
@@ -109,7 +111,7 @@ const articleSchema = {
           )}
           {product.price && (
             <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 12px;">
-              参考价格: <strong>{product.price}円</strong>
+              参考価格: <strong>{product.price}円</strong>
             </p>
           )}
           {product.amazonUrl && (
