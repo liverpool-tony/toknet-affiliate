@@ -203,16 +203,26 @@ def scrape_engadget_jp():
 
 
 def _load_x_search_trends():
-    """X Search トレンドをキャッシュから読み込み"""
+    """X Search トレンドをキャッシュから読み込み（形式不正は警告して無視）"""
     x_cache = DATA_DIR / 'x_search_trends.json'
-    if x_cache.exists():
-        try:
-            with open(x_cache) as f:
-                data = json.load(f)
-            return data.get('items', [])
-        except (json.JSONDecodeError, KeyError):
-            pass
-    return []
+    if not x_cache.exists():
+        return []
+    try:
+        with open(x_cache) as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"  ⚠️ x_search_trends.json パース失敗 → 無視: {e}", file=sys.stderr)
+        return []
+    if not isinstance(data, dict) or 'items' not in data:
+        keys = list(data.keys())[:5] if isinstance(data, dict) else type(data).__name__
+        print(f"  ⚠️ x_search_trends.json に 'items' キーが無い（{keys}）→ 無視。"
+              f" 'results'/'trends' 等は無効です", file=sys.stderr)
+        return []
+    items = data['items']
+    if not isinstance(items, list):
+        print(f"  ⚠️ x_search_trends.json の 'items' が list でない → 無視", file=sys.stderr)
+        return []
+    return items
 
 
 def collect_multi_trends():
