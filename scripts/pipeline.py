@@ -914,6 +914,22 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
 
     pipeline_errors = []
 
+    # Step 0: x_search キャッシュの事前検証（契約違反でもパイプラインは継続。
+    # 違反ファイルは multi_trend_collector 側で無視され、他ソースで動く）
+    sys.path.insert(0, str(SCRIPTS_DIR))
+    try:
+        from validate_x_search_trends import validate_file
+        x_ok, x_errors, x_warnings = validate_file()
+        for w in x_warnings:
+            print(f"  ⚠️ x_search検証: {w}")
+        if not x_ok:
+            for e in x_errors:
+                print(f"  ❌ x_search検証: {e}")
+            print("  ⚠️ x_search_trends.json は契約違反 → 今回の収集では無視されます（'items' 形式で要修正）")
+            pipeline_errors.append("x_search_trends.json 契約違反")
+    except Exception as e:
+        print(f"  ⚠️ x_search検証スキップ（バリデータエラー: {e}）")
+
     # Step 1: トレンド収集（リアルタイム取得）
     try:
         trend_data = collect_trends(use_realtime=True)
