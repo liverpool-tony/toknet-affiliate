@@ -41,19 +41,23 @@ def main():
     os.environ["CLOUDFLARE_API_TOKEN"] = token
     os.environ["CLOUDFLARE_ACCOUNT_ID"] = account
 
-    # Check if astro build exists
+    # 常にビルドしてからデプロイする。
+    # dist/ が残っていると前回 run の内容（新記事を含まない）を配信してしまうため、
+    # 「dist があればビルドをスキップ」の分岐は廃止（stale dist は silent failure）
     dist_dir = os.path.join(PROJECT_DIR, "dist")
+    print("  🔨 Building (always rebuild before deploy)...")
+    build_result = subprocess.run(
+        ["npm", "run", "build"],
+        cwd=PROJECT_DIR,
+        capture_output=True, text=True, timeout=300
+    )
+    if build_result.returncode != 0:
+        print(f"❌ Build failed:\n{build_result.stderr[:500]}")
+        sys.exit(1)
+    print("  ✅ Build complete")
     if not os.path.isdir(dist_dir):
-        print(f"  ⚠️ dist/ not found. Building first...")
-        build_result = subprocess.run(
-            ["npm", "run", "build"],
-            cwd=PROJECT_DIR,
-            capture_output=True, text=True, timeout=300
-        )
-        if build_result.returncode != 0:
-            print(f"❌ Build failed:\n{build_result.stderr[:500]}")
-            sys.exit(1)
-        print("  ✅ Build complete")
+        print("❌ Build succeeded but dist/ not found")
+        sys.exit(1)
 
     print(f"  📦 Deploying {dist_dir}...")
     result = subprocess.run(

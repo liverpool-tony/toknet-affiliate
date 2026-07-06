@@ -717,7 +717,8 @@ def deploy_to_cloudflare(dry_run=False):
     try:
         result = subprocess.run(
             [sys.executable, str(SCRIPTS_DIR / 'deploy.py')],
-            capture_output=True, text=True, timeout=120
+            # deploy.py が常にビルドを行うようになったため余裕を持たせる（ビルド+デプロイ）
+            capture_output=True, text=True, timeout=300
         )
 
         if result.returncode == 0:
@@ -729,7 +730,7 @@ def deploy_to_cloudflare(dry_run=False):
                 print(f"  stderr: {result.stderr[:300]}")
             return False
     except subprocess.TimeoutExpired:
-        print("  ❌ デプロイタイムアウト (120s)")
+        print("  ❌ デプロイタイムアウト (300s)")
         return False
     except Exception as e:
         print(f"  ❌ デプロイ例外: {e}")
