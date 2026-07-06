@@ -23,7 +23,9 @@ AMAZON_TRACKING_ID = 'toknet-22'
 AMAZON_BASE = f'https://www.amazon.co.jp/dp/{{asin}}?tag={AMAZON_TRACKING_ID}'
 
 # カテゴリマッピング
+# 注意: 同スコアの場合は先に定義したカテゴリが勝つ（wearable を laptop-pc より先に置くこと）
 CATEGORY_MAP = {
+    'wearable': {'name': 'ウェアラブル', 'keywords': ['ウェアラブル', 'スマートウォッチ', 'スマートグラス', 'スマートリング', 'スマートバンド', 'AIペンダント', 'スマートペンダント', 'AIグラス', 'AIボイスレコーダー', 'ボイスレコーダー', 'AppleWatch', 'Apple Watch', 'Galaxy Watch', 'Pixel Watch', 'Fitbit', 'Garmin', 'XREAL', 'Ray-Ban Meta', '骨伝導', 'フィットネストラッカー', 'Plaud', 'NotePin']},
     'laptop-pc': {'name': 'PC・ノート', 'keywords': ['ノートPC', 'ラップトップ', 'MacBook', 'ThinkPad', 'Surface', 'Chromebook', 'ゲーミングPC']},
     'camera': {'name': 'カメラ', 'keywords': ['カメラ', 'デジカメ', 'ミラーレス', '一眼レフ', 'GoPro', 'インカメ', 'レンズ']},
     'audio-headphones': {'name': 'オーディオ', 'keywords': ['ヘッドホン', 'イヤホン', 'スピーカー', 'DAC', 'アンプ', 'ワイヤレス', 'ノイズキャンセリング']},

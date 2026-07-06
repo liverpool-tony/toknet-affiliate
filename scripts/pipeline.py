@@ -43,10 +43,12 @@ ARTICLES_DIR = PROJECT_DIR / 'astro' / 'src' / 'content' / 'articles'
 AMAZON_TRACKING_ID = 'toknet-22'
 
 # カテゴリマッピング
+# 注意: 同スコアの場合は先に定義したカテゴリが勝つ（wearable を laptop-pc より先に置くこと）
 CATEGORY_MAP = {
+    'wearable': {'name': 'ウェアラブル', 'keywords': ['ウェアラブル', 'スマートウォッチ', 'スマートグラス', 'スマートリング', 'スマートバンド', 'AIペンダント', 'スマートペンダント', 'AIグラス', 'AIボイスレコーダー', 'ボイスレコーダー', 'AppleWatch', 'Apple Watch', 'Galaxy Watch', 'Pixel Watch', 'Fitbit', 'Garmin', 'XREAL', 'Ray-Ban Meta', '骨伝導', 'フィットネストラッカー', 'Plaud', 'NotePin']},
     'laptop-pc': {'name': 'PC・ノート', 'keywords': ['ノートPC', 'ラップトップ', 'MacBook', 'ThinkPad', 'Surface', 'Chromebook', 'ゲーミングPC']},
     'camera': {'name': 'カメラ', 'keywords': ['カメラ', 'デジカメ', 'ミラーレス', '一眼レフ', 'GoPro', 'インカメ', 'レンズ', 'Polaroid', 'ポラロイド', 'インスタント', 'フィルム']},
-    'audio-headphones': {'name': 'オーディオ', 'keywords': ['ヘッドホン', 'イヤホン', 'スピーカー', 'DAC', 'アンプ', 'ワイヤレス', 'ノイズキャンセリング']},
+    'audio-headphones': {'name': 'オーディオ', 'keywords': ['ヘッドホン', 'イヤホン', 'スピーカー', 'DAC', 'アンプ', 'ワイヤレス', 'ノイズキャンセリング', 'オープンイヤー', 'TWS']},
     'smart-home': {'name': 'スマートホーム', 'keywords': ['スマートホーム', 'IoT', 'スマートスピーカー', 'Alexa', 'Google Home', 'HomePod', 'センサー', 'Roku', 'roku', 'FireTV', 'firetv', 'Chromecast', 'chromecast', 'AppleTV', 'appletv', 'ストリーミング']},
     'home-appliances': {'name': '家電', 'keywords': ['家電', '洗濯機', '冷蔵庫', '掃除機', 'ルンバ', 'ダイソン', '炊飯器', '電子レンジ']},
     'monitors': {'name': 'モニター', 'keywords': ['モニター', 'ディスプレイ', '4K', 'ゲーミングモニター', 'ウルトラワイド', '曲面']},
@@ -393,7 +395,12 @@ def detect_category(text):
         _CAMPAIGN = {'stopkillinggames', 'gamergate', 'metoo', 'blacklivesmatter'}
         if text_lower.strip() in _CAMPAIGN or any(text_lower.startswith(p) for p in ['stop', 'save', 'end', 'ban', 'fight']):
             return 'gaming'  # キャンペーン系は汎用カテゴリ
-    return best_cat if best_score > 0 else 'laptop-pc'
+    if best_score == 0:
+        # 全カテゴリ未マッチ → laptop-pc へフォールバック。cron run-log で検知できるよう警告を出す
+        # （頻出する場合は CATEGORY_MAP のキーワード追加か META_TAGS 除外を検討）
+        print(f"  ⚠️ カテゴリ判定: キーワード未マッチ → laptop-pc にフォールバック: {text[:60]}")
+        return 'laptop-pc'
+    return best_cat
 
 
 def generate_slug(title):
