@@ -887,10 +887,86 @@ def send_telegram_notification(title, slug, description, products, trend_source,
     return True
 
 
+# ===== Step 5: git commit & push（--commit 時のみ） =====
+
+def _git(args, cwd, timeout=60):
+    """git コマンド実行。(returncode, 出力) を返す"""
+    result = subprocess.run(
+        ['git'] + args, cwd=str(cwd),
+        capture_output=True, text=True, timeout=timeout
+    )
+    return result.returncode, (result.stdout + result.stderr).strip()
+
+
+def _push_with_rebase_retry(cwd, retries=2):
+    """push。reject 時は pull --rebase --autostash してリトライ"""
+    for attempt in range(retries + 1):
+        rc, out = _git(['push', 'origin', 'main'], cwd, timeout=120)
+        if rc == 0:
+            return True
+        if attempt < retries:
+            print(f"  ⚠️ push reject → pull --rebase --autostash してリトライ ({attempt + 1}/{retries})")
+            rc2, out2 = _git(['pull', '--rebase', '--autostash', 'origin', 'main'], cwd, timeout=120)
+            if rc2 != 0:
+                print(f"  ❌ rebase 失敗: {out2[:300]}")
+                _git(['rebase', '--abort'], cwd)
+                return False
+        else:
+            print(f"  ❌ push 失敗: {out[:300]}")
+    return False
+
+
+def commit_and_push_article(slug, tag):
+    """生成記事の git commit & push（CLAUDE.md の 2 段 push 手順を自動化）
+
+    1. astro/ 側: 記事ファイルを commit → push（reject 時は rebase リトライ）
+    2. 親側: gitlink（astro）を commit → push（同上）
+    記事ファイル以外（キャッシュ等）は巻き込まない。
+    """
+    print("\n" + "=" * 50)
+    print("📦 Step 5: git commit & push（--commit）")
+    print("=" * 50)
+
+    astro_dir = PROJECT_DIR / 'astro'
+    article_rel = f'src/content/articles/{slug}.md'
+
+    if not (astro_dir / article_rel).exists():
+        print(f"  ❌ 記事ファイルが見つかりません: {article_rel}")
+        return False
+
+    # --- 1. astro 側 ---
+    rc, out = _git(['add', article_rel], astro_dir)
+    if rc != 0:
+        print(f"  ❌ git add 失敗: {out[:200]}")
+        return False
+    rc, out = _git(['commit', '-m', f'feat: add {datetime.now(JST).strftime("%Y-%m-%d")} article ({tag})'], astro_dir)
+    if rc != 0:
+        print(f"  ⚠️ astro commit 対象なし（既にコミット済み?）: {out[:200]}")
+        return False
+    if not _push_with_rebase_retry(astro_dir):
+        return False
+    print("  ✅ astro push 完了")
+
+    # --- 2. 親側（gitlink 更新） ---
+    rc, out = _git(['add', 'astro'], PROJECT_DIR)
+    if rc != 0:
+        print(f"  ❌ 親 git add 失敗: {out[:200]}")
+        return False
+    rc, out = _git(['commit', '-m', 'chore: update astro submodule pointer'], PROJECT_DIR)
+    if rc != 0:
+        # gitlink に差分なし（既に同期済み）は正常系
+        print(f"  ℹ️ 親側コミット対象なし: {out[:120]}")
+        return True
+    if not _push_with_rebase_retry(PROJECT_DIR):
+        return False
+    print("  ✅ 親リポ push 完了")
+    return True
+
+
 # ===== Main Pipeline =====
 
 
-def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
+def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False, commit=False):
     """統合パイプライン実行"""
     print("🚀 AI共創レビュー研究所 統合パイプライン")
     print(f"🕐 {now_jst_str()}")
@@ -985,6 +1061,19 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
             print(f"  ❌ Telegram通知例外: {e}")
             pipeline_errors.append(f"Telegram通知例外: {e}")
 
+    # Step 5: git commit & push（--commit 指定時のみ。dry-run では no-op）
+    if commit:
+        if dry_run:
+            print("\n  [DRY RUN] git commit スキップ（--commit は FULL RUN でのみ有効）")
+        else:
+            try:
+                committed = commit_and_push_article(slug, best['tag'])
+                if not committed:
+                    pipeline_errors.append("git commit/push 失敗（記事は生成済み。手動で push してください）")
+            except Exception as e:
+                print(f"  ❌ git commit 例外: {e}")
+                pipeline_errors.append(f"git commit 例外: {e}")
+
     # サマリー
     print("\n" + "=" * 50)
     print("📊 パイプライン完了")
@@ -1012,12 +1101,15 @@ def main():
     parser.add_argument('--dry-run', action='store_true', help='デプロイ・投稿なし')
     parser.add_argument('--skip-deploy', action='store_true', help='デプロイスキップ')
     parser.add_argument('--skip-post', action='store_true', help='SNS投稿スキップ')
+    parser.add_argument('--commit', action='store_true',
+                        help='FULL RUN 後に記事を git commit & push（astro→親の2段。デフォルトOFF）')
     args = parser.parse_args()
 
     success = run_pipeline(
         dry_run=args.dry_run,
         skip_deploy=args.skip_deploy,
         skip_post=args.skip_post,
+        commit=args.commit,
     )
 
     sys.exit(0 if success else 1)
