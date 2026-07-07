@@ -62,6 +62,15 @@ curl -sk -o /dev/null -w '%{http_code}\n' https://toknet.info/category/wearable/
 
 `docs/instagram-recovery.md` の復旧手順: action block 中に API を叩き続けると延長されるため、**7〜14 日の投稿停止を推奨**。ユーザーが承認したら cron run では `--skip-post` を使うか、Instagram ステップのみスキップし、run-log に「IG 停止中 (day N)」と記録。
 
+## Task 5: 流入前提の監視（毎 run、恒久タスク）
+
+毎 run の Step として `python3 scripts/traffic_check.py` を実行し、❌ があれば run-log に転記する。
+特に以下の 2 件は 2026-07-07 時点で既知の未解決（解消したら報告）:
+- `www→apex 301` — ユーザーの GO 待ち（Cloudflare Redirect Rule）
+- `404 ステータス` — PR #6 マージで解消
+
+あわせて週 1 回、`site:toknet.info` の Bing/Google での件数を目視確認し報告（IndexNow は 2026-07-07 に 134 URL 送信済み。数日でBingに出始めるはず）。
+
 ## やらないこと（Claude Code 担当のため触らない）
 
 - `scripts/trend_config.py` への設定集約・`tests/` 追加（改善計画 PR#5/#6）
