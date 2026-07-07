@@ -1,5 +1,9 @@
 # Hermes 引き継ぎタスク（2026-07-07 Claude Code より）
 
+> **2026-07-07 更新**: Task 1（PR マージ）と Task 2（検証）はユーザー承認のもと Claude Code が実施済み
+> （PR #2〜#11 全マージ、traffic_check 8/9 OK、残 ❌ は www 301 = ユーザーのトークン権限待ちのみ）。
+> **残タスクは Task 3（IG 画像の JPEG 差替え）、Task 4（IG 停止のユーザー確認）、Task 5（毎 run 監視）**。
+
 > 実行者: Hermes（composer 2.5）。**このドキュメントを上から順に実行**する。
 > 各コマンドは `~/Projects/toknet-affiliate` で実行。判断に迷ったら中断してユーザーに報告。
 > 前提知識: `docs/repo-structure.md`（未マージなら PR #4 の Files タブで読める）と skill `toknet-affiliate-pipeline`。
