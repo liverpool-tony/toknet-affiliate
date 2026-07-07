@@ -25,9 +25,16 @@ if not token:
     print("NO_TOKEN")
     sys.exit(1)
 
-zones = cf("/zones?name=toknet.info").get("result", [])
+zones_resp = cf("/zones?name=toknet.info")
+zones = zones_resp.get("result", [])
 if not zones:
+    # トークン権限不足かゾーン不可視かの切り分け用に API エラーのみ出力（秘密情報は含まない）
     print("NO_ZONE")
+    print("  api success:", zones_resp.get("success"))
+    print("  api errors:", json.dumps(zones_resp.get("errors", []), ensure_ascii=False))
+    verify = cf("/user/tokens/verify")
+    print("  token status:", verify.get("result", {}).get("status"),
+          "| verify errors:", json.dumps(verify.get("errors", []), ensure_ascii=False))
     sys.exit(1)
 zid = zones[0]["id"]
 print("zone_id", zid)

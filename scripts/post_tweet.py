@@ -118,11 +118,41 @@ def post_tweet(text):
         print(f"Error: {e}")
         return {"error": str(e)}
 
+def whoami():
+    """認証中のアカウントを確認（GET /2/users/me、投稿しない読み取り専用）"""
+    creds = get_x_creds()
+    if not all(k in creds for k in ["api_key", "api_secret", "access_token", "access_token_secret"]):
+        print("ERROR: Missing X API credentials in ~/.hermes/.env")
+        sys.exit(1)
+
+    url = "https://api.twitter.com/2/users/me"
+    auth_header = oauth1_sign(
+        "GET", url, {},
+        creds["api_key"], creds["api_secret"],
+        creds["access_token"], creds["access_token_secret"]
+    )
+    req = urllib.request.Request(url, method="GET")
+    req.add_header("Authorization", auth_header)
+    ctx = ssl.create_default_context()
+    try:
+        with urllib.request.urlopen(req, context=ctx, timeout=30) as resp:
+            result = json.loads(resp.read())
+            data = result.get("data", {})
+            print(f"account: @{data.get('username')} ({data.get('name')}) id={data.get('id')}")
+            return result
+    except urllib.error.HTTPError as e:
+        print(f"HTTP Error {e.code}: {e.read().decode()[:300]}")
+        return None
+
+
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 1 and sys.argv[1] == "--whoami":
+        whoami()
+    elif len(sys.argv) > 1:
         tweet_text = " ".join(sys.argv[1:])
+        result = post_tweet(tweet_text)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
     else:
-        tweet_text = "テスト投稿 from AI共創レビュー研究所"
-    
-    result = post_tweet(tweet_text)
-    print(json.dumps(result, indent=2, ensure_ascii=False))
+        # 以前は引数なしで「テスト投稿」を実投稿していた（危険）ため usage 表示に変更
+        print("Usage: post_tweet.py --whoami | post_tweet.py <投稿テキスト>")
+        sys.exit(1)
