@@ -1,5 +1,5 @@
 ---
-title: "【ニュース】【2026年06月25日】SNSで話題の「Intel Core Ultra」徹底レビュー｜AI共創レビュー研究所"
+title: "【ニュース】【2026年06月25日】SNSで話題の「Intel Core Ultra」徹底レビュー"
 description: "SNSトレンド「#Intel Core Ultra」について徹底分析。Intel Core Ultra関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-25T00:03:23+09:00
 category: "laptop-pc"

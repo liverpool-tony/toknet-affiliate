@@ -1,5 +1,5 @@
 ---
-title: "【SNSトレンド】【2026年06月18日】SNSで話題の「gentechnik」徹底レビュー｜AI共創レビュー研究所"
+title: "【SNSトレンド】【2026年06月18日】SNSで話題の「gentechnik」徹底レビュー"
 description: "SNSトレンド「#gentechnik」について徹底分析。gentechnik関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-18T04:01:57+09:00
 category: "laptop-pc"

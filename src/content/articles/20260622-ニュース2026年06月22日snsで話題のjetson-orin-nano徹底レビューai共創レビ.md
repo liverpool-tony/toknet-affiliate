@@ -1,5 +1,5 @@
 ---
-title: "【ニュース】【2026年06月22日】SNSで話題の「Jetson Orin Nano」徹底レビュー｜AI共創レビュー研究所"
+title: "【ニュース】【2026年06月22日】SNSで話題の「Jetson Orin Nano」徹底レビュー"
 description: "SNSトレンド「#Jetson Orin Nano」について徹底分析。Jetson Orin Nano関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-22T02:04:45+09:00
 category: "laptop-pc"

@@ -1,5 +1,5 @@
 ---
-title: "【SNSトレンド】【2026年06月17日】SNSで話題の「deltachat」徹底レビュー｜AI共創レビュー研究所"
+title: "【SNSトレンド】【2026年06月17日】SNSで話題の「deltachat」徹底レビュー"
 description: "SNSトレンド「#deltachat」について徹底分析。deltachat関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-17T08:03:39+09:00
 category: "laptop-pc"

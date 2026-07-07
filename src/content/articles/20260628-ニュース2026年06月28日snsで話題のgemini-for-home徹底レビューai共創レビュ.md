@@ -1,5 +1,5 @@
 ---
-title: "【ニュース】【2026年06月28日】SNSで話題の「Gemini for Home」徹底レビュー｜AI共創レビュー研究所"
+title: "【ニュース】【2026年06月28日】SNSで話題の「Gemini for Home」徹底レビュー"
 description: "SNSトレンド「#Gemini for Home」について徹底分析。Gemini for Home関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-28T18:01:22+09:00
 category: "laptop-pc"

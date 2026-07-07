@@ -152,8 +152,11 @@ def _normalize_tag(tag):
     return _JA_EN_MAP.get(t, t)
 
 
-def get_recently_used_tags(hours=24):
+def get_recently_used_tags(hours=24, primary_only=False):
     """過去hours時間以内に投稿された記事の全タグを収集（frontmatterのtagsすべて）
+
+    primary_only=True の場合は各記事の先頭タグ（主タグ）のみを収集する。
+    同一主タグの記事を長期間（例: 14日）重複生成しない判定に使う。
 
     ファイルの更新時刻（mtime）を使用し、ファイル名の日付に依存しない。
     これにより、同じタグの短時間での重複投稿を正確に防止する。
@@ -186,6 +189,8 @@ def get_recently_used_tags(hours=24):
                 tags_raw = m.group(1)
                 # 全タグを抽出（プライマリ + セカンダリ）
                 all_tags = re.findall(r'["\']([^"\']+)["\']', tags_raw)
+                if primary_only:
+                    all_tags = all_tags[:1]
                 for t in all_tags:
                     # 正規化して追加（英日統合）
                     used_tags.add(_normalize_tag(t))
@@ -585,7 +590,9 @@ def generate_article(trend_data, template_idx=0, dry_run=False):
         title_prefix = "【注目キーワード】"
     else:
         title_prefix = "【SNSトレンド】"
-    title = f"{title_prefix}【{now_jst_short()}】SNSで話題の「{top_kw}」徹底レビュー｜AI共創レビュー研究所"
+    # ブランド名はレイアウト側（[slug].astro）が「 | AI共創レビュー研究所」を付与するため
+    # ここでは付けない（二重付与になっていた）
+    title = f"{title_prefix}【{now_jst_short()}】SNSで話題の「{top_kw}」徹底レビュー"
     description = f"SNSトレンド「#{tag}」について徹底分析。{top_kw}関連の最新動向とおすすめ商品を紹介します。"
     slug = generate_slug(title)
 
@@ -909,6 +916,20 @@ def run_pipeline(dry_run=False, skip_deploy=False, skip_post=False):
     if not trend_data['trend_tags']:
         print("\n⚠️ 商品系トレンドタグが見つかりませんでした。パイプライン終了。")
         return False
+
+    # 長期重複チェック: 14日以内に同じ主タグの記事があれば候補から外す
+    # （同一タグのテンプレ記事が乱立し「スケールされた低品質コンテンツ」判定を
+    #   招いていたため。全滅時のみフィルタを解除して継続）
+    used_primary_14d = get_recently_used_tags(hours=336, primary_only=True)
+    long_ok = [t for t in trend_data['trend_tags']
+               if _normalize_tag(t['tag']) not in used_primary_14d]
+    if long_ok:
+        if len(long_ok) < len(trend_data['trend_tags']):
+            dropped = len(trend_data['trend_tags']) - len(long_ok)
+            print(f"\nℹ️ 14日以内に主タグが重複する候補 {dropped} 件を除外")
+        trend_data['trend_tags'] = long_ok
+    else:
+        print("\n⚠️ 全候補が14日以内の主タグと重複 → 長期フィルタを解除して継続")
 
     # 重複チェック: 過去24時間のタグを除外（window relaxation: 24h → 12h → 6h → allow best）
     candidates = None
