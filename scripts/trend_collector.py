@@ -338,15 +338,22 @@ def is_product_related(tag_name):
         return False
     if re.match(r'^[a-zA-Z][a-zA-Z0-9_-]{1,30}$', tag_lower):
         if tag_lower not in KNOWN_FUN_TAGS:
-            # PRODUCT_KEYWORDS いずれかと部分一致する場合のみ商品系とみなす
+            # PRODUCT_KEYWORDS いずれかと一致する場合のみ商品系とみなす。
+            # 語中の部分一致は誤検知するため不可（例: busyBODYSONgs に "dyson" が
+            # マッチして #BusyBodySongsOrPoems が商品タグ扱いになった実例あり）。
+            # 許可するのは: 完全一致 / タグの先頭・末尾一致（例: nikonz3）/ 単語境界一致
             for kw in PRODUCT_KEYWORDS:
                 kw_lower = kw.lower()
-                # キーワードが3文字未満の場合、単語境界でのみ一致（部分文字列は除外）
-                # 例: "ai" in "algeria" → False, "ai" in "aiガジェット" → True
                 if len(kw_lower) < 3:
+                    # 短キーワードは単語境界でのみ一致（"ai" in "algeria" → False）
                     if re.search(r'(?<![a-z])' + re.escape(kw_lower) + r'(?![a-z])', tag_lower):
                         return True
-                elif kw_lower in tag_lower or tag_lower in kw_lower:
+                    continue
+                if tag_lower == kw_lower or tag_lower in kw_lower:
+                    return True
+                if tag_lower.startswith(kw_lower) or tag_lower.endswith(kw_lower):
+                    return True
+                if re.search(r'(?<![a-z0-9])' + re.escape(kw_lower) + r'(?![a-z0-9])', tag_lower):
                     return True
             return False
     return False
