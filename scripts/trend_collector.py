@@ -75,6 +75,8 @@ EXCLUDE_PATTERNS = [
     r'^#chatgpt$', r'^#claude$', r'^#gemini$', r'^#gpt$',
     # 除外: ブラウザ（商品レビューでない）
     r'^#chrome$', r'^#firefox$', r'^#safari$', r'^#edge$',
+    # 除外: 色・一般語（ugreen 等の部分一致誤検知を防ぐ）
+    r'^#green$', r'^#blue$', r'^#red$',
 ]
 
 # 商品・サービス関連キーワード
@@ -286,9 +288,10 @@ def is_product_related(tag_name):
         # キーワードがタグに含まれるが、英数字境界でのみ（部分文字列は除外）
         if re.search(r'(?<![a-z])' + re.escape(kw_lower) + r'(?![a-z])', tag_lower):
             return True
-        # タグ全体がキーワードの一部（例: "polaroid" が "polaroidnow" のPRODUCT_KEYWORDに含まれる）
-        if len(tag_lower) >= 3 and tag_lower in kw_lower:
-            return True
+        # タグ全体がキーワードの一部（例: "polaroid" in "polaroidnow"）— 語境界のみ
+        if len(tag_lower) >= 3 and tag_lower != kw_lower and tag_lower in kw_lower:
+            if re.search(r'(?<![a-z])' + re.escape(tag_lower) + r'(?![a-z])', kw_lower):
+                return True
     # 日本語タグで正規化後に再度PRODUCT_KEYWORDSと比較
     if tag_normalized != tag_lower:
         for kw in PRODUCT_KEYWORDS:
