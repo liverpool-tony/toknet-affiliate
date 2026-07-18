@@ -71,6 +71,7 @@ EXCLUDE_PATTERNS = [
     # 除外: ストリーミングサービス（商品レビューでない）
     r'^#youtube$', r'^#netflix$', r'^#spotify$', r'^#disneyplus$',
     r'^#hulu$', r'^#twitch$', r'^#tiktok$',
+    r'^#applemusic$', r'^#apple_music$', r'^#itunes$', r'^#appletv$',
     # 除外: AIサービス名（商品でない）
     r'^#chatgpt$', r'^#claude$', r'^#gemini$', r'^#gpt$',
     # 除外: ブラウザ（商品レビューでない）

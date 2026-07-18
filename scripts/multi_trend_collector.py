@@ -377,6 +377,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # SNSプラットフォーム名
         'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
         'Netflix', 'Spotify', 'DisneyPlus', 'Hulu', 'SNS',
+        'AppleMusic', 'applemusic', 'iTunes', 'AppleTV',
         # AI/テック企業・サービス名（商品レビューにならない）
         # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
         # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
