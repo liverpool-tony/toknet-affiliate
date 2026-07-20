@@ -360,6 +360,8 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 範囲が広すぎて商品レビューにならないタグ
         'スポーツ', '子ども', 'キッズ', 'ニュース', '政治', '社会',
         'ライフスタイル', '生活', '仕事', 'ビジネス',
+        # 単体「PC」は商品カテゴリとして広すぎる（ノートPC/ミニPC等は有効）
+        'PC', 'pc',
         # 企業名・サービス名（商品レビューにならない）
         'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
         'Microsoft', 'Tesla', 'Toyota', 'NTT', 'nvidia', 'NVIDIA',
