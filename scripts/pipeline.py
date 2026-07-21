@@ -45,7 +45,9 @@ AMAZON_TRACKING_ID = 'toknet-22'
 # カテゴリマッピング
 # 注意: 同スコアの場合は先に定義したカテゴリが勝つ（wearable を laptop-pc より先に置くこと）
 CATEGORY_MAP = {
-    'wearable': {'name': 'ウェアラブル', 'keywords': ['ウェアラブル', 'スマートウォッチ', 'スマートグラス', 'スマートリング', 'スマートバンド', 'AIペンダント', 'スマートペンダント', 'AIグラス', 'AIボイスレコーダー', 'ボイスレコーダー', 'AppleWatch', 'Apple Watch', 'Galaxy Watch', 'Pixel Watch', 'Fitbit', 'Garmin', 'XREAL', 'Ray-Ban Meta', '骨伝導', 'フィットネストラッカー', 'Plaud', 'NotePin']},
+    'wearable': {'name': 'ウェアラブル', 'keywords': ['ウェアラブル', 'スマートウォッチ', 'スマートグラス', 'スマートリング', 'スマートバンド', 'AIペンダント', 'スマートペンダント', 'AIグラス', 'AIボイスレコーダー', 'ボイスレコーダー', 'AppleWatch', 'Apple Watch', 'Galaxy Watch', 'Pixel Watch', 'Fitbit', 'Garmin', 'XREAL', 'Ray-Ban Meta', '骨伝導', 'フィットネストラッカー', 'Plaud', 'NotePin', 'Metaグラス', 'スマートグラス']},
+    'smartphone': {'name': 'スマホ・タブレット', 'keywords': ['iPhone', 'Android', 'スマホ', 'Galaxy', 'Pixel', 'Xperia', 'スマートフォン', 'タブレット', 'iPad', 'スマホ買取']},
+    'software': {'name': 'AI・ソフトウェア', 'keywords': ['AI', 'ソフトウェア', 'アプリ', 'クラウド', 'SaaS', 'ツール', 'Cursor', 'VSCode', 'Docker', 'NotebookLM', '翻訳', '音声クローン', 'ローカルAI', 'AIアシスタント', 'OpenAI', 'AI-PC', 'ゲートウェイ']},
     'laptop-pc': {'name': 'PC・ノート', 'keywords': ['ノートPC', 'ラップトップ', 'MacBook', 'ThinkPad', 'Surface', 'Chromebook', 'ゲーミングPC']},
     'camera': {'name': 'カメラ', 'keywords': ['カメラ', 'デジカメ', 'ミラーレス', '一眼レフ', 'GoPro', 'インカメ', 'レンズ', 'Polaroid', 'ポラロイド', 'インスタント', 'フィルム']},
     'audio-headphones': {'name': 'オーディオ', 'keywords': ['ヘッドホン', 'イヤホン', 'スピーカー', 'DAC', 'アンプ', 'ワイヤレス', 'ノイズキャンセリング', 'オープンイヤー', 'TWS']},

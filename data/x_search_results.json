@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-06-30T12:00:00+09:00",
+  "query": "テクノロジー 新製品 レビュー おすすめ AI ガジェット",
+  "trends": [
+    {"tag": "AIペンダント", "description": "シリコンバレー発第二の脳 常時録音AI要約 Slack Google 100以上アプリ連携 API公開でAIエージェント化 日本語サポートあり 24時間バッテリー", "score": 88},
+    {"tag": "Plaud NotePin S", "description": "襟元クリップ式AIボイスレコーダー 話すだけで自動文字起こしAI要約 メモを取る行為が消えたと好評", "score": 82},
+    {"tag": "Meta Ray-Ban AIグラス", "description": "リアルタイム日本語翻訳対応 カメラ音声AI機能強化 日常会話旅行で便利", "score": 78},
+    {"tag": "Rokid AIグラス", "description": "次世代スマートグラス カメラ搭載透明ディスプレイ 軽量約49g AIアシスタント統合", "score": 76},
+    {"tag": "AI搭載ポータブルゲーミングPC", "description": "MSI Claw 8 EX AI+ Intel Arc G3 Extreme NVIDIA RTX Spark搭載 COMPUTEX 2026注目", "score": 74}
+  ]
+}
