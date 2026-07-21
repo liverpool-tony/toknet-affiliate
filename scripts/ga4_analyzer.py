@@ -23,7 +23,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 JST = timezone(timedelta(hours=9))
-PROPERTY_ID = "properties/472074982"  # G-ZGT1S0ZHPR に対応（要確認）
+PROPERTY_ID = "properties/541584125"  # G-ZGT1S0ZHPR
 SA_JSON_PATH = Path.home() / ".hermes" / "ga4-service-account.json"
 
 def get_client():
@@ -55,7 +55,7 @@ def get_client():
 def run_report(client, property_id, dimensions, metrics, date_ranges, order_bys=None, limit=100):
     """GA4レポート実行"""
     from google.analytics.data_v1beta.types import (
-        RunReportRequest, Dimension, Metric, DateRange, OrderBy, DimensionOrderBy
+        RunReportRequest, Dimension, Metric, DateRange
     )
 
     request = RunReportRequest(

@@ -38,7 +38,7 @@ CATEGORY_KEYWORDS = {
                   "XREAL", "Ray-Ban Meta", "骨伝導", "フィットネストラッカー", "Plaud", "NotePin",
                   "Metaグラス", "スマートグラス"],
     "laptop-pc": ["ノートPC", "ラップトップ", "MacBook", "ThinkPad", "Surface", "Chromebook",
-                   "ゲーミングPC", "デスクトップ", "ミニPC"],
+                   "ゲーミングPC", "デスクトップ", "ミニPC", "マウス", "キーボード"],
     "camera": ["カメラ", "デジカメ", "ミラーレス", "一眼レフ", "GoPro", "インカメ", "レンズ",
                "Polaroid", "ポラロイド", "インスタント", "フィルム", "アクションカメラ"],
     "audio-headphones": ["ヘッドホン", "イヤホン", "スピーカー", "DAC", "アンプ", "ワイヤレス",
@@ -47,7 +47,8 @@ CATEGORY_KEYWORDS = {
                     "HomePod", "センサー", "Roku", "FireTV", "Chromecast", "AppleTV", "ストリーミング"],
     "home-appliances": ["家電", "洗濯機", "冷蔵庫", "掃除機", "ルンバ", "ダイソン", "炊飯器",
                          "電子レンジ", "エアコン", "空気清浄機", "加湿器"],
-    "monitors": ["モニター", "ディスプレイ", "4K", "ゲーミングモニター", "ウルトラワイド", "曲面"],
+    "monitors": ["モニター", "ディスプレイ", "4K", "5K", "ゲーミングモニター", "ウルトラワイド", "曲面",
+                  "Studio Display", "Pro Display", "Retina"],
     "diy-pc": ["自作PC", "グラボ", "GPU", "CPU", "マザーボード", "メモリ", "SSD", "電源", "RTX", "GeForce"],
     "gaming": ["ゲーミング", "Switch", "PS5", "Xbox", "Steam", "ゲーム", "Nintendo", "SteamDeck"],
     "smartphone": ["iPhone", "Android", "スマホ", "Galaxy", "Pixel", "Xperia", "スマートフォン",
@@ -303,7 +304,7 @@ def generate_report(audit_result, ga4_data=None):
     if audit_result["miscategorized"]:
         lines.append(f"\n  【誤分類サンプル（上位5件）】")
         for m in audit_result["miscategorized"][:5]:
-            lines.append(f"    {m['filename'][:50]}")
+            lines.append(f"    {m['file'][:50]}")
             lines.append(f"      {m['current']} → {m['suggested']}")
 
     # --- GA4データ ---
