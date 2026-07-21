@@ -7,7 +7,7 @@ tags: ["gentechnik"]
 articleType: "review"
 aiAssisted: true
 draft: false
-products: [{"name": "gentechnik", "amazonUrl": "https://www.amazon.co.jp/s?k=gentechnik&tag=toknet-22", "rating": null}, {"name": "Gentechnik", "amazonUrl": "https://www.amazon.co.jp/s?k=Gentechnik&tag=toknet-22", "rating": null}]
+products: [{"name": "gentechnik", "amazonUrl": "https://www.amazon.co.jp/s?k=gentechnik+おすすめ&tag=toknet-22", "rating": null}, {"name": "Gentechnik", "amazonUrl": "https://www.amazon.co.jp/s?k=Gentechnik&tag=toknet-22", "rating": null}]
 ---
 ## はじめに
 
@@ -31,7 +31,7 @@ SNS上では10件の投稿が分析され、平均エンゲージメントは1.8
 
 > ※Amazonアソシエイトリンクを含んでいます。
 
-- **gentechnik** — [Amazonで価格を見る](https://www.amazon.co.jp/s?k=gentechnik&tag=toknet-22)
+- **gentechnik** — [Amazonで価格を見る](https://www.amazon.co.jp/s?k=gentechnik+おすすめ&tag=toknet-22)
 - **Gentechnik** — [Amazonで価格を見る](https://www.amazon.co.jp/s?k=Gentechnik&tag=toknet-22)
 
 ## 選び方のポイント
@@ -55,6 +55,25 @@ SNS上では10件の投稿が分析され、平均エンゲージメントは1.8
 - [MacBook Air M3 15インチ 徹底レビュー：性能・バッテリー・価格を徹底検証](/articles/macbook-air-m3-review/)
 - [MacBook Pro M4 14インチ 徹底レビュー：プロが選ぶ理由と性能検証](/articles/macbook-pro-m4-review/)
 - [ThinkPad X1 Carbon Gen 12 レビュー：ビジネスノートの最高峰](/articles/thinkpad-x1-carbon-review/)
+
+
+## スペック比較表
+
+| 項目 | エントリー | ミドルレンジ | ハイエンド |
+|------|-----------|-------------|-----------|
+| CPU | Core i3 / Ryzen 3 | Core i5 / Ryzen 5 | Core i7 / Ryzen 7 |
+| メモリ | 8GB | 16GB | 32GB以上 |
+| ストレージ | SSD 256GB | SSD 512GB | SSD 1TB |
+| 価格帯 | 5〜8万円 | 8〜15万円 | 15万円〜 |
+| 用途 | 文書作成・Web閲覧 | 事務作業・軽めの編集 | 動画編集・開発・ゲーム |
+
+## 購入前のチェックリスト
+
+- [ ] 用途に合ったCPU・メモリ構成か
+- [ ] 画面サイズ・解像度は適切か
+- [ ] 重量・バッテリー持ちは持ち運びに耐えるか
+- [ ] 保証期間・サポート体制は十分か
+- [ ] 周辺機器（ドック、モニター等）との互換性はあるか
 
 ## まとめ
 
