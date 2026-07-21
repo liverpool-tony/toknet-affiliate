@@ -16,7 +16,7 @@ const articleCollection = defineCollection({
       amazonUrl: z.string().optional(),
       rating: z.number().min(0).max(5).optional().nullable(),
     })).default([]),
-    articleType: z.enum(['review', 'comparison', 'ranking', 'guide']).default('review'),
+    articleType: z.enum(['review', 'comparison', 'ranking', 'guide', 'redirect']).default('review'),
     aiAssisted: z.boolean().default(true),
   }),
 });

@@ -103,7 +103,8 @@
             "review",
             "comparison",
             "ranking",
-            "guide"
+            "guide",
+            "redirect"
           ],
           "default": "review"
         },
