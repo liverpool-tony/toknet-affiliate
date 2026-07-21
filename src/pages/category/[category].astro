@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getSortedPosts } from '../../content/utils';
 
 export async function getStaticPaths() {
-  const categories = ['laptop-pc', 'camera', 'audio-headphones', 'smart-home', 'home-appliances', 'monitors', 'diy-pc', 'gaming', 'wearable'];
+  const categories = ['laptop-pc', 'smartphone', 'camera', 'audio-headphones', 'smart-home', 'home-appliances', 'monitors', 'diy-pc', 'gaming', 'wearable', 'software'];
   const posts = await getSortedPosts();
   
   return categories.map(category => ({
@@ -16,6 +16,7 @@ const { category, posts } = Astro.props;
 
 const categoryNames: Record<string, string> = {
   'laptop-pc': 'ノートPC・PC本体',
+  'smartphone': 'スマホ・タブレット',
   'camera': 'カメラ・写真機材',
   'audio-headphones': 'オーディオ・ヘッドホン',
   'smart-home': 'スマートホーム・IoT',
@@ -24,6 +25,7 @@ const categoryNames: Record<string, string> = {
   'diy-pc': '自作PC・パーツ',
   'gaming': 'ゲーム・ゲーム機',
   'wearable': 'ウェアラブル・スマートデバイス',
+  'software': 'ソフトウェア・AIツール',
 };
 
 const categoryName = categoryNames[category] || category;

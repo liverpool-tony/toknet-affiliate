@@ -45,6 +45,19 @@ const canonicalURL = new URL(canonicalPath(Astro.url.pathname), siteOrigin).href
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-ZGT1S0ZHPR');
+
+    // Amazonアフィリエイトリンクのクリック追跡
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href*="amazon.co.jp"]');
+      if (link) {
+        gtag('event', 'amazon_click', {
+          'event_category': 'affiliate',
+          'event_label': link.href,
+          'link_text': link.textContent.trim().substring(0, 100),
+          'page_path': window.location.pathname
+        });
+      }
+    });
   </script>
 
   <!-- Cloudflare Web Analytics（Cloudflare Pagesデプロイ時にDashboardで有効化） -->
@@ -119,10 +132,11 @@ const canonicalURL = new URL(canonicalPath(Astro.url.pathname), siteOrigin).href
         <ul class="nav-links">
           <li><a href="/">ホーム</a></li>
           <li><a href="/category/laptop-pc/">PC・ノート</a></li>
+          <li><a href="/category/smartphone/">スマホ</a></li>
           <li><a href="/category/camera/">カメラ</a></li>
           <li><a href="/category/audio-headphones/">オーディオ</a></li>
-          <li><a href="/category/smart-home/">スマートホーム</a></li>
           <li><a href="/category/wearable/">ウェアラブル</a></li>
+          <li><a href="/category/software/">AI・ソフト</a></li>
           <li><a href="/category/gaming/">ゲーム</a></li>
           <li><a href="/about/">このサイトについて</a></li>
         </ul>

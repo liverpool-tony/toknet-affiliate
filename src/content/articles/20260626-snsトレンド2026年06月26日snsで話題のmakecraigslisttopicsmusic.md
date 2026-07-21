@@ -2,7 +2,7 @@
 title: "【SNSトレンド】【2026年06月26日】SNSで話題の「MakeCraigsListTopicsMusicky」徹底レビュー"
 description: "SNSトレンド「#MakeCraigsListTopicsMusicky」について徹底分析。MakeCraigsListTopicsMusicky関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-26T12:02:11+09:00
-category: "laptop-pc"
+category: "software"
 tags: ["MakeCraigsListTopicsMusicky"]
 articleType: "review"
 aiAssisted: true
