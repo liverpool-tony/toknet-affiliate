@@ -38,6 +38,19 @@ const reviewSchema = product && typeof product.rating === 'number' ? {
   }
 } : null;
 
+// 構造化データ: FAQPage（FAQセクションがある記事のみ）
+const faqSection = post.body?.match(/## よくある質問（FAQ）\s*\n([\s\S]*?)(?=\n## |\n$)/);
+const faqItems = faqSection ? [...faqSection[1].matchAll(/### Q: (.+)\n([\s\S]*?)(?=\n### Q:|\n## |\n$)/g)].map(m => ({
+  "@type": "Question",
+  "name": m[1].trim(),
+  "acceptedAnswer": { "@type": "Answer", "text": m[2].replace(/^A: /, '').trim() }
+})) : [];
+const faqSchema = faqItems.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqItems
+} : null;
+
 // 構造化データ: Article
 const articleSchema = {
   "@context": "https://schema.org",
@@ -58,6 +71,7 @@ const articleSchema = {
   <!-- 構造化データ -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
   {reviewSchema && <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />}
+  {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
   <!-- パンくずリスト -->
   <nav style="font-size: 13px; color: var(--color-text-secondary); margin-bottom: 24px;">

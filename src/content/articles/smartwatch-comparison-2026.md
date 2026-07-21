@@ -10,6 +10,19 @@ draft: false
 products: [{"name": "Apple Watch Series 11", "amazonUrl": "https://www.amazon.co.jp/s?k=Apple+Watch+Series+11&tag=toknet-22", "rating": 4.5}, {"name": "Galaxy Watch 8", "amazonUrl": "https://www.amazon.co.jp/s?k=Galaxy+Watch+8&tag=toknet-22", "rating": 4.0}, {"name": "Garmin Venu 4", "amazonUrl": "https://www.amazon.co.jp/s?k=Garmin+Venu+4&tag=toknet-22", "rating": 4.5}]
 ---
 
+> **結論**: スマートウォッチを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
+
+## 目次
+
+- [はじめに](#はじめに)
+- [3機種スペック比較表](#3機種スペック比較表)
+- [Apple Watch Series 11｜iPhoneユーザーの鉄板](#apple-watch-series-11｜iphoneユーザーの鉄板)
+- [Galaxy Watch 8｜Androidユーザーの最適解](#galaxy-watch-8｜androidユーザーの最適解)
+- [Garmin Venu 4｜スポーツ・アウトドア重視ならこれ](#garmin-venu-4｜スポーツ・アウトドア重視ならこれ)
+- [用途別おすすめ](#用途別おすすめ)
+- [よくある質問（FAQ）](#よくある質問faq)
+- [関連記事](#関連記事)
+
 ## はじめに
 
 2026年のスマートウォッチ市場は、健康管理機能がさらに進化し、血圧測定・血糖値トレンド・睡眠スコアリングが標準搭載される時代になりました。

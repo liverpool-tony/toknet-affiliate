@@ -9,6 +9,20 @@ aiAssisted: true
 draft: false
 products: [{"name": "Intel Core Ultra", "amazonUrl": "https://www.amazon.co.jp/s?k=Intel+Core+Ultra+おすすめ&tag=toknet-22", "rating": null}]
 ---
+
+> **結論**: Intel Core Ultraを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
+
+## 目次
+
+- [はじめに](#はじめに)
+- [トレンド分析](#トレンド分析)
+- [おすすめ商品](#おすすめ商品)
+- [Intel Core Ultraのメリット・デメリット](#intel-core-ultraのメリット・デメリット)
+- [よくある質問（FAQ）](#よくある質問faq)
+- [選び方のポイント](#選び方のポイント)
+- [参考リンク](#参考リンク)
+- [スペック比較表](#スペック比較表)
+
 ## はじめに
 
 SNS上で急上昇している「Intel Core Ultra」について、トレンド分析と商品レビューをまとめました。

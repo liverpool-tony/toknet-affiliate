@@ -10,6 +10,19 @@ draft: false
 products: [{"name": "XREAL One Pro", "amazonUrl": "https://www.amazon.co.jp/s?k=XREAL+One+Pro&tag=toknet-22", "rating": 4.5}, {"name": "Ray-Ban Meta", "amazonUrl": "https://www.amazon.co.jp/s?k=Ray-Ban+Meta&tag=toknet-22", "rating": 4.0}, {"name": "Even Realities G2", "amazonUrl": "https://www.amazon.co.jp/s?k=Even+Realities+G2&tag=toknet-22", "rating": 4.0}]
 ---
 
+> **結論**: AIグラスを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
+
+## 目次
+
+- [はじめに](#はじめに)
+- [3機種スペック比較表](#3機種スペック比較表)
+- [XREAL One Pro｜映像体験重視ならこれ](#xreal-one-pro｜映像体験重視ならこれ)
+- [Ray-Ban Meta｜AIアシスタント＋カメラ重視ならこれ](#ray-ban-meta｜aiアシスタント＋カメラ重視ならこれ)
+- [Even Realities G2｜ミニマル情報表示ならこれ](#even-realities-g2｜ミニマル情報表示ならこれ)
+- [用途別おすすめ](#用途別おすすめ)
+- [よくある質問（FAQ）](#よくある質問faq)
+- [関連記事](#関連記事)
+
 ## はじめに
 
 2026年、AIグラス市場は急速に成熟し、日常使いできる製品が増えています。本記事では、現在最も注目されている3機種「XREAL One Pro」「Ray-Ban Meta」「Even Realities G2」を徹底比較します。
