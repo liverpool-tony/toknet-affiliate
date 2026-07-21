@@ -1,5 +1,5 @@
 ---
-title: "【ニュース】【2026年06月22日】SNSで話題の「Jetson Orin Nano」徹底レビュー"
+title: "Jetson Orin Nano 徹底解説 2026｜最新トレンドとおすすめ"
 description: "SNSトレンド「#Jetson Orin Nano」について徹底分析。Jetson Orin Nano関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-22T02:04:45+09:00
 category: "laptop-pc"
@@ -9,7 +9,6 @@ aiAssisted: true
 draft: false
 products: [{"name": "Jetson Orin Nano", "amazonUrl": "https://www.amazon.co.jp/s?k=Jetson Orin Nano&tag=toknet-22", "rating": null}]
 ---
-
 ## はじめに
 
 SNS上で急上昇している「Jetson Orin Nano」について、トレンド分析と商品レビューをまとめました。

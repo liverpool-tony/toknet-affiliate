@@ -1,5 +1,5 @@
 ---
-title: "【SNSトレンド】【2026年06月20日】SNSで話題の「lastfourwatched」徹底レビュー"
+title: "lastfourwatched 徹底解説 2026｜最新トレンドとおすすめ"
 description: "SNSトレンド「#lastfourwatched」について徹底分析。lastfourwatched関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-20T00:03:05+09:00
 category: "laptop-pc"
@@ -9,7 +9,6 @@ aiAssisted: true
 draft: false
 products: [{"name": "lastfourwatched", "amazonUrl": "https://www.amazon.co.jp/s?k=lastfourwatched&tag=toknet-22", "rating": null}, {"name": "LastFourWatched", "amazonUrl": "https://www.amazon.co.jp/s?k=LastFourWatched&tag=toknet-22", "rating": null}, {"name": "watched", "amazonUrl": "https://www.amazon.co.jp/s?k=watched&tag=toknet-22", "rating": null}]
 ---
-
 ## はじめに
 
 SNS上で急上昇している「lastfourwatched」について、トレンド分析と商品レビューをまとめました。

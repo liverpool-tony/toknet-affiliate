@@ -1,5 +1,5 @@
 ---
-title: "【ニュース】【2026年06月28日】SNSで話題の「Gemini for Home」徹底レビュー"
+title: "Gemini for Home 徹底解説 2026｜最新トレンドとおすすめ"
 description: "SNSトレンド「#Gemini for Home」について徹底分析。Gemini for Home関連の最新動向とおすすめ商品を紹介します。"
 pubDate: 2026-06-28T18:01:22+09:00
 category: "laptop-pc"
@@ -9,7 +9,6 @@ aiAssisted: true
 draft: false
 products: [{"name": "Gemini for Home", "amazonUrl": "https://www.amazon.co.jp/s?k=Gemini for Home&tag=toknet-22", "rating": null}]
 ---
-
 ## はじめに
 
 SNS上で急上昇している「Gemini for Home」について、トレンド分析と商品レビューをまとめました。
