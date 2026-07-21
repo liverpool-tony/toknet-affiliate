@@ -363,7 +363,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 単体「PC」は商品カテゴリとして広すぎる（ノートPC/ミニPC等は有効）
         'PC', 'pc',
         # 機能語（商品カテゴリにならない）
-        '音声録音', '録音',
+        '音声録音', '録音', '充電',
         # 企業名・サービス名（商品レビューにならない）
         'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
         'Microsoft', 'Tesla', 'Toyota', 'NTT', 'nvidia', 'NVIDIA',
