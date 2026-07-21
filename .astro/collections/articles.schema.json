@@ -112,6 +112,9 @@
           "type": "boolean",
           "default": true
         },
+        "redirectUrl": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
