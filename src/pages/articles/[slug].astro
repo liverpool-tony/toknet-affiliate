@@ -14,11 +14,41 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await post.render();
 
-// 構造化データ: Review
-// rating が実データとして無い記事では Review スキーマ自体を出さない
-// （既定値でレビュー評価を出力するとガイドライン違反リスクがあるため）
+const isRedirect = post.data.articleType === 'redirect';
 const product = post.data.products?.[0];
-const reviewSchema = product && typeof product.rating === 'number' ? {
+const pageURL = new URL(`/articles/${post.slug}/`, 'https://toknet.info').href;
+
+// ── 構造化データ: Product（商品カードがある記事すべて）──────────────
+// rating が無くても Product + offers は出力可（レビュー評価は実データ時のみ）。
+const productSchema = !isRedirect && product ? {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": product.name,
+  "description": post.data.description,
+  "brand": { "@type": "Brand", "name": "AI共創レビュー研究所" },
+  ...(product.amazonUrl && {
+    "offers": {
+      "@type": "Offer",
+      "url": product.amazonUrl,
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "JPY",
+      ...(product.price && { "price": String(product.price).replace(/[^\d.]/g, '') }),
+    }
+  }),
+  // 実測評価がある記事のみ reviewRating を付与（ガイドライン遵守）
+  ...(typeof product.rating === 'number' && {
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": product.rating,
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": "1",
+    }
+  }),
+} : null;
+
+// ── 構造化データ: Review（実測評価がある記事のみ）──────────────────
+const reviewSchema = !isRedirect && product && typeof product.rating === 'number' ? {
   "@context": "https://schema.org",
   "@type": "Review",
   "name": post.data.title,
@@ -38,29 +68,55 @@ const reviewSchema = product && typeof product.rating === 'number' ? {
   }
 } : null;
 
-// 構造化データ: FAQPage（FAQセクションがある記事のみ）
-const faqSection = post.body?.match(/## よくある質問（FAQ）\s*\n([\s\S]*?)(?=\n## |\n$)/);
-const faqItems = faqSection ? [...faqSection[1].matchAll(/### Q: (.+)\n([\s\S]*?)(?=\n### Q:|\n## |\n$)/g)].map(m => ({
-  "@type": "Question",
-  "name": m[1].trim(),
-  "acceptedAnswer": { "@type": "Answer", "text": m[2].replace(/^A: /, '').trim() }
-})) : [];
+// ── 構造化データ: FAQPage（FAQセクションがある記事すべて）──────────
+// 見出しは「## よくある質問（FAQ）」「## よくある質問」の両方に対応。
+// Q&A は「### Q: …」「**Q: …**」の両フォーマットをパース。
+const faqSection = post.body?.match(/## よくある質問(?:（FAQ）)?\s*\n([\s\S]*?)(?=\n## |\n$)/);
+let faqItems: { "@type": string; name: string; acceptedAnswer: { "@type": string; text: string } }[] = [];
+if (faqSection) {
+  const block = faqSection[1];
+  // Format A: "### Q: 質問\nA: 回答"
+  const fmtA = [...block.matchAll(/### Q:\s*(.+)\n([\s\S]*?)(?=\n### Q:|\n## |\n$)/g)].map(m => ({
+    q: m[1].trim(),
+    a: m[2].replace(/^A:\s*/, '').trim(),
+  }));
+  // Format B: "**Q: 質問**\nA: 回答"
+  const fmtB = [...block.matchAll(/\*\*Q:\s*(.+?)\*\*\s*\n([\s\S]*?)(?=\n\*\*Q:|\n## |\n$)/g)].map(m => ({
+    q: m[1].trim(),
+    a: m[2].replace(/^A:\s*/, '').trim(),
+  }));
+  const raw = fmtA.length >= fmtB.length ? fmtA : fmtB;
+  faqItems = raw
+    .filter(x => x.q && x.a)
+    .map(x => ({
+      "@type": "Question",
+      name: x.q,
+      acceptedAnswer: { "@type": "Answer", "text": x.a },
+    }));
+}
 const faqSchema = faqItems.length > 0 ? {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": faqItems
 } : null;
 
-// 構造化データ: Article
+// ── 構造化データ: Article（全記事）────────────────────────────────
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": post.data.title,
   "description": post.data.description,
+  "mainEntityOfPage": pageURL,
   "author": {
     "@type": "Organization",
     "name": "AI共創レビュー研究所"
   },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AI共創レビュー研究所",
+    "logo": { "@type": "ImageObject", "url": "https://toknet.info/og-default.png" }
+  },
+  "image": "https://toknet.info/og-default.png",
   "datePublished": post.data.pubDate.toISOString(),
   ...(post.data.updatedDate && { "dateModified": post.data.updatedDate.toISOString() }),
 };
@@ -70,6 +126,7 @@ const articleSchema = {
 
   <!-- 構造化データ -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  {productSchema && <script type="application/ld+json" set:html={JSON.stringify(productSchema)} />}
   {reviewSchema && <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />}
   {faqSchema && <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 

@@ -120,6 +120,18 @@ const canonicalURL = new URL(canonicalPath(Astro.url.pathname), siteOrigin).href
     .footer { background: var(--color-bg-secondary); border-top: 1px solid var(--color-border); padding: 40px 0; margin-top: 60px; }
     .footer-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
     .footer-disclaimer { font-size: 12px; color: var(--color-text-secondary); margin-top: 16px; padding: 16px; background: var(--color-bg); border-radius: 8px; border: 1px solid var(--color-border); }
+    /* 記事本文の引用ブロック（結論サマリー・注記）を目立つコールアウト化 → 直帰率改善 */
+    article blockquote { margin: 20px 0; padding: 16px 20px; background: #eef4ff; border-left: 4px solid var(--color-primary); border-radius: 0 8px 8px 0; color: #1a2b45; font-size: 15px; line-height: 1.8; }
+    article blockquote p { margin: 0; }
+    article blockquote strong { color: var(--color-primary-dark); }
+    /* 記事本文の見出し・段落の基本余白（可読性向上） */
+    article h2 { margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--color-border); font-size: 22px; }
+    article h3 { margin: 28px 0 12px; font-size: 18px; }
+    article p { margin: 16px 0; }
+    article ul, article ol { margin: 16px 0 16px 24px; }
+    article table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; }
+    article th, article td { border: 1px solid var(--color-border); padding: 8px 12px; text-align: left; }
+    article th { background: var(--color-bg-secondary); font-weight: 600; }
     @media (max-width: 768px) { .nav-links { display: none; } }
   </style>
 </head>
