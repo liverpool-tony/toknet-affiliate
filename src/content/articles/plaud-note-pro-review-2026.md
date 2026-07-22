@@ -2,7 +2,7 @@
 title: "PLAUD NOTE Pro レビュー 2026｜会議の文字起こし精度を実測"
 description: "PLAUD NOTE Pro（プラウド ノート プロ）を実機ベースで徹底レビュー。ChatGPT搭載の文字起こし精度、会議・取材での実用性、バッテリー、MagSafe対応を検証。Notta・Ankerとの比較表と購入ガイド付き。"
 pubDate: 2026-07-23T23:30:00+09:00
-category: "software"
+category: "wearable"
 tags: ["PLAUD NOTE Pro", "AIボイスレコーダー", "文字起こし", "会議録音", "ウェアラブル"]
 articleType: "review"
 aiAssisted: true

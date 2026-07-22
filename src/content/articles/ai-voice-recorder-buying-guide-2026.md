@@ -2,7 +2,7 @@
 title: "AIボイスレコーダー 選び方ガイド 2026｜用途別・予算別おすすめを徹底解説"
 description: "AIボイスレコーダーの選び方を用途別・予算別に徹底解説。PLAUD NOTE Pro・Notta・Plaud NotePin Sなど主要モデルを比較。文字起こし精度・AI要約・バッテリー・価格帯の違いが一目でわかる。会議・取材・語学学習に最適な1台が見つかる選び方ガイド。"
 pubDate: 2026-07-24T01:00:00+09:00
-category: "software"
+category: "wearable"
 tags: ["AIボイスレコーダー", "PLAUD NOTE Pro", "Notta", "Plaud NotePin S", "文字起こし", "会議録音", "選び方"]
 articleType: "guide"
 aiAssisted: true
