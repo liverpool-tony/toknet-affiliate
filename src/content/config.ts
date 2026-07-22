@@ -19,6 +19,7 @@ const articleCollection = defineCollection({
     articleType: z.enum(['review', 'comparison', 'ranking', 'guide', 'redirect']).default('review'),
     aiAssisted: z.boolean().default(true),
     redirectUrl: z.string().optional(),
+    noindex: z.boolean().default(false),
   }),
 });
 

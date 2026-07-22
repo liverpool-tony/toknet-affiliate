@@ -2,9 +2,10 @@
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title = 'AI共創レビュー研究所', description = 'AIと人間の共創による、透明性の高い商品レビュー・比較サイト' } = Astro.props;
+const { title = 'AI共創レビュー研究所', description = 'AIと人間の共創による、透明性の高い商品レビュー・比較サイト', noindex = false } = Astro.props;
 const year = new Date().getFullYear();
 
 const siteOrigin = Astro.site ?? new URL('https://toknet.info');
@@ -24,6 +25,7 @@ const canonicalURL = new URL(canonicalPath(Astro.url.pathname), siteOrigin).href
   <meta name="description" content={description}>
   <title>{title}</title>
   <link rel="canonical" href={canonicalURL} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
 
   <!-- OGP -->
   <meta property="og:title" content={title} />

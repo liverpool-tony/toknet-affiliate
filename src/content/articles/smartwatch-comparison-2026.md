@@ -134,6 +134,7 @@ A: 3機種とも5ATM防水で水泳に対応しています。ただし、温水
 - [AIグラス 比較 2026｜XREAL・Ray-Ban Meta・Even Realities](/articles/ai-glasses-comparison-2026/)
 - [AIボイスレコーダー おすすめ 2026](/articles/20260706-ニュース2026年07月06日snsで話題のaiボイスレコーダー徹底レビューai共/)
 
+- [スマートウォッチ 血圧測定 2026｜Apple Watch vs Galaxy Watch 比較](/articles/smartwatch-blood-pressure-2026/)
 ## まとめ
 
 スマートウォッチは、スマホとの相性と用途で選ぶのが正解です。

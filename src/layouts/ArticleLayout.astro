@@ -5,16 +5,17 @@ import type { CollectionEntry } from 'astro:content';
 interface Props {
   title?: string;
   description?: string;
+  noindex?: boolean;
 }
 
-const { title = 'AI共創レビュー研究所', description = 'AIと人間の共創による、透明性の高い商品レビュー・比較サイト。専門家の体験と最新データを掛け合わせた、本当に役立つ情報をお届けします。' } = Astro.props;
+const { title = 'AI共創レビュー研究所', description = 'AIと人間の共創による、透明性の高い商品レビュー・比較サイト。専門家の体験と最新データを掛け合わせた、本当に役立つ情報をお届けします。', noindex = false } = Astro.props;
 
 // 最新記事を取得
 const allPosts = await import('../content/config').then(m => m.getSortedPosts());
 const latestPosts = allPosts.slice(0, 10);
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} noindex={noindex}>
   <div style="display: grid; grid-template-columns: 1fr 320px; gap: 40px;">
     
     <!-- メインカラム -->

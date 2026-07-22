@@ -115,6 +115,10 @@
         "redirectUrl": {
           "type": "string"
         },
+        "noindex": {
+          "type": "boolean",
+          "default": false
+        },
         "$schema": {
           "type": "string"
         }

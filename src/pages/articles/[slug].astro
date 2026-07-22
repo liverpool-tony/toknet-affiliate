@@ -122,7 +122,7 @@ const articleSchema = {
 };
 ---
 
-<ArticleLayout title={`${post.data.title} | AI共創レビュー研究所`} description={post.data.description}>
+<ArticleLayout title={`${post.data.title} | AI共創レビュー研究所`} description={post.data.description} noindex={post.data.noindex}>
 
   <!-- 構造化データ -->
   <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
