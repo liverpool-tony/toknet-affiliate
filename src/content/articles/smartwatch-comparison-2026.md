@@ -145,3 +145,4 @@ A: 3機種とも5ATM防水で水泳に対応しています。ただし、温水
 まずは「どのスマホを使っているか」で絞り、次に「何に使いたいか」で最終決定しましょう。
 
 > 💡 **最新価格はAmazonでチェック** → 上の商品リンクから確認できます
+> 🛒 **楽天市場でも価格を比較** → [Apple Watch Series 11](https://search.rakuten.co.jp/search/mall/Apple+Watch+Series+11/) | [Galaxy Watch 8](https://search.rakuten.co.jp/search/mall/Galaxy+Watch+8/) | [Garmin Venu 4](https://search.rakuten.co.jp/search/mall/Garmin+Venu+4/)

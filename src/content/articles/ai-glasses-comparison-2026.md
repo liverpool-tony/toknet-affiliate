@@ -144,3 +144,4 @@ A: Even Realities G2が約12時間で最も長持ち。XREAL One ProとRay-Ban M
 まずは自分の「何に使いたいか」を明確にしてから選ぶのが失敗しないコツです。
 
 > 💡 **最新価格はAmazonでチェック** → 上の商品リンクから確認できます
+> 🛒 **楽天市場でも価格を比較** → [XREAL One Pro](https://search.rakuten.co.jp/search/mall/XREAL+One+Pro/) | [Ray-Ban Meta](https://search.rakuten.co.jp/search/mall/Ray-Ban+Meta/) | [Even Realities G2](https://search.rakuten.co.jp/search/mall/Even+Realities+G2/)
