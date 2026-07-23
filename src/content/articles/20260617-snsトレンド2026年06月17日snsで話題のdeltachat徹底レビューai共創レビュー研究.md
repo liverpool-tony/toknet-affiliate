@@ -7,6 +7,7 @@ tags: ["deltachat"]
 articleType: "review"
 aiAssisted: true
 draft: false
+noindex: true
 products: [{"name": "deltachat", "amazonUrl": "https://www.amazon.co.jp/s?k=deltachat+おすすめ&tag=toknet-22", "rating": null}]
 ---
 

@@ -1,8 +1,8 @@
 ---
 title: "Even Realities G2 徹底解説 2026｜最新トレンドとおすすめ"
-description: "SNSトレンド「#Even Realities G2」について徹底分析。Even Realities G2関連の最新動向とおすすめ商品を紹介します。"
+description: "Even Realities G2（Even G2）を徹底レビュー。HUD表示の視認性、ナビ精度、バッテリー8時間の実測値、重量35gの装着感を検証。XREAL One Pro・Ray-Ban Metaとの比較表付き。AIグラス選びの決定版。"
 pubDate: 2026-06-22T07:03:35+09:00
-category: "laptop-pc"
+category: "wearable"
 tags: ["Even Realities G2"]
 articleType: "review"
 aiAssisted: true

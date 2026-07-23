@@ -7,6 +7,7 @@ tags: ["lastfourwatched", "LastFourWatched", "watched"]
 articleType: "review"
 aiAssisted: true
 draft: false
+noindex: true
 products: [{"name": "lastfourwatched", "amazonUrl": "https://www.amazon.co.jp/s?k=lastfourwatched+おすすめ&tag=toknet-22", "rating": null}, {"name": "LastFourWatched", "amazonUrl": "https://www.amazon.co.jp/s?k=LastFourWatched&tag=toknet-22", "rating": null}, {"name": "watched", "amazonUrl": "https://www.amazon.co.jp/s?k=watched&tag=toknet-22", "rating": null}]
 ---
 
