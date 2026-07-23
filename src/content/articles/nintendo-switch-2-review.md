@@ -1,6 +1,6 @@
 ---
 title: "Nintendo Switch 2 レビュー：次世代の携帯型ゲーム機"
-description: "Nintendo Switch 2の徹底レビュー。性能向上、互換性、新機能を実際の使用で検証。"
+description: "Nintendo Switch 2の実機レビュー。処理性能・ディスプレイ・互換性・新機能を実際に検証。初代Switchからの買い替え判断ガイド。"
 pubDate: 2026-06-12
 category: "gaming"
 tags: ["Nintendo", "Switch", "ゲーム機", "携帯型", "レビュー"]

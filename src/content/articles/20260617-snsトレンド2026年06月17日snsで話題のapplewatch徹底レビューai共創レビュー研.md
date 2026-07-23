@@ -1,6 +1,6 @@
 ---
 title: "applewatch おすすめ 2026｜スペック・価格・評判を比較"
-description: "applewatchの最新情報を徹底解説。スペック比較・料金プラン・実際の使用感をもとに、あなたに最適な選び方を紹介します。2026年最新版。"
+description: "Apple Watch Series 10・Ultra 3・SE 3を徹底比較。価格・バッテリー・ヘルスケア機能の違いを解説。2026年最新モデルの選び方ガイド。"
 pubDate: 2026-06-17T23:01:49+09:00
 category: "wearable"
 tags: ["applewatch", "watchOS"]
