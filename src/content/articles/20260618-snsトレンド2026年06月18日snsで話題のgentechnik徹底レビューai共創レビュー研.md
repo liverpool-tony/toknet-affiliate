@@ -8,6 +8,7 @@ articleType: "review"
 aiAssisted: true
 draft: false
 products: [{"name": "gentechnik", "amazonUrl": "https://www.amazon.co.jp/s?k=gentechnik+おすすめ&tag=toknet-22", "rating": null}, {"name": "Gentechnik", "amazonUrl": "https://www.amazon.co.jp/s?k=Gentechnik&tag=toknet-22", "rating": null}]
+noindex: true
 ---
 
 > **結論**: gentechnikを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。

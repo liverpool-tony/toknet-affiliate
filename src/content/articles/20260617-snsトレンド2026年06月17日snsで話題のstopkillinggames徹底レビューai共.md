@@ -8,6 +8,7 @@ articleType: "review"
 aiAssisted: true
 draft: true
 products: [{"name": "stopkillinggames", "amazonUrl": "https://www.amazon.co.jp/s?k=stopkillinggames+おすすめ&tag=toknet-22", "rating": null}, {"name": "StopKillingGames", "amazonUrl": "https://www.amazon.co.jp/s?k=StopKillingGames&tag=toknet-22", "rating": null}, {"name": "Stop", "amazonUrl": "https://www.amazon.co.jp/s?k=Stop&tag=toknet-22", "rating": null}]
+noindex: true
 ---
 
 > **結論**: stopkillinggamesを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
