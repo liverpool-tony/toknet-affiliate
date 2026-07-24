@@ -124,6 +124,14 @@ S-Cinetoneで撮影した映像は、そのまま使用しても十分な美し�
 ❌ 8K動画や4K 120pが必要な方（α7R Vやα1がおすすめ）
 ❌ 予算を抑えたい方（α7 III中古やα7Cがおすすめ）
 
+
+## 関連記事
+
+- [FUJIFILM X-T5 徹底レビュー：写真家のための一台](/articles/fujifilm-xt5-review/)
+- [iPhone 17 徹底レビュー 2026｜スペック・カメラ・価格を検証](/articles/20260614-注目キーワード2026年06月14日snsで話題のiphone徹底レビューai共創レビュー研究所/)
+- [Apple Studio Display レビュー：Macユーザー向け5Kモニター](/articles/apple-studiodisplay-review/)
+- [LG UltraGear 27GR95QE レビュー：OLEDモニターのゲーミング体験](/articles/lg-ultragear-27-review/)
+
 ## まとめ
 
 SONY α7 IVは、フルフレームミラーレスカメラの「標準」と呼べる一台です。3300万画素のセンサーがもたらす高画質、進化したAF性能、充実した動画機能、そして優れた操作性が、あらゆる撮影シーンで安定した結果をもたらしてくれます。
