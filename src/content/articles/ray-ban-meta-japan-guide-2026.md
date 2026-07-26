@@ -171,8 +171,11 @@ A: Ray-Ban Metaは「オーディオ+AI+カメラ」のグラスで、ディス�
 
 - [AIグラス 比較 2026｜XREAL・Ray-Ban Meta・Even Realities 徹底レビュー](/articles/ai-glasses-comparison-2026/)
 - [スマートウォッチ 比較 2026｜Apple Watch vs Galaxy Watch vs Garmin](/articles/smartwatch-comparison-2026/)
-
 - [AIグラス 選び方ガイド 2026｜用途別・予算別おすすめを徹底解説](/articles/ai-glasses-buying-guide-2026/)
+- [AIペンダント おすすめ 2026｜スペック・価格・評判を比較](/articles/20260630-ニュース2026年06月30日snsで話題のaiペンダント徹底レビューai共創レビュー研究所/)
+- [XREAL Air 2 Pro レビュー 2026｜ARグラスの実力を検証](/articles/20260622-ニュース2026年06月22日snsで話題のxreal徹底レビューai共創レビュー研究所/)
+- [NotePin おすすめ 2026｜スペック・価格・評判を比較](/articles/20260621-ニュース2026年06月21日snsで話題のnotepin徹底レビューai共創レビュー研究所/)
+
 ## まとめ
 
 Ray-Ban Metaは「AIグラスが欲しいけど、見た目は普通のサングラスがいい」という方に最適な1台です。ディスプレイ搭載のXREALやEven Realitiesとは方向性が異なりますが、「音声AI+カメラ+音楽」の3拍子が揃った日常使いのスマートグラスとしては2026年時点で最も完成度が高い製品です。

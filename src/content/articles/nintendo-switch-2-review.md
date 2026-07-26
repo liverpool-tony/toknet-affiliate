@@ -78,6 +78,9 @@ Nintendo Switch 2は、2026年に発売されたNintendoの次世代携帯型ゲ
 - [任天堂 Switch 2 最新情報 2026｜スペック・発売日・予約まとめ](/articles/20260614-ニュース2026年06月14日snsで話題の任天堂徹底レビューai共創レビュー研究所/)
 - [単語並び替えゲーム 徹底解説 2026｜最新トレンドとおすすめ](/articles/20260617-snsトレンド2026年06月17日snsで話題の単語並び替えゲーム徹底レビューai共創レビュー研究/)
 - [広めたいsteamゲーム9選 徹底解説 2026｜最新トレンドとおすすめ](/articles/20260617-snsトレンド2026年06月17日snsで話題の広めたいsteamゲーム9選徹底レビューai共創レ/)
+- [ThinkPad X1 Carbon Gen 12 レビュー：ビジネスノートの最高峰](/articles/thinkpad-x1-carbon-review/)
+- [MacBook Air M3 15インチ 徹底レビュー：性能・バッテリー・価格を徹底検証](/articles/macbook-air-m3-review/)
+- [MacBook Pro M4 14インチ 徹底レビュー：プロが選ぶ理由と性能検証](/articles/macbook-pro-m4-review/)
 
 ## まとめ
 
