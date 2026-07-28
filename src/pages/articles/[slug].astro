@@ -101,6 +101,7 @@ const faqSchema = faqItems.length > 0 ? {
 } : null;
 
 // ── 構造化データ: Article（全記事）────────────────────────────────
+// E-E-A-T強化: author/publisherにurl・description・knowsAbout追加（2026-07-29）
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -109,12 +110,17 @@ const articleSchema = {
   "mainEntityOfPage": pageURL,
   "author": {
     "@type": "Organization",
-    "name": "AI共創レビュー研究所"
+    "name": "AI共創レビュー研究所",
+    "url": "https://toknet.info",
+    "description": "AI搭載ガジェット専門の比較・レビューメディア。テキストマイニング・DX戦略の学術バックグラウンドを活かしたデータ駆動レビュー。",
+    "knowsAbout": ["AIグラス", "AIボイスレコーダー", "AI翻訳機", "モバイルモニター", "スマートウォッチ", "ウェアラブルデバイス", "コスパPC"]
   },
   "publisher": {
     "@type": "Organization",
     "name": "AI共創レビュー研究所",
-    "logo": { "@type": "ImageObject", "url": "https://toknet.info/og-default.png" }
+    "url": "https://toknet.info",
+    "logo": { "@type": "ImageObject", "url": "https://toknet.info/og-default.png", "width": 1200, "height": 630 },
+    "description": "AIガジェット特化の比較・レビューサイト。公開データと定量分析に基づく中立的な製品評価。"
   },
   "image": "https://toknet.info/og-default.png",
   "datePublished": post.data.pubDate.toISOString(),

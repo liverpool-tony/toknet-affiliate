@@ -9,6 +9,7 @@ aiAssisted: true
 draft: false
 products: [{"name": "Apple Watch Series 11", "amazonUrl": "https://www.amazon.co.jp/s?k=Apple+Watch+Series+11+血圧&tag=toknet-22", "rating": 4.5}, {"name": "Galaxy Watch 8", "amazonUrl": "https://www.amazon.co.jp/s?k=Galaxy+Watch+8+血圧&tag=toknet-22", "rating": 4.0}, {"name": "Garmin Venu 4", "amazonUrl": "https://www.amazon.co.jp/s?k=Garmin+Venu+4&tag=toknet-22", "rating": 4.5}]
 ---
+> **✍️ 筆者・検証方針**: 本記事はAI共創レビュー研究所編集部が、公式スペック・公開価格データ・ユーザーレビューの定量分析に基づき作成しています。製品選定と評価軸は編集部が独自に設定。AI支援執筆ですが、事実確認と最終判断は人間が行っています。
 
 > **結論**: 血圧測定対応スマートウォッチを選ぶなら、iPhoneユーザーはApple Watch Series 11、AndroidユーザーはGalaxy Watch 8が最適。医療機器の代わりにはなりませんが、日々の血圧トレンド把握に役立ちます。
 

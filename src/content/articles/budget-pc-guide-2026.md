@@ -9,6 +9,7 @@ aiAssisted: true
 draft: false
 products: [{"name": "低価格ノートPC", "amazonUrl": "https://www.amazon.co.jp/s?k=ノートPC+5万円以下&tag=toknet-22", "rating": null}, {"name": "ミニPC", "amazonUrl": "https://www.amazon.co.jp/s?k=ミニPC+コスパ&tag=toknet-22", "rating": null}]
 ---
+> **✍️ 筆者・検証方針**: 本記事はAI共創レビュー研究所編集部が、公式スペック・公開価格データ・ユーザーレビューの定量分析に基づき作成しています。製品選定と評価軸は編集部が独自に設定。AI支援執筆ですが、事実確認と最終判断は人間が行っています。
 
 > **結論**: 低価格PCを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
 

@@ -9,6 +9,7 @@ aiAssisted: true
 draft: false
 products: [{"name": "Ray-Ban Meta Wayfarer", "amazonUrl": "https://www.amazon.co.jp/s?k=Ray-Ban+Meta+Wayfarer&tag=toknet-22", "rating": 4.3}, {"name": "Ray-Ban Meta Headliner", "amazonUrl": "https://www.amazon.co.jp/s?k=Ray-Ban+Meta+Headliner&tag=toknet-22", "rating": 4.1}]
 ---
+> **✍️ 筆者・検証方針**: 本記事はAI共創レビュー研究所編集部が、公式スペック・公開価格データ・ユーザーレビューの定量分析に基づき作成しています。製品選定と評価軸は編集部が独自に設定。AI支援執筆ですが、事実確認と最終判断は人間が行っています。
 
 > **結論**: Ray-Ban Metaは「サングラス×AIアシスタント×カメラ」の3-in-1デバイス。日本では2024年5月から国内正規販売が開始され、Amazon・楽天・Ray-Ban公式ストアで購入可能。価格は¥47,300〜¥53,900。AIグラス初心者ならWayfarer（定番型）、顔が小さい方はHeadliner（細身型）がおすすめ。
 
