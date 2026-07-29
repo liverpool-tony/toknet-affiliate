@@ -1,5 +1,5 @@
 ---
-title: "Plaud NotePin S おすすめ 2026｜スペック・価格・評判を比較"
+title: "Plaud NotePin S レビュー 2026｜クリップ型AI録音の実力"
 description: "Plaud NotePin Sを徹底レビュー。クリップ型AIボイスレコーダーの文字起こし精度、要約機能、バッテリー20時間の実測を検証。Notta Memo・PLAUD NOTE Proとの比較表付き。会議録音の最適解。"
 pubDate: 2026-06-28T06:01:19+09:00
 category: "wearable"
