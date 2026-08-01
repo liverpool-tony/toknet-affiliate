@@ -222,6 +222,17 @@ A: 用途次第ですが、「とりあえず試したい」ならRokid Max 2（
 - [Rokid 徹底レビュー](/articles/20260621-ニュース2026年06月21日snsで話題のrokid徹底レビューai共創レビュー研究所/)
 
 - [5万円以下 ノートパソコン おすすめ 2026｜学生・テレワーク向け](/articles/budget-pc-guide-2026/)
+## 💰 購入前にチェック
+
+> 最新価格・在庫状況をAmazonで確認しましょう。タイムセールやクーポンで通常より安く買える場合があります。
+
+- **[👉 XREAL One Pro の最安値を確認する](https://www.amazon.co.jp/s?k=XREAL%20One%20Pro%202026&tag=toknet-22)**
+- **[👉 Ray-Ban Meta の最安値を確認する](https://www.amazon.co.jp/s?k=Ray-Ban%20Meta%202026&tag=toknet-22)**
+- **[👉 Even Realities G2 の最安値を確認する](https://www.amazon.co.jp/s?k=Even%20Realities%20G2%202026&tag=toknet-22)**
+- **[👉 Rokid Max 2 の最安値を確認する](https://www.amazon.co.jp/s?k=Rokid%20Max%202%202026&tag=toknet-22)**
+
+> ※価格は変動します。購入時に必ず最新価格をご確認ください。
+
 ## まとめ
 
 AIグラスは2026年、用途別に明確な棲み分けができています。映像体験ならXREAL One Pro、AIアシスタント＋カメラならRay-Ban Meta、情報表示・翻訳ならEven Realities G2、コスパ重視ならRokid Max 2。
