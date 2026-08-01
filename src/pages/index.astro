@@ -3,31 +3,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getSortedPosts } from '../content/utils';
 
 const posts = await getSortedPosts();
-const latestPosts = posts.slice(0, 15);
+const latestPosts = posts.slice(0, 12);
+
+// ブルーオーシャン特集記事（戦略v2.0の集中カテゴリ）
+const featuredSlugs = [
+  'ai-glasses-buying-guide-2026',
+  'ai-voice-recorder-buying-guide-2026',
+  'ray-ban-meta-japan-guide-2026',
+  'plaud-note-pro-review-2026',
+  'mobile-monitor-recommend-2026',
+  'pocketalk-s2-review-2026',
+];
+const featuredPosts = featuredSlugs
+  .map(slug => posts.find(p => p.slug === slug))
+  .filter(Boolean);
+
+const featuredMeta = [
+  { emoji: '👓', label: 'AIグラス', color: '#6366f1' },
+  { emoji: '🎙️', label: 'AIボイスレコーダー', color: '#0891b2' },
+  { emoji: '🕶️', label: 'Ray-Ban Meta', color: '#7c3aed' },
+  { emoji: '📝', label: 'PLAUD NOTE Pro', color: '#059669' },
+  { emoji: '🖥️', label: 'モバイルモニター', color: '#d97706' },
+  { emoji: '🌐', label: 'AI翻訳機', color: '#dc2626' },
+];
 ---
 
-<BaseLayout title="AI共創レビュー研究所 | 透明性の高い商品レビュー" description="AIと人間の共創による、透明性の高い商品レビュー・比較サイト。専門家の体験と最新データを掛け合わせた、本当に役立つ情報をお届けします。">
+<BaseLayout title="AI共創レビュー研究所 | AIガジェット専門の比較・レビューサイト" description="AIグラス・AIボイスレコーダー・AI翻訳機など最新AIガジェットを徹底比較。PLAUD NOTE・Ray-Ban Meta・XREAL・ポケトークの実機レビューと選び方ガイド。AIと人間の共創で透明性の高い情報をお届けします。">
 
   <!-- ヒーローセクション -->
   <section style="text-align: center; padding: 60px 0 40px;">
     <h1 style="font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px;">
-      AIと人間の<span style="color: var(--color-primary);">共創</span>による<br>透明性の高いレビュー
+      <span style="color: var(--color-primary);">AIガジェット</span>専門の<br>比較・レビューサイト
     </h1>
-    <p style="font-size: 18px; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto 32px;">
-      専門家の体験と最新データを掛け合わせ、本当に役立つ情報をお届けします。
+    <p style="font-size: 18px; color: var(--color-text-secondary); max-width: 640px; margin: 0 auto 32px;">
+      AIグラス・AIボイスレコーダー・AI翻訳機など、次世代AIデバイスを徹底比較。<br>
+      実機データと専門家の視点で、あなたに最適な1台を見つけます。
     </p>
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="/category/laptop-pc/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">PC・ノート</a>
-      <a href="/category/camera/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">カメラ</a>
-      <a href="/category/audio-headphones/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">オーディオ</a>
-      <a href="/category/smart-home/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">スマートホーム</a>
+      <a href="/category/wearable/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">AIグラス・ウェアラブル</a>
+      <a href="/category/software/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">AIツール・ソフト</a>
+      <a href="/category/monitors/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">モバイルモニター</a>
+      <a href="/category/laptop-pc/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">コスパPC</a>
+    </div>
+  </section>
+
+  <!-- 特集：ブルーオーシャン記事 -->
+  <section style="padding: 40px 0;">
+    <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">📌 編集部のおすすめ</h2>
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px;">今注目のAIガジェットをピックアップ。選び方ガイドから個別レビューまで。</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;">
+      {featuredPosts.map((post, i) => (
+        <article style="border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s; position: relative;">
+          <a href={`/articles/${post.slug}/`} style="text-decoration: none; color: inherit; display: block;">
+            <div style={`background: ${featuredMeta[i]?.color || 'var(--color-primary)'}; padding: 16px 20px; display: flex; align-items: center; gap: 10px;`}>
+              <span style="font-size: 24px;">{featuredMeta[i]?.emoji || '📱'}</span>
+              <span style="color: white; font-size: 12px; font-weight: 600; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 4px;">
+                {featuredMeta[i]?.label || post.data.category}
+              </span>
+            </div>
+            <div style="padding: 20px;">
+              <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 8px; line-height: 1.4;">
+                {post.data.title}
+              </h3>
+              <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                {post.data.description}
+              </p>
+              <span style="font-size: 13px; color: var(--color-primary); font-weight: 500;">続きを読む →</span>
+            </div>
+          </a>
+        </article>
+      ))}
     </div>
   </section>
 
   <!-- 最新記事 -->
   <section style="padding: 40px 0;">
     <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 24px;">最新記事</h2>
-    
+
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;">
       {latestPosts.map(post => (
         <article style="border: 1px solid var(--color-border); border-radius: 12px; overflow: hidden; transition: box-shadow 0.2s;">
@@ -69,12 +122,12 @@ const latestPosts = posts.slice(0, 15);
     </div>
   </section>
 
-  <!-- このサイトについて（概要） -->
+  <!-- このサイトについて -->
   <section style="padding: 60px 0; background: var(--color-bg-secondary); border-radius: 16px; margin: 40px 0; padding: 40px;">
     <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 16px;">AI共創レビュー研究所とは</h2>
     <p style="font-size: 15px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 16px;">
-      当サイトは、生成AIと人間の専門家が共創する新しい形の商品レビューサイトです。
-      AIが最新データと分析を担当し、人間の専門家が実際の使用体験と専門的な視点を加えます。
+      当サイトは、<strong>AIグラス・AIボイスレコーダー・AI翻訳機</strong>など次世代AIガジェットに特化した比較・レビューサイトです。
+      生成AIと人間の専門家が共創し、実機データと最新トレンドを掛け合わせた分析を行っています。
     </p>
     <p style="font-size: 15px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 24px;">
       すべての記事にはAI使用を明記し、透明性を確保しています。
