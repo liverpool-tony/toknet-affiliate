@@ -31,26 +31,39 @@ const featuredMeta = [
 <BaseLayout title="AI共創レビュー研究所 | AIガジェット専門の比較・レビューサイト" description="AIグラス・AIボイスレコーダー・AI翻訳機など最新AIガジェットを徹底比較。PLAUD NOTE・Ray-Ban Meta・XREAL・ポケトークの実機レビューと選び方ガイド。AIと人間の共創で透明性の高い情報をお届けします。">
 
   <!-- ヒーローセクション -->
-  <section style="text-align: center; padding: 60px 0 40px;">
+  <section style="text-align: center; padding: 48px 0 28px;">
     <h1 style="font-size: 36px; font-weight: 800; margin-bottom: 16px; letter-spacing: -0.5px;">
       <span style="color: var(--color-primary);">AIガジェット</span>専門の<br>比較・レビューサイト
     </h1>
-    <p style="font-size: 18px; color: var(--color-text-secondary); max-width: 640px; margin: 0 auto 32px;">
+    <p style="font-size: 18px; color: var(--color-text-secondary); max-width: 640px; margin: 0 auto 24px;">
       AIグラス・AIボイスレコーダー・AI翻訳機など、次世代AIデバイスを徹底比較。<br>
       実機データと専門家の視点で、あなたに最適な1台を見つけます。
     </p>
+
+    <!-- 🔥 今すぐ読める注目記事（ファーストビューCTA） -->
+    <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); border-radius: 12px; padding: 20px 24px; max-width: 680px; margin: 0 auto 24px; text-align: left;">
+      <p style="color: rgba(255,255,255,0.85); font-size: 12px; font-weight: 600; margin-bottom: 8px; letter-spacing: 0.5px;">🔥 まず読むべき1本</p>
+      <a href="/articles/ai-glasses-buying-guide-2026/" style="text-decoration: none; display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 32px;">👓</span>
+        <div>
+          <p style="color: white; font-size: 16px; font-weight: 700; margin-bottom: 4px; line-height: 1.4;">AIグラス おすすめ 2026｜XREAL・Ray-Ban Meta・Even G2 徹底比較</p>
+          <p style="color: rgba(255,255,255,0.8); font-size: 13px;">5製品を価格・機能・AI性能で比較。あなたに合う1台が3分でわかる →</p>
+        </div>
+      </a>
+    </div>
+
     <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-      <a href="/category/wearable/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">AIグラス・ウェアラブル</a>
-      <a href="/category/software/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">AIツール・ソフト</a>
-      <a href="/category/monitors/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">モバイルモニター</a>
-      <a href="/category/laptop-pc/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">コスパPC</a>
+      <a href="/category/wearable/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">👓 AIグラス・ウェアラブル</a>
+      <a href="/category/software/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">🎙️ AIツール・ソフト</a>
+      <a href="/category/monitors/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">🖥️ モバイルモニター</a>
+      <a href="/category/laptop-pc/" style="background: var(--color-primary); color: white; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 500;">💻 コスパPC</a>
     </div>
   </section>
 
   <!-- 特集：ブルーオーシャン記事 -->
   <section style="padding: 40px 0;">
     <h2 style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">📌 編集部のおすすめ</h2>
-    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px;">今注目のAIガジェットをピックアップ。選び方ガイドから個別レビューまで。</p>
+    <p style="font-size: 14px; color: var(--color-text-secondary); margin-bottom: 24px;">「どれを買えばいいかわからない」を解決。比較表・料金・実機データで、3分で最適解が見つかります。</p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;">
       {featuredPosts.map((post, i) => (
@@ -69,7 +82,7 @@ const featuredMeta = [
               <p style="font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 12px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
                 {post.data.description}
               </p>
-              <span style="font-size: 13px; color: var(--color-primary); font-weight: 500;">続きを読む →</span>
+              <span style="font-size: 13px; color: var(--color-primary); font-weight: 600;">比較表と結論を見る →</span>
             </div>
           </a>
         </article>
