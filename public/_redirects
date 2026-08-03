@@ -85,3 +85,10 @@
 # SNS共有短縮URL → 実際の記事slug (2026-08-02 PDCA)
 /articles/20260730-telegram/ /articles/20260730-snsトレンド2026年07月30日snsで話題のtelegram徹底レビュー/ 301
 /articles/20260731-aiツール/ /articles/20260731-ニュース2026年07月31日snsで話題のaiツール徹底レビュー/ 301
+
+# 残404対策 (2026-08-03 PDCA remaining-404-redirects)
+# パーセントエンコード形式の短縮URL（raw非ASCIIルールがマッチしないクライアント用）
+/articles/20260730-ai%E3%83%84%E3%83%BC%E3%83%AB/ /articles/20260731-ニュース2026年07月31日snsで話題のaiツール徹底レビュー/ 301
+/articles/20260731-ai%E3%83%84%E3%83%BC%E3%83%AB/ /articles/20260731-ニュース2026年07月31日snsで話題のaiツール徹底レビュー/ 301
+# 旧WordPress風/archives/パス（ボット・SNS流入の取りこぼし）→ ホームへ
+/archives/* / 301
