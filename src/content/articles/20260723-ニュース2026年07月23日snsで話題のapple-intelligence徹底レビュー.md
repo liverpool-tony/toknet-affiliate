@@ -129,6 +129,7 @@ A: Apple Intelligenceは処理の大部分をデバイス内で完結させ、�
 - [ポケトーク S2 レビュー 2026｜134言語対応の実力を旅行で検証](/articles/pocketalk-s2-review-2026/)
 - [AIグラス 比較 2026｜XREAL・Ray-Ban Meta・Even Realities 徹底レビュー](/articles/20260722-ニュース2026年07月22日snsで話題のaiグラス徹底レビュー/)
 - [AI翻訳機 おすすめ 2026｜ポケトークS2 vs Vasco V4 vs Timekettle W4](/articles/20260722-ニュース2026年07月22日snsで話題のai翻訳機徹底レビュー/)
+- [AI翻訳機 比較 2026｜オフライン対応・精度・料金で選ぶおすすめ5選](/articles/ai-translator-comparison-2026/)
 
 ## まとめ
 

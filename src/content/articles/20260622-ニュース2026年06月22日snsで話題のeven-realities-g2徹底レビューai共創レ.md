@@ -134,6 +134,8 @@ A: 予算が許せば新モデルがおすすめです。ただし、旧モデ�
 - [スマートウォッチ 血圧測定 2026｜Apple Watch・Galaxy Watch・Garmin 徹底比較](/articles/smartwatch-blood-pressure-2026/)
 - [XREAL Air 2 Pro レビュー 2026｜ARグラスの実力を検証](/articles/20260622-ニュース2026年06月22日snsで話題のxreal徹底レビューai共創レビュー研究所/)
 - [NotePin おすすめ 2026｜スペック・価格・評判を比較](/articles/20260621-ニュース2026年06月21日snsで話題のnotepin徹底レビューai共創レビュー研究所/)
+- [AIグラス 比較 2026｜XREAL・Ray-Ban Meta・Even Realities 徹底レビュー](/articles/ai-glasses-comparison-2026/)
+- [Ray-Ban Meta 日本 購入ガイド 2026｜価格・機能・使い方を徹底解説](/articles/ray-ban-meta-japan-guide-2026/)
 
 ## メリット・デメリット
 
