@@ -115,6 +115,14 @@ dTPM 2.0チップによるハードウェアレベルの暗号化、カメラシ
 - [Apple Studio Display レビュー：Macユーザー向け5Kモニター](/articles/apple-studiodisplay-review/)
 - [LG UltraGear 27GR95QE レビュー：OLEDモニターのゲーミング体験](/articles/lg-ultragear-27-review/)
 
+## 💰 購入前にチェック
+
+> 最新価格・在庫状況をAmazonで確認しましょう。タイムセールやクーポンで通常より安く買える場合があります。
+
+- **[👉 ThinkPad+X1+Carbon の最安値を確認する](https://www.amazon.co.jp/s?k=ThinkPad+X1+Carbon&tag=toknet-22)**
+
+> ※価格は変動します。購入時に必ず最新価格をご確認ください。
+
 ## まとめ
 
 ThinkPad X1 Carbon Gen 12は、ビジネスノートPCの王道とも言える一台です。約1.09kgの軽量ボディ、ThinkPad伝統の優れたキーボード、そして企業レベルのセキュリティ機能を兼ね備えており、ビジネスユーザーにとって最高のパートナーとなるでしょう。

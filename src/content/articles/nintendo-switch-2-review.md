@@ -82,6 +82,15 @@ Nintendo Switch 2は、2026年に発売されたNintendoの次世代携帯型ゲ
 - [MacBook Air M3 15インチ 徹底レビュー：性能・バッテリー・価格を徹底検証](/articles/macbook-air-m3-review/)
 - [MacBook Pro M4 14インチ 徹底レビュー：プロが選ぶ理由と性能検証](/articles/macbook-pro-m4-review/)
 
+## 💰 購入前にチェック
+
+> 最新価格・在庫状況をAmazonで確認しましょう。タイムセールやクーポンで通常より安く買える場合があります。
+
+- **[👉 Nintendo+Switch+2 の最安値を確認する](https://www.amazon.co.jp/s?k=Nintendo+Switch+2&tag=toknet-22)**
+- **[👉 Switch+2+コントローラー の最安値を確認する](https://www.amazon.co.jp/s?k=Switch+2+コントローラー&tag=toknet-22)**
+
+> ※価格は変動します。購入時に必ず最新価格をご確認ください。
+
 ## まとめ
 
 Nintendo Switch 2は、据置機と携帯機の両方を楽しめる点で、同様にバランスの取れたゲーム機です。性能向上と互換性のバランスが良く、ゲームファンにとって魅力的な選択肢です。

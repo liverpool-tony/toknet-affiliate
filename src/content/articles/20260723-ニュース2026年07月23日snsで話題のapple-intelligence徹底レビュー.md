@@ -131,6 +131,15 @@ A: Apple Intelligenceは処理の大部分をデバイス内で完結させ、�
 - [AI翻訳機 おすすめ 2026｜ポケトークS2 vs Vasco V4 vs Timekettle W4](/articles/20260722-ニュース2026年07月22日snsで話題のai翻訳機徹底レビュー/)
 - [AI翻訳機 比較 2026｜オフライン対応・精度・料金で選ぶおすすめ5選](/articles/ai-translator-comparison-2026/)
 
+## 💰 購入前にチェック
+
+> 最新価格・在庫状況をAmazonで確認しましょう。タイムセールやクーポンで通常より安く買える場合があります。
+
+- **[👉 AirPods+Pro+3 の最安値を確認する](https://www.amazon.co.jp/s?k=AirPods+Pro+3&tag=toknet-22)**
+- **[👉 iPhone+16+Pro の最安値を確認する](https://www.amazon.co.jp/s?k=iPhone+16+Pro&tag=toknet-22)**
+
+> ※価格は変動します。購入時に必ず最新価格をご確認ください。
+
 ## まとめ
 
 Apple Intelligenceは2026年現在、**プライバシー保護とAI機能の両立**において最も先進的なプラットフォームです。特にAirPods Pro 3とのリアルタイム翻訳連携は、海外旅行・ビジネス会議・語学学習で即戦力となる完成度に達しています。
