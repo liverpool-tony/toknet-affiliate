@@ -5,13 +5,13 @@ import { getSortedPosts } from '../content/utils';
 const posts = await getSortedPosts();
 const latestPosts = posts.slice(0, 12);
 
-// ブルーオーシャン特集記事（戦略v2.0の集中カテゴリ）
+// ブルーオーシャン特集記事（戦略v2.0の集中カテゴリ・2026-08-19ローテーション）
 const featuredSlugs = [
+  '20260710-ニュース2026年07月10日snsで話題のeven-g2徹底レビュー',
+  '20260721-ニュース2026年07月21日snsで話題のinnaio徹底レビュー',
+  'smartwatch-blood-pressure-2026',
   'ai-glasses-buying-guide-2026',
   'ai-voice-recorder-buying-guide-2026',
-  'ray-ban-meta-japan-guide-2026',
-  'plaud-note-pro-review-2026',
-  'mobile-monitor-recommend-2026',
   'pocketalk-s2-review-2026',
 ];
 const featuredPosts = featuredSlugs
@@ -19,12 +19,12 @@ const featuredPosts = featuredSlugs
   .filter(Boolean);
 
 const featuredMeta = [
-  { emoji: '👓', label: 'AIグラス', color: '#6366f1' },
+  { emoji: '👓', label: 'Even G2', color: '#6366f1' },
+  { emoji: '🌐', label: 'InnAIO T10', color: '#dc2626' },
+  { emoji: '⌚', label: '血圧スマートウォッチ', color: '#0ea5e9' },
+  { emoji: '🥽', label: 'AIグラス選び方', color: '#7c3aed' },
   { emoji: '🎙️', label: 'AIボイスレコーダー', color: '#0891b2' },
-  { emoji: '🕶️', label: 'Ray-Ban Meta', color: '#7c3aed' },
-  { emoji: '📝', label: 'PLAUD NOTE Pro', color: '#059669' },
-  { emoji: '🖥️', label: 'モバイルモニター', color: '#d97706' },
-  { emoji: '🌐', label: 'AI翻訳機', color: '#dc2626' },
+  { emoji: '🗣️', label: 'ポケトーク S2', color: '#059669' },
 ];
 ---
 
