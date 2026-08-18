@@ -1,6 +1,6 @@
 ---
 title: "SONY WH-1000XM6 徹底レビュー：ノイズキャンセリングの決定版"
-description: "SONY WH-1000XM6の徹底レビュー。最新のノイズキャンセリング技術、音質、快適性を実際の使用で検証。"
+description: "SONY WH-1000XM6（46,800円）の徹底レビュー。最新ノイズキャンセリング・音質・装着感を実測検証し、XM5との違いや評価・口コミも解説。"
 pubDate: 2026-06-11
 category: "audio-headphones"
 tags: ["SONY", "WH-1000XM6", "ノイズキャンセリング", "ヘッドホン"]

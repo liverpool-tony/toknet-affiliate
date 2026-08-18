@@ -1,6 +1,6 @@
 ---
-title: "スマートウォッチ 血圧測定 2026｜Apple Watch・Galaxy Watch・Garmin 徹底比較"
-description: "血圧測定対応スマートウォッチを徹底比較。Apple Watch Series 11・Galaxy Watch 8・Garmin Venu 4の血圧精度・測定方法・医療機器との違いを解説。高血圧が気になる方必見。"
+title: "スマートウォッチ 血圧・心拍測定 2026｜Apple Watch・Galaxy Watch・Garmin 徹底比較"
+description: "血圧・心拍測定対応スマートウォッチを徹底比較。Apple Watch Series 11・Galaxy Watch 8・Garmin Venu 4の血圧精度・心拍（HRV）精度・測定方法・医療機器との違いを解説。高血圧が気になる方必見。"
 pubDate: 2026-07-23T23:30:00+09:00
 updatedDate: 2026-08-03T02:30:00+09:00
 category: "wearable"

@@ -1,6 +1,6 @@
 ---
-title: "LG UltraGear 27GR95QE レビュー：OLEDモニターのゲーミング体験"
-description: "LG UltraGear 27GR95QEの徹底レビュー。OLEDパネルの画質、応答速度、HDR性能を実際のゲームプレイで検証。"
+title: "LG UltraGear 27GR95QE レビュー｜27インチWQHD 240Hz OLEDモニターの実力"
+description: "LG UltraGear 27GR95QE（27インチWQHD・240Hz・0.03ms応答）を徹底レビュー。OLEDパネルの画質・HDR性能・価格をゲームプレイで実測検証。"
 pubDate: 2026-06-11
 category: "monitors"
 tags: ["LG", "UltraGear", "OLED", "ゲーミングモニター"]
