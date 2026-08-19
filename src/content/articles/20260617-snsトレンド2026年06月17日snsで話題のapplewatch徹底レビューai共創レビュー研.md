@@ -10,7 +10,7 @@ draft: false
 products: [{"name": "applewatch", "amazonUrl": "https://www.amazon.co.jp/s?k=Apple%20Watch%202026%20%E6%9C%80%E6%96%B0%E3%83%A2%E3%83%87%E3%83%AB&tag=toknet-22", "rating": null}, {"name": "watchOS", "amazonUrl": "https://www.amazon.co.jp/s?k=Apple%20Watch%202026%20%E6%9C%80%E6%96%B0%E3%83%A2%E3%83%87%E3%83%AB&tag=toknet-22", "rating": null}]
 ---
 
-> **結論**: applewatchを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
+> **結論**: applewatchを選ぶなら、用途と予算を明確にしてから比較するのが鉄則。血圧・心拍測定に対応したモデルを探している方は、[スマートウォッチ 血圧測定の比較記事](</articles/smartwatch-blood-pressure-2026/>)をご覧ください。本記事ではスペック・価格・口コミを比較し、あなたに最適な1台を提案します。
 
 ## 目次
 
@@ -91,6 +91,7 @@ A: セルラーモデルならiPhoneなしで通話・メッセージ・音楽�
 
 
 - [AIグラス 選び方ガイド 2026｜用途別・予算別おすすめを徹底解説](/articles/ai-glasses-buying-guide-2026/)
+- [スマートウォッチ 血圧測定 2026｜Apple Watch vs Galaxy Watch 比較](/articles/smartwatch-blood-pressure-2026/)
 ## 装着感・バッテリー比較
 
 | 項目 | スマートウォッチ | スマートグラス | スマートリング |
@@ -101,8 +102,7 @@ A: セルラーモデルならiPhoneなしで通話・メッセージ・音楽�
 | 装着感 | 手首に固定 | 鼻・耳に固定 | 指に装着 |
 | 目立ち度 | 低い | やや高い | 非常に低い |
 
-- [スマートウォッチ 血圧測定 2026｜Apple Watch vs Galaxy Watch 比較](/articles/smartwatch-blood-pressure-2026/)
-用途別おすすめ
+## 用途別おすすめ
 
 - **健康管理重視** → スマートウォッチ（心拍・睡眠・歩数）
 - **情報表示重視** → スマートグラス（ナビ・通知・翻訳）
