@@ -1,6 +1,6 @@
 ---
 title: "AIグラス 選び方ガイド 2026｜用途別・予算別おすすめを徹底解説"
-description: "AIグラスの選び方を用途別・予算別に徹底解説。XREAL・Ray-Ban Meta・Even Realities・Rokidなど主要モデルを比較。ディスプレイ型vsカメラ型、AI機能、バッテリー、価格帯の違いが一目でわかる。初心者でも失敗しない選び方ガイド。"
+description: "AIグラスのおすすめを用途別・価格帯で解説。映像体験ならXREAL One Pro（約7〜9万円）、撮影＋AIならRay-Ban Meta（¥47,300〜）、通知・翻訳はEven Realities G2、5万円以下ならRokid Max 2。選び方ガイド。"
 pubDate: 2026-07-24T00:30:00+09:00
 updatedDate: 2026-08-03T02:30:00+09:00
 category: "wearable"
