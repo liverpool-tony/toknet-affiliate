@@ -357,6 +357,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         '価格', '最安値', '価格比較', 'クチコミ',
         # 販促メタ語（記事の主題にすると中身のないページになる）
         'セール', '割引', 'クーポン', 'お買い得', '激安', '安い', '値下げ', 'ポイント',
+        'プレゼント', 'キャンペーン', '懸賞', '当選',
         # 範囲が広すぎて商品レビューにならないタグ
         'スポーツ', '子ども', 'キッズ', 'ニュース', '政治', '社会',
         'ライフスタイル', '生活', '仕事', 'ビジネス',
@@ -367,7 +368,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 企業名・サービス名（商品レビューにならない）
         'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
         'Microsoft', 'Tesla', 'Toyota', 'NTT', 'nvidia', 'NVIDIA',
-        'intel', 'Intel', 'amd', 'AMD',
+        'intel', 'Intel', 'amd', 'AMD', 'asus', 'ASUS',
         # 抽象的なカテゴリ名
         'インフラ', 'Home', 'IoT', 'クラウド', 'ブロックチェーン',
         'スタートアップ', '投資', 'IPO', '決算', '業績', 'オープンソース',
