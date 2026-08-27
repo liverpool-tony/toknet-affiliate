@@ -372,6 +372,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 抽象的なカテゴリ名
         'インフラ', 'Home', 'IoT', 'クラウド', 'ブロックチェーン',
         'スタートアップ', '投資', 'IPO', '決算', '業績', 'オープンソース',
+        'ゲーム',
         # ソフトウェア/サービス名（商品レビューにならない）
         'Premiere', 'DaVinci', 'Codex', 'ソフト', 'Record', 'Replay', 'ハーバード',
         # その他
