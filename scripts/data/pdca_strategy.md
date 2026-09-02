@@ -271,3 +271,18 @@ amazon_click 3件: UTC 8/4・8/19 = ai-voice-recorder-buying-guide（収益リ�
 - 変更0の理由: キューに実行可能タスク6件+ユーザー対応待ち2件があり、Organic拡大の観測密度を下げる正当性がないため
 
 *次回見直し: 2026-09-06（週次戦略レビューcron） / 2026-10-01（月次）*
+
+## GSC 28日インデックス拡大モニタ（9/2夜・10/1月次判定用）
+
+### 計測（2026-09-02 23:30 JST、GSC readonlyモニタ sc-domain:toknet.info、窓=8/5〜9/2）
+| 指標 | 9/2夜 | 8月上旬ベースライン(8/5) | 傾向 |
+|------|------|------|------|
+| impressionありページ | **26** | 10 | ✅ 2.6倍 |
+| total impressions | **105** | 22 | ✅ 4.8倍 |
+| clicks | 2 | 0 | ✅ |
+| クエリ数 | **16** | 2 | ✅ 8倍 |
+| sitemap登録 | 163 (7/7送信) vs live **268** | 163 vs 253 | ギャップ105拡大継続（再送信はユーザーFull権限待ち） |
+
+- 9/2朝wave11（同窓）と完全一致 = 直近1日は横ばい。拡大は8月前半〜中盤の一括改善（26ページ/16クエリは既知セットのみ・新規Queryなし: galaxy watch garmin 比較/rtx spark 価格 のclick2、27gr95qe系5、スマートグラス 心拍2、even g2 セール/innaio t10/wh-1000xm6 レビュー/非侵襲 血糖値/aiガジェット 等）
+- BO pillar 7/8ヒット（pos: smartwatch-blood-pressure 27.7・ai-glasses-guide 7.7・mobile-monitor-recommend 8.8・ai-voice-recorder-guide 11.7・pocketalk-s2 6.0(8imp)・lg-ultragear 17.4(8imp)・rtx-spark記事 7.7(6imp/1click)）
+- **10/1月次判定の材料**: インデックス拡大はGSC側でも確認済み（26ページ/105imp/16クエリ）＝Phase 2部分移行の裏付け維持。ただしGSCに見えるのは163送信URL内のサブセットのみで、自然発見の大半はGA4側（30日Organic 14セッション/12着地）で観測。10/1判定時の比較ベースラインとして本行を参照。編集は次回月次時点で実施（判定+stats更新）。
