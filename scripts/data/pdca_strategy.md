@@ -311,3 +311,8 @@ amazon_click 3件: UTC 8/4・8/19 = ai-voice-recorder-buying-guide（収益リ�
 - modeは **normal** 維持（heavy禁止・nightlyをheavyに戻さない）。cron再帰作成禁止
 
 *次回見直し: 2026-09-13（週次戦略レビューcron） / 2026-10-01（月次）*
+
+### 追補 2026-09-09 02:30 JST（nightlyスポット・週次9/13の再評価材料）
+- GA4窓=9/6-9/8 UTC（JST 9/6 09:00〜9/9 08:59）: 新規Organic着地3件は全てエンゲージあり（Even G2既知94s / lg-ultragear 35s / plaud-note-pro 2pv）→新規0秒着地0件・修正なし
+- **amazon_click新規2件**: ①plaud-note-pro JST 9/7 16:00（Organic engagedと同一dateHour）= **週次9/6で「打ち切り」判定したCTAテスト文言記事からの初発火**（8/26新文言適用後）。打ち切り判定は維持するが、週次9/13で「テスト記事発火1件」の再評価材料とする ②iPhone 20260614旧自動生成記事 JST 9/7 15:00（AI Assistant engaged 720sと同一dateHour）= AI Assistant経由セッションからのクリック実証（収益リーダーのai-voice-recorderに次ぐ2例目のAI経由導線）
+- ホームDirect集中の再発なし（3セッション分散）。記事編集・ビルド・デプロイなし
