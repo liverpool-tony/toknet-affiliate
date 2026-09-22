@@ -341,3 +341,9 @@ amazon_click 3件: UTC 8/4・8/19 = ai-voice-recorder-buying-guide（収益リ�
 - 記事供給停止週でも**amazon_click 3件（今期最多）**＝BO/製品特定リンク方針の有効性は維持。特にGSC可視smartwatch系2記事の初クリックは、インデックス拡大→収益の導線が機能し始めたシグナル
 - 次週重点: ①**自動化復旧（ユーザー対応・最優先）** ②復旧後: クリック元3記事の受け皿検証（商品リンク/CTA/比較表・FAQ）＋記事生成ギャップの解消 ③9/12 android汎用トレンド記事のnoindex適用（週次判断: 対象確定・キュー投入済） ④GSC SA権限・IGトークン（引き続きユーザー対応待ち）
 - modeは **normal** 維持（heavy禁止・nightlyをheavyに戻さない）。cron再帰作成禁止
+
+### ✅ 復旧記録（2026-09-22 23:30 実測）
+- **ユーザーがtoknet全cronジョブのモデルpinを解除**（jobs.json実測: 5ジョブとも model=None / provider=None → config既定 `commandcode/deepseek-v4.1-flash`）。nightlyは 2026-09-22 23:30 に**10日ぶりに実行成功**（9/12夜以降32連続失敗の終了）。
+- **pipelineも同日23:35に手動FULL RUNで復帰確認**: 選択タグ `#iPhone`（score160・RSS）→ カテゴリ smartphone → 記事 `20260922-...iphone徹底レビュー` 生成 → ビルド → Cloudflareデプロイ ✅ → live 200（curl）・/articles/索引にhref確認。**9/13〜9/22の新規記事0本ギャップを解消**（定時実行は9/23 03:00から通常再開）。
+- 副次修正: mstdnお遊びタグ `#子供の頃に流行ってたゲームを教えて`（score 347.5）がDRY RUNを通過 → `trend_collector.py` の EXCLUDE_PATTERNS に `^#子供の頃` / `^#子どもの頃` を追加。
+- 残ボトルネック（いずれもユーザー対応待ち）: **GSC SA権限**（sitemap 163 vs live 276+）・**IGトークン失効**（8/11・code190/subcode463）・**xAIクレジット切れ→x_search停止**（Step 0が0件・RSSフォールバックで運用中）。
