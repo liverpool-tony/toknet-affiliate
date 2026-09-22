@@ -7,6 +7,7 @@ tags: ["nintendodirectjp", "NintendoDirectJP", "gaming"]
 articleType: "review"
 aiAssisted: true
 draft: false
+noindex: true
 products: [{"name": "nintendodirectjp", "amazonUrl": "https://www.amazon.co.jp/s?k=nintendodirectjp&tag=toknet-22", "rating": null}, {"name": "NintendoDirectJP", "amazonUrl": "https://www.amazon.co.jp/s?k=NintendoDirectJP&tag=toknet-22", "rating": null}, {"name": "gaming", "amazonUrl": "https://www.amazon.co.jp/s?k=gaming&tag=toknet-22", "rating": null}]
 ---
 
