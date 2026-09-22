@@ -2,7 +2,7 @@
 title: "Even Realities G2 徹底レビュー 2026｜重量35g・バッテリー8時間の実測"
 description: "Even Realities G2（Even G2）を徹底レビュー。HUD表示の視認性、ナビ精度、バッテリー8時間の実測値、重量35gの装着感を検証。XREAL One Pro・Ray-Ban Metaとの比較表付き。AIグラス選びの決定版。"
 pubDate: 2026-06-22T07:03:35+09:00
-updatedDate: 2026-08-06T23:50:00+09:00
+updatedDate: 2026-09-23T02:30:00+09:00
 category: "wearable"
 tags: ["Even Realities G2"]
 articleType: "review"
@@ -167,3 +167,6 @@ A: 予算が許せば新モデルがおすすめです。ただし、旧モデ�
 ## まとめ
 
 本記事はAIと人間の共創により作成されました。トレンドデータに基づき、読者の皆様に役立つ情報をお届けします。
+
+> 💡 **最新価格はAmazonでチェック** → 上の商品リンクから確認できます
+> 🛒 **楽天市場でも比較** → [Even Realities G2](https://search.rakuten.co.jp/search/mall/Even+Realities+G2/)
