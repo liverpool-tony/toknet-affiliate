@@ -385,6 +385,9 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'Twitter', 'X', 'Instagram', 'Facebook', 'YouTube', 'TikTok',
         'Netflix', 'Spotify', 'DisneyPlus', 'Hulu', 'SNS',
         'AppleMusic', 'applemusic', 'iTunes', 'AppleTV',
+        # メディア名トークン（RSSタイトルのサイト名サフィックス「- PC Watch」由来の誤検出。
+        # 2026-09-23: #Watch が最高スコア(140)で選ばれ、製品名なしの汎用記事になった）
+        'Watch',
         # AI/テック企業・サービス名（商品レビューにならない）
         # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
         # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
