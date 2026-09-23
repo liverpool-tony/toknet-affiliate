@@ -391,7 +391,10 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # AI/テック企業・サービス名（商品レビューにならない）
         # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
         # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
-        'Google', 'Gemini', 'openai', 'OpenAI', 'Anthropic', 'Claude', 'AI', 'Adobe', 'Creative', 'Cloud',
+        # 2026-09-24: PRODUCT_KEYWORDS は小文字 'anthropic'/'mistral' を返すため
+        # 大小両ケースを登録（RSS候補に #anthropic score:100 が通過した実測あり）
+        'Google', 'Gemini', 'openai', 'OpenAI', 'Anthropic', 'anthropic', 'Claude', 'AI', 'Adobe', 'Creative', 'Cloud',
+        'mistral', 'Mistral',
         'GPT', 'ChatGPT', 'Scheduled', 'タスク',
         # 抽象的なIT用語（商品レビューにならない）
         'Patching', 'Service', 'Coding', 'コーディング', 'プログラミング',
