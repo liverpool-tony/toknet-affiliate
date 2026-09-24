@@ -77,6 +77,9 @@ EXCLUDE_PATTERNS = [
     r'^#chatgpt$', r'^#claude$', r'^#gemini$', r'^#gpt$',
     # 除外: ブラウザ（商品レビューでない）
     r'^#chrome$', r'^#firefox$', r'^#safari$', r'^#edge$',
+    # 除外: OS/プラットフォーム名（商品でない。2026-09-25: #watchos が PRODUCT_KEYWORDS
+    # の 'Watch' に startswith 一致して商品タグ扱いになり、汎用記事化した）
+    r'^#watchos', r'^#ipados', r'^#visionos', r'^#tvos',
     # 除外: 色・一般語（ugreen 等の部分一致誤検知を防ぐ）
     r'^#green$', r'^#blue$', r'^#red$',
 ]
