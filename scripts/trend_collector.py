@@ -38,6 +38,10 @@ EXCLUDE_PATTERNS = [
     r'^#iliketowatch$', r'^#iliketo',
     # 除外: お遊びタグ（商品系でない）
     r'^#広めたいsteamゲーム',
+    # 除外: 日本語ハッシュタグゲーム（文型タグ）
+    # 2026-09-28: #ようじを変換して一発目に幼児が出たら負けゲーム が PRODUCT_KEYWORDSの
+    # 'ゲーム' に部分一致して商品タグ扱いになり score 410 で選定された実例への対処。
+    r'^#ようじを変換', r'^#.*たら.*(ゲーム|負け|勝ち)', r'^#.*打って.*たら',
     # 除外: 外国地名・国名タグ（商品系でない）
     r'^#algeria', r'^#france', r'^#germany', r'^#brazil',
     r'^#india', r'^#china', r'^#korea', r'^#russia', r'^#mexico',
