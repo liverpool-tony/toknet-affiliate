@@ -375,6 +375,10 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'ゲーム',
         # ソフトウェア/サービス名（商品レビューにならない）
         'Premiere', 'DaVinci', 'Codex', 'ソフト', 'Record', 'Replay', 'ハーバード',
+        # 開発者向けサービス名（商品レビューにならない）
+        # 2026-10-01: PRODUCT_KEYWORDS の小文字 'github' がRSS候補を通過し #github 選定
+        # （9/28恒久策調査で「サービス名=汎用語クラス」と確定。大小両ケース登録の9/24ルール適用）
+        'github', 'GitHub', 'gitlab', 'GitLab',
         # その他
         'イベント', 'セミナー', 'カンファレンス', '展示会',
         '求人', '採用', '人事', '組織',
