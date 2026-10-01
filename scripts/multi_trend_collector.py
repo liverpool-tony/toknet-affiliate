@@ -406,7 +406,9 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # その他メタワード
         'AURA', 'gentechnik', 'Gentechnik',
         'ノーム・シャジーア', 'ディーン・ボール',
-        '発売', '予約', '新作',
+        # 2026-10-02: '限定' 追加（6/28・6/29に続き 10/2 も RSS候補 #限定 score80 として浮上。
+        # meta-tags-history に HIGH PRIORITY 記載済みだった未適用分・発売/予約/新作と同クラス）
+        '発売', '予約', '新作', '限定',
         'エッセイ',
         'デスク', 'ベッド',
         # 抽象的な機能・アプリカテゴリ（商品レビューにならない）
