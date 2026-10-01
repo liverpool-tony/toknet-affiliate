@@ -385,7 +385,7 @@ amazon_click 3件: UTC 8/4・8/19 = ai-voice-recorder-buying-guide（収益リ�
 
 内訳（30日）: Direct 86 / Organic Search 32 / Unassigned 10 / AI Assistant 6 / Cross-network 1 / Organic Social 1 / Referral 1
 
-Organic着地17ページ: smartwatch-blood-pressure（7sess/38.7s）・AI翻訳機（4/216.0s）・rtx-spark（3/49.9s）・mobile-monitor-switch（2/723.9s）・ai-glasses-guide（2/140.2s）・even-g2（2/179.7s）等。ホーム69sess（51%・15.0s）のDirect偏重構造は継続。9月新規クリックは全件Organicチャネル発火（同チャネル=Bing系が実体）。
+Organic着地17ページ: smartwatch-blood-pressure（7sess/38.7s）・AI翻訳機（4/216.0s）・rtx-spark（3/49.9s）・mobile-monitor-switch（2/723.9s）・ai-glasses-guide（2/140.2s）・even-g2（2/179.7s）等。ホーム69sess（51%・15.0s）のDirect偏重構造は継続。9月のamazon_clickはOrganic/AI Assistant/Unassigned混在（Organic分はBing系主体とみられる）。
 
 ### ⚠️ 最重要訂正: 「Organic拡大」の実体はBing系（Googleは依然ゼロ）
 - GA4 source別実測（30日）: **bing 24・duckduckgo 6・openai 2・google 0**
