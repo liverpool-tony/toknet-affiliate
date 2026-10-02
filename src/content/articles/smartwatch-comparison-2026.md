@@ -18,9 +18,9 @@ products: [{"name": "Apple Watch Series 11", "amazonUrl": "https://www.amazon.co
 
 - [はじめに](#はじめに)
 - [3機種スペック比較表](#3機種スペック比較表)
-- [Apple Watch Series 11｜iPhoneユーザーの鉄板](#apple-watch-series-11｜iphoneユーザーの鉄板)
-- [Galaxy Watch 8｜Androidユーザーの最適解](#galaxy-watch-8｜androidユーザーの最適解)
-- [Garmin Venu 4｜スポーツ・アウトドア重視ならこれ](#garmin-venu-4｜スポーツ・アウトドア重視ならこれ)
+- [Apple Watch Series 11｜iPhoneユーザーの鉄板](#apple-watch-series-11iphoneユーザーの鉄板)
+- [Galaxy Watch 8｜Androidユーザーの最適解](#galaxy-watch-8androidユーザーの最適解)
+- [Garmin Venu 4｜スポーツ・アウトドア重視ならこれ](#garmin-venu-4スポーツアウトドア重視ならこれ)
 - [用途別おすすめ](#用途別おすすめ)
 - [よくある質問（FAQ）](#よくある質問faq)
 - [関連記事](#関連記事)

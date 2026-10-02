@@ -20,7 +20,7 @@ products: [{"name": "Ray-Ban Meta Wayfarer", "amazonUrl": "https://www.amazon.co
 - [日本での購入方法と価格](#日本での購入方法と価格)
 - [Wayfarer vs Headliner 比較](#wayfarer-vs-headliner-比較)
 - [Meta AIの使い方](#meta-aiの使い方)
-- [カメラ・動画性能](#カメ動画性能)
+- [カメラ・動画性能](#カメラ動画性能)
 - [バッテリー・充電](#バッテリー充電)
 - [メリット・デメリット](#メリットデメリット)
 - [よくある質問（FAQ）](#よくある質問faq)

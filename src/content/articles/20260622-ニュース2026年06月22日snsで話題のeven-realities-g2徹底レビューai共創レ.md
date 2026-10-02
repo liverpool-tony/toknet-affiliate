@@ -18,7 +18,7 @@ products: [{"name": "Even Realities G2", "amazonUrl": "https://www.amazon.co.jp/
 - [はじめに](#はじめに)
 - [トレンド分析](#トレンド分析)
 - [おすすめ商品](#おすすめ商品)
-- [Even Realities G2のメリット・デメリット](#even-realities-g2のメリット・デメリット)
+- [Even Realities G2のメリット・デメリット](#even-realities-g2のメリットデメリット)
 - [よくある質問（FAQ）](#よくある質問faq)
 - [選び方のポイント](#選び方のポイント)
 - [参考リンク](#参考リンク)
