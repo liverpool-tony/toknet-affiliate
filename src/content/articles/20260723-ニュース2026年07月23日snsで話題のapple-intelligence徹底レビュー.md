@@ -2,6 +2,7 @@
 title: "Apple Intelligence 徹底解説 2026｜対応機種・機能・AirPods連携を比較"
 description: "Apple Intelligenceの全機能を徹底解説。対応iPhone・Mac・iPad一覧、AirPods Pro 3のリアルタイム翻訳、Siriの進化、ChatGPT連携まで。2026年最新のAI機能を実機ベースで比較・検証。"
 pubDate: 2026-07-23T03:01:58+09:00
+updatedDate: 2026-10-03
 category: "software"
 tags: ["Apple Intelligence", "AirPods", "iPhone", "Siri", "リアルタイム翻訳", "AI"]
 articleType: "review"
@@ -9,6 +10,17 @@ aiAssisted: true
 draft: false
 products: [{"name": "AirPods Pro 3", "price": "¥39,800〜", "amazonUrl": "https://www.amazon.co.jp/s?k=AirPods+Pro+3&tag=toknet-22", "rating": 4.5}, {"name": "iPhone 16 Pro", "price": "¥159,800〜", "amazonUrl": "https://www.amazon.co.jp/s?k=iPhone+16+Pro&tag=toknet-22", "rating": 4.6}]
 ---
+
+## 目次
+
+- [はじめに](#はじめに)
+- [Apple Intelligenceの主要機能](#apple-intelligenceの主要機能)
+- [対応機種一覧（2026年7月時点）](#対応機種一覧2026年7月時点)
+- [AirPods Pro 3のリアルタイム翻訳を実機検証](#airpods-pro-3のリアルタイム翻訳を実機検証)
+- [Apple Intelligence vs 競合AI比較](#apple-intelligence-vs-競合ai比較)
+- [よくある質問（FAQ）](#よくある質問faq)
+- [関連記事](#関連記事)
+- [まとめ](#まとめ)
 
 ## はじめに
 
