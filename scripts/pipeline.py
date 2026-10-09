@@ -411,6 +411,25 @@ def detect_category(text):
     return best_cat
 
 
+def _detect_category_from_tag(tag):
+    """タグ自体がカテゴリキーワードに（部分）一致する場合のみカテゴリIDを返す。
+
+    複合テキスト（keywords + tag）での判定は、同点時に CATEGORY_MAP の挿入順で
+    決まるため、タグの主題と無関係なキーワードが混ざると誤分類する
+    （例: タグ #MacBook + キーワード iPad → smartphone に誤分類 / 2026-10-10 修正）。
+    タグに直接一致するカテゴリがあればそれを優先し、無ければ None を返す。
+    """
+    tag_lower = tag.lower()
+    best_cat = None
+    best_score = 0
+    for cat_id, info in CATEGORY_MAP.items():
+        score = sum(1 for kw in info['keywords'] if kw.lower() in tag_lower)
+        if score > best_score:
+            best_score = score
+            best_cat = cat_id
+    return best_cat
+
+
 def generate_slug(title):
     slug = title.lower()
     slug = re.sub(r'[^\w\s-]', '', slug)
@@ -589,7 +608,9 @@ def generate_article(trend_data, template_idx=0, dry_run=False):
     source = trend_data.get('source', 'unknown')
 
     all_text = ' '.join(keywords) + ' ' + tag
-    category = detect_category(all_text)
+    # タグ（記事の主題）がカテゴリキーワードに直接一致する場合はそれを優先、
+    # 未一致なら複合テキストで判定（同点時の挿入順誤分類を防ぐ: 例 #MacBook+iPad）
+    category = _detect_category_from_tag(tag) or detect_category(all_text)
 
     top_kw = keywords[0] if keywords else tag
 
