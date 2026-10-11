@@ -131,6 +131,7 @@ DLSS 3.5は、RTX 4090の最も革新的な機能です。AIフレーム生成�
 - [MacBook Air M3 15インチ 徹底レビュー：性能・バッテリー・価格を徹底検証](/articles/macbook-air-m3-review/)
 - [MacBook Pro M4 14インチ 徹底レビュー：プロが選ぶ理由と性能検証](/articles/macbook-pro-m4-review/)
 - [ThinkPad X1 Carbon Gen 12 レビュー：ビジネスノートの最高峰](/articles/thinkpad-x1-carbon-review/)
+- [NVIDIA RTX Spark 搭載PC おすすめ 2026｜性能・価格を比較](/articles/20260727-ニュース2026年07月27日snsで話題のnvidia-rtx-spark徹底レビュー/)
 
 ## まとめ
 
