@@ -87,6 +87,10 @@ EXCLUDE_PATTERNS = [
     # 除外: OS/プラットフォーム名（商品でない。2026-09-25: #watchos が PRODUCT_KEYWORDS
     # の 'Watch' に startswith 一致して商品タグ扱いになり、汎用記事化した）
     r'^#watchos', r'^#ipados', r'^#visionos', r'^#tvos',
+    # 除外: Appleイベントタグ（商品でない。2026-10-14: #appleevent が 'apple'
+    # startswith 一致で商品タグ扱い・score 78.4 で選定候補になった実例への対処。
+    # Appleイベントは年複数回あり再浮上するため恒久除外）
+    r'^#appleevent',
     # 除外: 色・一般語（ugreen 等の部分一致誤検知を防ぐ）
     r'^#green$', r'^#blue$', r'^#red$',
 ]

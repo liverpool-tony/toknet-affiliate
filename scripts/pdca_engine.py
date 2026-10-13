@@ -44,7 +44,7 @@ CATEGORY_KEYWORDS = {
     "audio-headphones": ["ヘッドホン", "イヤホン", "スピーカー", "DAC", "アンプ", "ワイヤレス",
                           "ノイズキャンセリング", "オープンイヤー", "TWS", "AirPods", "earbuds"],
     "smart-home": ["スマートホーム", "IoT", "スマートスピーカー", "Alexa", "Google Home",
-                    "HomePod", "センサー", "Roku", "FireTV", "Chromecast", "AppleTV", "ストリーミング"],
+                    "HomePod", "HomeView", "センサー", "Roku", "FireTV", "Chromecast", "AppleTV", "ストリーミング"],
     "home-appliances": ["家電", "洗濯機", "冷蔵庫", "掃除機", "ルンバ", "ダイソン", "炊飯器",
                          "電子レンジ", "エアコン", "空気清浄機", "加湿器"],
     "monitors": ["モニター", "ディスプレイ", "4K", "5K", "ゲーミングモニター", "ウルトラワイド", "曲面",
