@@ -403,6 +403,10 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 抽象的なIT用語（商品レビューにならない）
         'Patching', 'Service', 'Coding', 'コーディング', 'プログラミング',
         'セキュリティ', '脆弱性', 'アップデート', 'Update',
+        # 2026-10-15: 'Android' 追加（プラットフォーム名=非製品。10/12 'xbox'選定に続く同型。
+        # 10/15 RSS候補2件は両方ともセキュリティ/脆弱性記事〈JVN楽天モバイル鍵問題・NICT注意喚起〉で
+        # 製品レビュー対象なし。iPhoneと異なり実製品名として機能しない）
+        'Android', 'android',
         # その他メタワード
         'AURA', 'gentechnik', 'Gentechnik',
         'ノーム・シャジーア', 'ディーン・ボール',
@@ -415,6 +419,9 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'マルチタスク', 'アプリ', 'ゲーミングモード',
         # その他の抽象タグ
         'オタク', 'デジタル',
+        # 2026-10-15: '4K' 追加（解像度規格=仕様語。10/15 RSS候補 #4K score100 が選択され
+        # 「汎用検索URL」記事になるため。10/6 'ディスプレイ'選定と同クラス。SSD/メモリ等も同様の仕様語）
+        '4K', '4k',
         # ギリシャ文字（モデル名/バージョン名）
         'Zeta',
         # 金融カテゴリ（商品レビューにならない）
