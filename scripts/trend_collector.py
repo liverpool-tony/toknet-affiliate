@@ -66,6 +66,11 @@ EXCLUDE_PATTERNS = [
     r'^#Fensterfreitag', r'^#insektensamstag', r'^#caturday$',
     r'^#kungfusat', r'^#spillthetea', r'^#KidMadeUpHolidays',
     r'^#nationalsecurity',
+    # 2026-10-17: #viernesdepegatinas（西語「金曜日のステッカー」週替わりタグ）が
+    # fallbackループの endswith('nas')→PRODUCT_KEYWORDS 'NAS' 誤マッチで商品タグ扱い・
+    # score 51.0 で選定された実例への対処。※「〜nas」で終わる外国語タグは同様の
+    # 誤通過が起こりうる（独語・西語の複数形等）
+    r'^#viernesdepegatinas',
     # 除外: 商品レビューとして不適切なトピック
     r'^#スポーツ$', r'^#子ども$', r'^#キッズ$', r'^#価格$',
     r'^#政治$', r'^#社会$', r'^#天気$', r'^#災害$',
