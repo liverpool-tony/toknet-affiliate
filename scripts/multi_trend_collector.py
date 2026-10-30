@@ -369,6 +369,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
         'Microsoft', 'Tesla', 'Toyota', 'NTT', 'nvidia', 'NVIDIA',
         'intel', 'Intel', 'amd', 'AMD', 'asus', 'ASUS', 'dell', 'Dell',
+        'Razer', 'razer',
         # 抽象的なカテゴリ名
         'インフラ', 'Home', 'IoT', 'クラウド', 'ブロックチェーン',
         'スタートアップ', '投資', 'IPO', '決算', '業績', 'オープンソース',
