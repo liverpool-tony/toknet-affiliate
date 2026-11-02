@@ -1,167 +1,33 @@
 ---
-title: "スマートウォッチ 比較 2026｜Apple Watch・Galaxy Watch・Garmin おすすめはどれ？"
-description: "2026年最新スマートウォッチ3機種（Apple Watch Series 11 約6〜8万円・Galaxy Watch 8 約4〜6万円・Garmin Venu 4 約5〜7万円）を徹底比較。血圧・血糖測定、バッテリー、対応スマホで選ぶおすすめを解説。"
+title: "スマートウォッチ比較｜血圧・血糖機能の注意点【訂正】"
+description: "スマートウォッチの血圧・血糖機能に関する過去の誤記を訂正。購入前の対応条件と医療上の注意点を公式情報に基づき説明します。"
 pubDate: 2026-07-23T08:30:00+09:00
-updatedDate: 2026-08-24
+updatedDate: 2026-11-03
 category: "wearable"
 tags: ["スマートウォッチ", "Apple Watch", "Galaxy Watch", "Garmin", "健康管理"]
 articleType: "comparison"
 aiAssisted: true
 draft: false
-products: [{"name": "Apple Watch Series 11", "amazonUrl": "https://www.amazon.co.jp/s?k=Apple+Watch+Series+11&tag=toknet-22", "rating": 4.5}, {"name": "Galaxy Watch 8", "amazonUrl": "https://www.amazon.co.jp/s?k=Galaxy+Watch+8&tag=toknet-22", "rating": 4.0}, {"name": "Garmin Venu 4", "amazonUrl": "https://www.amazon.co.jp/s?k=Garmin+Venu+4&tag=toknet-22", "rating": 4.5}]
 ---
-> **✍️ 筆者・検証方針**: 本記事はAI共創レビュー研究所編集部が、公式スペック・公開価格データ・ユーザーレビューの定量分析に基づき作成しています。製品選定と評価軸は編集部が独自に設定。AI支援執筆ですが、事実確認と最終判断は人間が行っています。
+> **重要な訂正（2026年11月3日）**: 以前の記事には、Apple Watch Series 11とGalaxy Watch 8が単体で非侵襲の血糖トレンドを測定できる、Apple Watchが血圧の数値を測定できる、測定精度が±5〜8mmHgである、などの根拠のない記述がありました。これらを撤回します。健康上の判断や服薬の変更に時計の表示を使わず、医療機関に相談してください。
 
-> **結論**: iPhoneユーザーはApple Watch Series 11（約6〜8万円）、AndroidユーザーはGalaxy Watch 8（約4〜6万円）、スポーツ・バッテリー重視はGarmin Venu 4（約5〜7万円）がおすすめ。血圧測定・非侵襲血糖トレンド対応はApple Watch Series 11とGalaxy Watch 8のみです。
+## 血圧と血糖について
 
-## 目次
+Appleは、対応するApple Watchの高血圧通知について、心拍センサーのデータから高血圧の可能性があるパターンを通知する機能と説明しています。**血圧値そのものを測定する機能ではなく、診断・治療・高血圧の管理を目的とするものでもありません。**利用可否は国・地域やモデルなどの条件によります。血圧の記録には別途血圧計が必要です。[Apple公式の説明](https://support.apple.com/en-us/117296)
 
-- [はじめに](#はじめに)
-- [3機種スペック比較表](#3機種スペック比較表)
-- [Apple Watch Series 11｜iPhoneユーザーの鉄板](#apple-watch-series-11iphoneユーザーの鉄板)
-- [Galaxy Watch 8｜Androidユーザーの最適解](#galaxy-watch-8androidユーザーの最適解)
-- [Garmin Venu 4｜スポーツ・アウトドア重視ならこれ](#garmin-venu-4スポーツアウトドア重視ならこれ)
-- [用途別おすすめ](#用途別おすすめ)
-- [よくある質問（FAQ）](#よくある質問faq)
-- [関連記事](#関連記事)
+Samsungは一部の地域・対応機器で血圧機能を提供していますが、対応するGalaxy端末や地域などの条件があります。日本でのGalaxy Watch 8の血圧機能の利用可否は今回確認できていません。購入前にメーカーの日本向け情報を確認してください。[Samsung公式の対応条件（米国）](https://www.samsung.com/us/support/answer/ANS10003433/)
 
-## はじめに
+血糖について、米国FDAは、皮膚を刺さずに時計や指輪だけで血糖を測れると謳う製品を使わないよう警告しています。別の持続血糖測定器（CGM）が測定した値を時計に表示することと、時計自体が血糖を測ることは別です。[FDA安全情報](https://www.fda.gov/medical-devices/safety-communications/do-not-use-smartwatches-or-smart-rings-measure-blood-glucose-levels-fda-safety-communication)
 
-スマートウォッチ比較のおすすめは、**iPhoneユーザーならApple Watch Series 11、AndroidユーザーならGalaxy Watch 8（4〜6万円）、スポーツ・バッテリー重視ならGarmin Venu 4**です。この3機種をスペック・価格・対応スマホ・健康管理機能で比較し、あなたに最適な1台を選びます。
+## 購入前に確認すること
 
-## 3機種スペック比較表
+- 自分のスマートフォンと、購入予定モデルの対応状況。
+- 健康機能が日本で使えるか、対象年齢や端末などの条件。
+- 価格・電池持ち・防水性能は、販売元の最新仕様と使用条件。
+- 血圧や血糖の測定が必要な場合は、医療従事者に適切な機器を相談すること。
 
-| 項目 | Apple Watch S11 | Galaxy Watch 8 | Garmin Venu 4 |
-|------|----------------|---------------|---------------|
-| **対応スマホ** | iPhoneのみ | Android（iOS一部） | iOS/Android |
-| **ディスプレイ** | LTPO OLED 常時表示 | AMOLED 常時表示 | AMOLED 常時表示 |
-| **サイズ** | 42mm / 46mm | 40mm / 44mm | 41mm / 45mm |
-| **バッテリー** | 約36時間 | 約40時間 | 約10日間 |
-| **血圧測定** | ○ | ○ | × |
-| **血糖トレンド** | ○（非侵襲） | ○（非侵襲） | × |
-| **心電図（ECG）** | ○ | ○ | ○ |
-| **睡眠スコア** | ○ | ○ | ○（詳細） |
-| **GPS** | デュアルバンド | デュアルバンド | マルチバンド |
-| **防水** | 5ATM + IP6X | 5ATM + IP68 | 5ATM |
-| **価格帯** | 約6〜8万円 | 約4〜6万円 | 約5〜7万円 |
-
-## Apple Watch Series 11｜iPhoneユーザーの鉄板
-
-### 特徴
-iPhoneとの連携が最も深いスマートウォッチ。2026年モデルは非侵襲血糖トレンド測定が追加され、健康管理の幅がさらに広がりました。
-
-### メリット
-- iPhoneとのシームレスな連携（通知・通話・決済）
-- 非侵襲血糖トレンド測定（2026年新機能）
-- アプリエコシステムが最も豊富
-- 転倒検出・衝突事故検出の安全機能
-
-### デメリット
-- iPhoneでしか使えない
-- バッテリーは約36時間（毎日充電が必要）
-- 価格が6〜8万円と高め
-
-### こんな人におすすめ
-- iPhoneユーザー
-- 健康管理＋通知＋決済を1台で済ませたい
-- Appleエコシステムを最大限活用したい
-
-## Galaxy Watch 8｜Androidユーザーの最適解
-
-### 特徴
-Android（特にGalaxyスマホ）との連携が深いスマートウォッチ。血圧測定＋血糖トレンドの両方に対応し、Apple Watchよりやや手頃な価格帯です。
-
-### メリット
-- Androidスマホとの連携が深い
-- 血圧＋血糖トレンドの両方に対応
-- Apple Watchより1〜2万円安い
-- 回転ベゼルで操作が直感的
-
-### デメリット
-- iPhoneでは一部機能が制限される
-- アプリ数はApple Watchに劣る
-- Galaxy以外のAndroidでは連携がやや弱い
-
-### こんな人におすすめ
-- Android（特にGalaxy）ユーザー
-- 血圧・血糖を日常的にモニタリングしたい
-- コスパ重視
-
-## Garmin Venu 4｜スポーツ・アウトドア重視ならこれ
-
-### 特徴
-GPS精度とバッテリー持ちで圧倒的なGarmin。約10日間のバッテリーで、充電を気にせずトレーニングに集中できます。
-
-### メリット
-- バッテリー約10日間（充電ストレスなし）
-- マルチバンドGPSで高精度な位置測定
-- 100以上のスポーツモード
-- iOS/Android両対応
-
-### デメリット
-- 血圧・血糖測定には非対応
-- スマート機能（通知・決済）はやや弱い
-- デザインがスポーティ寄り
-
-### こんな人におすすめ
-- ランニング・サイクリング・登山が趣味
-- 充電を頻繁にしたくない
-- iOS/Android両方で使いたい
-
-## 用途別おすすめ
-
-| 用途 | おすすめ | 理由 |
-|------|---------|------|
-| iPhone＋日常使い | Apple Watch S11 | 連携最強＋アプリ豊富 |
-| Android＋健康管理 | Galaxy Watch 8 | 血圧＋血糖＋コスパ |
-| スポーツ・アウトドア | Garmin Venu 4 | バッテリー10日＋GPS精度 |
-| 睡眠トラッキング | Garmin Venu 4 | 詳細な睡眠ステージ分析 |
-| 決済・通知重視 | Apple Watch S11 | Apple Pay＋通知連携 |
-
-
-## 2026年8月 最新動向
-
-2026年8月、スマートウォッチ市場は秋季の新製品発表を前に現行モデルの価格が下落しています。Apple Watch Series 11は8月の価格改定で実売6万円台に入り、iPhoneユーザーにとっての定番ポジションを確立。Galaxy Watch 8はAndroid連携の安定性とヘルスケア機能の充実で評価を維持。Garmin Venu 4はアウトドア・スポーツ特化で他社の追随を許さない精度を誇ります。8月は新モデル発表前の買い時であり、現行モデルを安く入手する絶好のタイミングです。
-
-## よくある質問（FAQ）
-
-### Q: スマートウォッチの血圧測定は正確ですか？
-A: 医療機器ではありませんが、2026年モデルは日常のトレンド把握には十分な精度です。異常値が出たら医療機関で確認しましょう。
-
-### Q: バッテリーはどれくらい持ちますか？
-A: Apple Watch・Galaxy Watchは1〜2日、Garminは約10日です。毎日充電するのが面倒ならGarminがおすすめです。
-
-### Q: 水泳で使えますか？
-A: 3機種とも5ATM防水で水泳に対応しています。ただし、温水（温泉・サウナ）はパッキン劣化の原因になるため避けてください。
+この記事の旧版にあった製品別の価格、精度、血糖・血圧対応などの比較は、出典を十分に確認できなかったため削除しました。製品ごとの再検証が済むまで、おすすめ順位は掲載しません。
 
 ## 関連記事
 
-- [AIグラス 比較 2026｜XREAL・Ray-Ban Meta・Even Realities](/articles/ai-glasses-comparison-2026/)
-- [AIボイスレコーダー おすすめ 2026](/articles/20260706-ニュース2026年07月06日snsで話題のaiボイスレコーダー徹底レビューai共/)
-- [スマートウォッチ 血圧測定 2026｜Apple Watch vs Galaxy Watch 比較](/articles/smartwatch-blood-pressure-2026/)
-- [AIペンダント おすすめ 2026｜スペック・価格・評判を比較](/articles/20260630-ニュース2026年06月30日snsで話題のaiペンダント徹底レビューai共創レビュー研究所/)
-- [XREAL Air 2 Pro レビュー 2026｜ARグラスの実力を検証](/articles/20260622-ニュース2026年06月22日snsで話題のxreal徹底レビューai共創レビュー研究所/)
-- [NotePin おすすめ 2026｜スペック・価格・評判を比較](/articles/20260621-ニュース2026年06月21日snsで話題のnotepin徹底レビューai共創レビュー研究所/)
-
-## 💰 購入前にチェック
-
-> 最新価格・在庫状況をAmazonで確認しましょう。タイムセールやクーポンで通常より安く買える場合があります。
-
-- **[👉 Apple Watch Series 11 の最安値を確認する](https://www.amazon.co.jp/s?k=Apple+Watch+Series+11&tag=toknet-22)**
-- **[👉 Galaxy Watch 8 の最安値を確認する](https://www.amazon.co.jp/s?k=Galaxy+Watch+8&tag=toknet-22)**
-- **[👉 Garmin Venu 4 の最安値を確認する](https://www.amazon.co.jp/s?k=Garmin+Venu+4&tag=toknet-22)**
-
-> ※価格は変動します。購入時に必ず最新価格をご確認ください。
-
-## まとめ
-
-スマートウォッチは、スマホとの相性と用途で選ぶのが正解です。
-
-- **iPhoneユーザー** → Apple Watch Series 11
-- **Androidユーザー** → Galaxy Watch 8
-- **スポーツ重視** → Garmin Venu 4
-
-まずは「どのスマホを使っているか」で絞り、次に「何に使いたいか」で最終決定しましょう。
-
-> 💡 **最新価格はAmazonでチェック** → 上の商品リンクから確認できます
-> 🛒 **楽天市場でも価格を比較** → [Apple Watch Series 11](https://search.rakuten.co.jp/search/mall/Apple+Watch+Series+11/) | [Galaxy Watch 8](https://search.rakuten.co.jp/search/mall/Galaxy+Watch+8/) | [Garmin Venu 4](https://search.rakuten.co.jp/search/mall/Garmin+Venu+4/)
+- [スマートウォッチの血圧測定について](/articles/smartwatch-blood-pressure-2026/)
