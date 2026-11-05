@@ -24,6 +24,8 @@ CACHE_TTL_SECONDS = 3600  # キャッシュ有効期限: 1時間
 
 # 除外タグ（スポーツ・政治・ハッシュタグゲーム等）
 EXCLUDE_PATTERNS = [
+    r'^#リアクションされた数だけハマったゲームを紹介する見た人全員やる$',
+    r'^#唐突にゲームの名言迷言をつぶやく$',
     # スポーツ
     r'^#nba', r'^#nbafinals', r'^#nfl', r'^#mlb', r'^#nhl',
     r'^#knicks', r'^#lakers', r'^#warriors', r'^#celtics',

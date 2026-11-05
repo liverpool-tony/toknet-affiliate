@@ -366,7 +366,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 機能語（商品カテゴリにならない）
         '音声録音', '録音', '充電',
         # 企業名・サービス名（商品レビューにならない）
-        'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta',
+        'SpaceX', 'SBG', 'SoftBank', 'Google', 'Amazon', 'Meta', 'Apple', 'apple',
         'Microsoft', 'Tesla', 'Toyota', 'NTT', 'nvidia', 'NVIDIA',
         'intel', 'Intel', 'amd', 'AMD', 'asus', 'ASUS', 'dell', 'Dell',
         'Razer', 'razer',
@@ -394,7 +394,7 @@ def select_trend_topic(collected, used_cache=True, exclude_tags=None):
         # 2026-09-23: #Watch が最高スコア(140)で選ばれ、製品名なしの汎用記事になった）
         'Watch',
         # AI/テック企業・サービス名（商品レビューにならない）
-        # Sony, Panasonic, Apple, Samsung, Nintendo は商品名として有効なので除外しない
+        # Sony, Panasonic, Samsung, Nintendo は商品名として有効なので除外しない
         # ただし Google, openai, Gemini, Anthropic は企業/サービス名であり商品名でない
         # 2026-09-24: PRODUCT_KEYWORDS は小文字 'anthropic'/'mistral' を返すため
         # 大小両ケースを登録（RSS候補に #anthropic score:100 が通過した実測あり）
