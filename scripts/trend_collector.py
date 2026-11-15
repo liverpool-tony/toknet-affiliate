@@ -103,6 +103,12 @@ EXCLUDE_PATTERNS = [
     # 除外: メタ語（2026-10-21: #おすすめ が PRODUCT_KEYWORDS 'おすすめ' 部分一致で
     # 商品タグ扱い・score 392.1 で最高スコア候補になった実例への対処。メタ語は記事主題にならない）
     r'^#おすすめ$', r'^#レビュー$', r'^#ランキング$', r'^#比較$',
+    # 除外: 非商品の英語ニュース語（2026-11-15: #groundstop が mstdn トレンドで
+    # score 382.4 となり「SNSで話題のgroundstop徹底レビュー」という航空用語の
+    # 汎用記事が生成された実例への対処。英語の時事・一般語は商品レビューの主題にならない）
+    r'^#groundstop$', r'^#technology$', r'^#tech$', r'^#news$', r'^#breaking$',
+    r'^#ai$', r'^#it$', r'^#gadget$', r'^#gadgets$', r'^#review$', r'^#sale$',
+    r'^#shutdown$', r'^#outage$', r'^#delay$', r'^#cancel(l)?ed$', r'^#update$',
 ]
 
 # 商品・サービス関連キーワード
