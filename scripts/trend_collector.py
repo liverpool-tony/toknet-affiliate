@@ -480,6 +480,34 @@ def get_tag_posts(tag_name, limit=20):
     return api_get(f'/api/v1/timelines/tag/{tag_name}', {'limit': str(limit)})
 
 
+# 末尾に付いた助詞を落とすための一覧（長いものから順に判定する）
+_TRAILING_PARTICLES = (
+    'から', 'まで', 'より', 'など', 'って', 'でも',
+    'も', 'の', 'は', 'が', 'を', 'に', 'で', 'と', 'や', 'へ',
+)
+
+
+def _strip_trailing_particle(word):
+    """カタカナ・漢字語の末尾に連結された助詞を落とす。
+
+    2026-11-22: トークナイザが「モニターも」のように助詞を語に連結して抽出し、
+    記事タグが文の断片になる問題への対処。カタカナ・漢字を含む語のみを対象とし、
+    ひらがな語（「もの」「こと」等）は変更しない。
+    """
+    if not isinstance(word, str):
+        return word
+    for particle in _TRAILING_PARTICLES:
+        if not word.endswith(particle):
+            continue
+        base = word[: -len(particle)]
+        if len(base) < 2:
+            continue
+        if re.search(r'[\u30a0-\u30ff\u4e00-\u9fff]', base):
+            return base
+        return word
+    return word
+
+
 def analyze_posts(posts):
     """投稿からキーワード・URL・商品名を抽出"""
     all_text = []
@@ -504,6 +532,7 @@ def analyze_posts(posts):
     for text in all_text:
         words = re.findall(r'[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+|[a-zA-Z]{3,}', text)
         for w in words:
+            w = _strip_trailing_particle(w)
             if len(w) >= 2:
                 word_counter[w] += 1
 
