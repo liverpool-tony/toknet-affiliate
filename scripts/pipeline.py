@@ -54,7 +54,7 @@ CATEGORY_MAP = {
     'smart-home': {'name': 'スマートホーム', 'keywords': ['スマートホーム', 'IoT', 'スマートスピーカー', 'Alexa', 'Google Home', 'HomePod', 'HomeView', 'センサー', 'Roku', 'roku', 'FireTV', 'firetv', 'Chromecast', 'chromecast', 'AppleTV', 'appletv', 'ストリーミング']},
     'home-appliances': {'name': '家電', 'keywords': ['家電', '洗濯機', '冷蔵庫', '掃除機', 'ルンバ', 'ダイソン', '炊飯器', '電子レンジ']},
     'monitors': {'name': 'モニター', 'keywords': ['モニター', 'ディスプレイ', '4K', 'ゲーミングモニター', 'ウルトラワイド', '曲面']},
-    'diy-pc': {'name': '自作PC', 'keywords': ['自作PC', 'グラボ', 'GPU', 'CPU', 'マザーボード', 'メモリ', 'SSD', '電源']},
+    'diy-pc': {'name': '自作PC', 'keywords': ['自作PC', 'グラボ', 'GPU', 'CPU', 'マザーボード', 'メモリ', 'SSD', '電源', 'NVIDIA', 'GeForce', 'RTX', 'Radeon', 'Intel Arc']},
     'gaming': {'name': 'ゲーミング', 'keywords': ['ゲーミング', 'Switch', 'PS5', 'Xbox', 'Steam', 'ゲーム', 'Nintendo']},
 }
 
